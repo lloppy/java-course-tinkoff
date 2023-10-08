@@ -9,7 +9,7 @@ public class Task6 {
     }
 
     private static int countSteps(int n) {
-        var steps = 0;
+        int steps = 0;
         while (n != 6174) {
             n = kaprekar(n);
             steps++;
