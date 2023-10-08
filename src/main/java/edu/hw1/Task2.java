@@ -10,6 +10,5 @@ public class Task2 {
         } while (Math.abs(number) > 0);
 
         return counter;
-
     }
 }

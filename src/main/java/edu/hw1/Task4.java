@@ -2,7 +2,7 @@ package edu.hw1;
 
 public class Task4 {
 
-    public static String fixString(String brokenString) {
+    public static String fixString(final String brokenString) {
         String fixedString = "";
 
         for (var i = 0; i < brokenString.length() - 1; i += 2) {

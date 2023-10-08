@@ -2,7 +2,7 @@ package edu.hw1;
 
 public class Task7 {
 
-    public static int rotateLeft(int n, int shift) {
+    public static int rotateLeft(final int n, final int shift) {
         String binary = Integer.toBinaryString(n);
         StringBuilder shiftedString = new StringBuilder(binary);
 
@@ -15,7 +15,7 @@ public class Task7 {
         return Integer.parseInt(shiftedString.toString(), 2);
     }
 
-    public static int rotateRight(int n, int shift) {
+    public static int rotateRight(final int n, final int shift) {
         String binary = Integer.toBinaryString(n);
         StringBuilder shiftedString = new StringBuilder(binary);
 

@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class Task6 {
 
-    public static int realization(int n) {
+    public static int realization(final int n) {
         return isValid(n) ? countSteps(n) : -1;
     }
 
@@ -17,21 +17,21 @@ public class Task6 {
         return steps;
     }
 
-    private static int kaprekar(int n) {
+    private static int kaprekar(final int n) {
         String stringNumber = Integer.toString(n);
 
         char[] sortedArray = stringNumber.toCharArray();
         Arrays.sort(sortedArray);
 
         String ascending = new String(sortedArray);
-        String descending = new StringBuilder(new String(sortedArray)).reverse().toString();
+        String descending = new StringBuilder(ascending).reverse().toString();
 
         int difference = Integer.parseInt(descending) - Integer.parseInt(ascending);
 
         return difference;
     }
 
-    private static boolean isValid(int n) {
+    private static boolean isValid(final int n) {
         if (n >= 1000 && n <= 9999) {
             String stringNumber = Integer.toString(n);
             return !isSameCharacters(stringNumber); // Изменено на отрицание
@@ -40,7 +40,7 @@ public class Task6 {
         }
     }
 
-    private static boolean isSameCharacters(String stringNumber) {
+    private static boolean isSameCharacters(final String stringNumber) {
         char firstChar = stringNumber.charAt(0);
 
         for (var i = 1; i < stringNumber.length(); i++) {

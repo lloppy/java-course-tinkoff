@@ -2,7 +2,7 @@ package edu.hw1;
 
 public class Task5 {
 
-    public static Boolean isPalindromeDescendant(Integer number) {
+    public static Boolean isPalindromeDescendant(final Integer number) {
         var stringNumber = number.toString();
 
         if (isPalindrome(stringNumber)) {
@@ -18,7 +18,7 @@ public class Task5 {
         return false;
     }
 
-    private static boolean isPalindrome(String stringNum) {
+    private static boolean isPalindrome(final String stringNum) {
         int length = stringNum.length();
         for (var i = 0; i < length / 2; i++) {
             if (stringNum.charAt(i) != stringNum.charAt(length - i - 1)) {
@@ -28,7 +28,7 @@ public class Task5 {
         return true;
     }
 
-    private static String sumPair(String stringNum) {
+    private static String sumPair(final String stringNum) {
         StringBuilder sum = new StringBuilder();
         for (var i = 0; i < stringNum.length() - 1; i += 2) {
             int next = Integer.parseInt(String.valueOf(stringNum.charAt(i + 1)));
