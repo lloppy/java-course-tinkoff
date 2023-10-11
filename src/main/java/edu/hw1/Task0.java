@@ -9,8 +9,8 @@ public final class Task0 {
 
     private static final Logger LOGGER = LogManager.getLogger();
 
+    // Метод выводит в лог - Привет, мир!
     public static void main(final String[] args) {
-        // Метод выводит в лог - Привет, мир!.
         LOGGER.info("Привет, мир!");
     }
 
