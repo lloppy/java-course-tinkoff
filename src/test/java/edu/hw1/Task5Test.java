@@ -8,7 +8,7 @@ class Task5Test {
 
     @Test
     @DisplayName("Палиндром - потомок, четное")
-    void isPalindromeDescendant_1() {
+    void testThatEvenPalindromeIsDescendant() {
         // given
         Integer number = 123312;
 
@@ -22,7 +22,7 @@ class Task5Test {
 
     @Test
     @DisplayName("Само число - палиндром")
-    void isPalindromeDescendant_2() {
+    void testThatNumberIsPalindrome() {
         // given
         Integer number = 123321;
 
@@ -36,7 +36,7 @@ class Task5Test {
 
     @Test
     @DisplayName("Короткое число, суммы равны, но не потомок")
-    void isPalindromeDescendant_3() {
+    void testThatShortNumberWithEqualSumIsNotDescendant() {
         // given
         Integer number = 123;
 
@@ -50,7 +50,7 @@ class Task5Test {
 
     @Test
     @DisplayName("Короткое число - не палиндром")
-    void isPalindromeDescendant_4() {
+    void testThatShortNumberIsNotPalindrome() {
         // given
         Integer number = 12;
 
@@ -64,7 +64,7 @@ class Task5Test {
 
     @Test
     @DisplayName("Палиндром, нечетное")
-    void isPalindromeDescendant_5() {
+    void testThatOddPalindromeIsDescendant() {
         // given
         Integer number = 1237321;
 
@@ -78,7 +78,7 @@ class Task5Test {
 
     @Test
     @DisplayName("Не палиндром, нечетное")
-    void isPalindromeDescendant_6() {
+    void testThatOddNumberIsNotPalindrome() {
         // given
         Integer number = 1237312;
 
@@ -92,7 +92,7 @@ class Task5Test {
 
     @Test
     @DisplayName("Минимально возможный по длине потомок палиндром")
-    void isPalindromeDescendant_7() {
+    void testThatMinimumLengthDescendantPalindrome() {
         // given
         Integer number = 1203;
 
@@ -106,7 +106,7 @@ class Task5Test {
 
     @Test
     @DisplayName("Число длиной 3, но не потомок")
-    void isPalindromeDescendant_8() {
+    void testThatShortNumberIsNotDescendant() {
         // given
         Integer number = 734;
 
@@ -119,7 +119,8 @@ class Task5Test {
     }
 
     @Test
-    void isPalindromeDescendant_9() {
+    @DisplayName("Длинный потомок палиндром")
+    void testThatLongPalindromeDescendant() {
         // given
         Integer number = 13001120;
 
@@ -132,7 +133,8 @@ class Task5Test {
     }
 
     @Test
-    void isPalindromeDescendant_10() {
+    @DisplayName("Длинный не палиндром потомок")
+    void testThatLongNonPalindromeDescendant() {
         // given
         Integer number = 23336014;
 
@@ -145,7 +147,8 @@ class Task5Test {
     }
 
     @Test
-    void isPalindromeDescendant_11() {
+    @DisplayName("Число из одной цифры - потомок палиндром")
+    void testThatSingleDigitNumberIsDescendant() {
         // given
         Integer number = 11;
 
@@ -156,5 +159,4 @@ class Task5Test {
         assertThat(isPalindrome)
             .isEqualTo(true);
     }
-
 }

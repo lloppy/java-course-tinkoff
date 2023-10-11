@@ -1,6 +1,9 @@
 package edu.hw1;
 
-public class Task5 {
+public final class Task5 {
+
+    private Task5() {
+    }
 
     public static Boolean isPalindromeDescendant(final Integer number) {
         var stringNumber = number.toString();

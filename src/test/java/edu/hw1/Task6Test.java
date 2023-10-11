@@ -8,7 +8,7 @@ class Task6Test {
 
     @Test
     @DisplayName("3524 -> 3")
-    void kaprekar_1() {
+    void testThatStepsFor3524Are3() {
         // given
         int number = 3524;
 
@@ -21,7 +21,7 @@ class Task6Test {
 
     @Test
     @DisplayName("6621 -> 5")
-    void kaprekar_2() {
+    void testThatStepsFor6621Are5() {
         // given
         int number = 6621;
 
@@ -34,7 +34,7 @@ class Task6Test {
 
     @Test
     @DisplayName("6554 -> 4")
-    void kaprekar_3() {
+    void testThatStepsFor6554Are4() {
         // given
         int number = 6554;
 
@@ -47,7 +47,7 @@ class Task6Test {
 
     @Test
     @DisplayName("1234 -> 3")
-    void kaprekar_4() {
+    void testThatStepsFor1234Are3() {
         // given
         int number = 1234;
 
@@ -60,7 +60,7 @@ class Task6Test {
 
     @Test
     @DisplayName("Невалидный ввод - меньше символов")
-    void kaprekar_5() {
+    void testThatInvalidInputLessDigitsReturnsMinus1() {
         // given
         int number = 123;
 
@@ -72,8 +72,8 @@ class Task6Test {
     }
 
     @Test
-    @DisplayName("Невалидный ввод - бльше символов")
-    void kaprekar_6() {
+    @DisplayName("Невалидный ввод - больше символов")
+    void testThatInvalidInputMoreDigitsReturnsMinus1() {
         // given
         int number = 12345;
 
@@ -86,7 +86,7 @@ class Task6Test {
 
     @Test
     @DisplayName("Невалидный ввод - все цифры одинаковые")
-    void kaprekar_7() {
+    void testThatInvalidInputAllDigitsAreSameReturnsMinus1() {
         // given
         int number = 1111;
 
@@ -99,7 +99,7 @@ class Task6Test {
 
     @Test
     @DisplayName("6174 -> 0 - число уже 6174")
-    void kaprekar_8() {
+    void testThatStepsFor6174Are0() {
         // given
         int number = 6174;
 
@@ -111,8 +111,8 @@ class Task6Test {
     }
 
     @Test
-    @DisplayName("2005 -> 7 - макс число шагов")
-    void kaprekar_9() {
+    @DisplayName("2005 -> 7 - максимальное количество шагов")
+    void testThatStepsFor2005Are7() {
         // given
         int number = 2005;
 
@@ -122,5 +122,4 @@ class Task6Test {
         assertThat(steps)
             .isEqualTo(7);
     }
-
 }

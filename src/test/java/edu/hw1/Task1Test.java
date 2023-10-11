@@ -8,85 +8,73 @@ class Task1Test {
 
     @Test
     @DisplayName("Подаются только секунды")
-    void minutesToSeconds_sec() {
-        // given
+    void testThatSecondsAreReturnedWhenOnlySecondsAreProvided() {
         String time = "00:33";
-
-        // when
         int returnedSeconds = Task1.minutesToSeconds(time);
-
-        // then
-        assertThat(returnedSeconds)
-            .isEqualTo(33);
+        assertThat(returnedSeconds).isEqualTo(33);
     }
 
     @Test
     @DisplayName("Подаются только минуты")
-    void minutesToSeconds_minutes() {
-        // given
+    void testThatSecondsAreReturnedWhenOnlyMinutesAreProvided() {
         String time = "33:00";
-
-        // when
         int returnedSeconds = Task1.minutesToSeconds(time);
-
-        // then
-        assertThat(returnedSeconds)
-            .isEqualTo(33 * 60);
+        assertThat(returnedSeconds).isEqualTo(33 * 60);
     }
 
     @Test
     @DisplayName("Подаются секунды и минуты меньше 60")
-    void minutesToSeconds() {
-        // given
+    void testThatSecondsAreReturnedWhenMinutesAndSecondsAreLessThan60() {
         String time = "13:56";
-
-        // when
         int returnedSeconds = Task1.minutesToSeconds(time);
-
-        // then
-        assertThat(returnedSeconds)
-            .isEqualTo(836);
+        assertThat(returnedSeconds).isEqualTo(836);
     }
 
     @Test
     @DisplayName("Не подаются секунды")
-    void minutesToSeconds_inputError() {
-        // given
+    void testThatInputErrorReturnsMinusOne() {
         String time = "01:";
-
-        // when
         int returnedSeconds = Task1.minutesToSeconds(time);
-
-        // then
-        assertThat(returnedSeconds)
-            .isEqualTo(-1);
+        assertThat(returnedSeconds).isEqualTo(-1);
     }
 
     @Test
     @DisplayName("Подаются секунды неменьше 60")
-    void minutesToSeconds_secondsError() {
-        // given
+    void testThatSecondsErrorReturnsMinusOne() {
         String time = "10:60";
-
-        // when
         int returnedSeconds = Task1.minutesToSeconds(time);
-
-        // then
-        assertThat(returnedSeconds)
-            .isEqualTo(-1);
+        assertThat(returnedSeconds).isEqualTo(-1);
     }
 
     @Test
     @DisplayName("Подаются минуты неменьше 60")
-    void minutesToSeconds_longMinutes() {
-        // given
+    void testThatSecondsAreReturnedWhenMinutesAreAtLeast60() {
         String time = "999:09";
-
-        // when
         int returnedSeconds = Task1.minutesToSeconds(time);
+        assertThat(returnedSeconds).isEqualTo(999 * 60 + 9);
+    }
 
-        // then
-        assertThat(returnedSeconds)
-            .isEqualTo(999 * 60 + 9);
+    @Test
+    @DisplayName("Подаются буквы abc:abc")
+    void testThatInputErrorReturnsMinusOneLetters() {
+        String wrongTime = "abc:abc";
+        int returnedSeconds = Task1.minutesToSeconds(wrongTime);
+        assertThat(returnedSeconds).isEqualTo(-1);
+    }
+
+    @Test
+    @DisplayName("Подаются буквы ab:ab")
+    void testThatInputErrorReturnsMinusOneLetters2() {
+        String wrongTime = "ab:ab";
+        int returnedSeconds = Task1.minutesToSeconds(wrongTime);
+        assertThat(returnedSeconds).isEqualTo(-1);
+    }
+
+    @Test
+    @DisplayName("Подаются буквы и цифры")
+    void testThatInputErrorReturnsMinusOneLetters3() {
+        String wrongTime = "1a:13";
+        int returnedSeconds = Task1.minutesToSeconds(wrongTime);
+        assertThat(returnedSeconds).isEqualTo(-1);
     }
 }

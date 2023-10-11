@@ -1,6 +1,8 @@
 package edu.hw1;
 
-public class Task7 {
+public final class Task7 {
+    private Task7() {
+    }
 
     public static int rotateLeft(final int n, final int shift) {
         String binary = Integer.toBinaryString(n);

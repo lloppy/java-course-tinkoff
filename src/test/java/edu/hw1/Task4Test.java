@@ -8,67 +8,49 @@ class Task4Test {
 
     @Test
     @DisplayName("Подаются различные числа")
-    void fixString_1() {
+    void testThatDifferentNumbersAreCorrected() {
         String brokenString = "123456";
-
         String fixedString = Task4.fixString(brokenString);
-
-        assertThat(fixedString)
-            .isEqualTo("214365");
+        assertThat(fixedString).isEqualTo("214365");
     }
 
     @Test
     @DisplayName("Подаются различные символы")
-    void fixString_2() {
+    void testThatDifferentCharactersAreCorrected() {
         String brokenString = "hTsii  s aimex dpus rtni.g";
-
         String fixedString = Task4.fixString(brokenString);
-
-        assertThat(fixedString)
-            .isEqualTo("This is a mixed up string.");
+        assertThat(fixedString).isEqualTo("This is a mixed up string.");
     }
 
     @Test
     @DisplayName("Подается нечетная по длине строка")
-    void fixString_3() {
+    void testThatOddLengthStringIsCorrected() {
         String brokenString = "badce";
-
         String fixedString = Task4.fixString(brokenString);
-
-        assertThat(fixedString)
-            .isEqualTo("abcde");
+        assertThat(fixedString).isEqualTo("abcde");
     }
 
     @Test
     @DisplayName("Подается строка с пробелами")
-    void fixString_4() {
+    void testThatStringWithSpacesIsCorrected() {
         String brokenString = "a b c d e";
-
         String fixedString = Task4.fixString(brokenString);
-
-        assertThat(fixedString)
-            .isEqualTo(" a b c de");
+        assertThat(fixedString).isEqualTo(" a b c de");
     }
 
     @Test
     @DisplayName("Подается строка из одого символа")
-    void fixString_5() {
+    void testThatSingleCharacterStringIsNotChanged() {
         String brokenString = "a";
-
         String fixedString = Task4.fixString(brokenString);
-
-        assertThat(fixedString)
-            .isEqualTo("a");
+        assertThat(fixedString).isEqualTo("a");
     }
 
     @Test
     @DisplayName("Подается пустая строка")
-    void fixString_6() {
+    void testThatEmptyStringIsNotChanged() {
         String brokenString = "";
-
         String fixedString = Task4.fixString(brokenString);
-
-        assertThat(fixedString)
-            .isEqualTo("");
+        assertThat(fixedString).isEqualTo("");
     }
 }

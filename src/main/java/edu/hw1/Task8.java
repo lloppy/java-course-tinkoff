@@ -1,12 +1,20 @@
 package edu.hw1;
 
-public class Task8 {
+public final class Task8 {
+    private static final int KNIGHT_MOVE_1 = 1;
+    private static final int KNIGHT_MOVE_2 = 2;
+    private static final int KNIGHT_MOVE_NEGATIVE_1 = -1;
+    private static final int KNIGHT_MOVE_NEGATIVE_2 = -2;
+
+    private Task8() {
+    }
 
     public static boolean knightBoardCapture(final int[][] chessBoard) {
 
         for (var row = 0; row < chessBoard.length; row++) {
             for (var colum = 0; colum < chessBoard[0].length; colum++) {
-                if (chessBoard[row][colum] == 1 && canCapture(row, colum, chessBoard)) {
+                if (chessBoard[row][colum] == 1
+                    && canCapture(row, colum, chessBoard)) {
                     return false;
                 }
             }
@@ -14,11 +22,30 @@ public class Task8 {
         return true;
     }
 
+    @SuppressWarnings("MagicNumber")
     private static boolean canCapture(
         final int row, final int colum, final int[][] chessBoard
     ) {
-        int[] possibleRow = {2, 1, -1, -2, -2, -1,  1,  2};
-        int[] possibleCol = {1, 2,  2,  1, -1, -2, -2, -1};
+        int[] possibleRow = {
+            KNIGHT_MOVE_2,
+            KNIGHT_MOVE_1,
+            KNIGHT_MOVE_NEGATIVE_1,
+            KNIGHT_MOVE_NEGATIVE_2,
+            KNIGHT_MOVE_NEGATIVE_2,
+            KNIGHT_MOVE_NEGATIVE_1,
+            KNIGHT_MOVE_1,
+            KNIGHT_MOVE_2
+        };
+        int[] possibleCol = {
+            KNIGHT_MOVE_1,
+            KNIGHT_MOVE_2,
+            KNIGHT_MOVE_2,
+            KNIGHT_MOVE_1,
+            KNIGHT_MOVE_NEGATIVE_1,
+            KNIGHT_MOVE_NEGATIVE_2,
+            KNIGHT_MOVE_NEGATIVE_2,
+            KNIGHT_MOVE_NEGATIVE_1
+        };
 
         for (var way = 0; way < possibleRow.length; way++) {
             int newRow = row + possibleRow[way];

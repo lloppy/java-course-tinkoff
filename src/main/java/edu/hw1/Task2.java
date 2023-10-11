@@ -1,13 +1,19 @@
 package edu.hw1;
 
-public class Task2 {
-    public static int countDigits(int number) {
+public final class Task2 {
+    private static final int BASE = 10;
+
+    private Task2() {
+    }
+
+    public static int countDigits(final int number) {
+        int currNumber = number;
         int counter = 0;
 
         do {
-            number /= 10;
+            currNumber /= BASE;
             counter++;
-        } while (Math.abs(number) > 0);
+        } while (Math.abs(currNumber) > 0);
 
         return counter;
     }

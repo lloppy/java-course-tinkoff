@@ -8,7 +8,7 @@ class Task8Test {
 
     @Test
     @DisplayName("Не может захватить")
-    void knightBoardCapture_1() {
+    void testThatKnightBoardCaptureInDifferentPlacesReturnedTrue() {
         // given
         int[][] chessBoard = {
             {0, 0, 0, 1, 0, 0, 0, 0},
@@ -31,7 +31,7 @@ class Task8Test {
 
     @Test
     @DisplayName("Может захватить")
-    void knightBoardCapture_2() {
+    void testThatKnightBoardCaptureReturnedFalse() {
         // given
         int[][] chessBoard = {
             {1, 0, 1, 0, 1, 0, 1, 0},
@@ -54,7 +54,7 @@ class Task8Test {
 
     @Test
     @DisplayName("Может захватить")
-    void knightBoardCapture_3() {
+    void testThatKnightBoardCapture2ReturnedFalse() {
         // given
         int[][] chessBoard = {
             {0, 0, 0, 0, 1, 0, 0, 0},
@@ -77,7 +77,7 @@ class Task8Test {
 
     @Test
     @DisplayName("Не может захватить - подаем одного коня")
-    void knightBoardCapture_4() {
+    void testThatKnightBoardHaveOnlyPieceReturnedTrue() {
         // given
         int[][] chessBoard = {
             {1, 0, 0, 0, 0, 0, 0, 0},
@@ -100,7 +100,7 @@ class Task8Test {
 
     @Test
     @DisplayName("Может захватить несколько фигур")
-    void knightBoardCapture_5() {
+    void testThatKnightBoardHaveTwoOptionsReturnedFalse() {
         // given
         int[][] chessBoard = {
             {0, 0, 0, 1, 0, 0, 0, 0},
@@ -123,7 +123,7 @@ class Task8Test {
 
     @Test
     @DisplayName("Не может захватить - пустое поле")
-    void knightBoardCapture_6() {
+    void testThatKnightBoardCaptureEmptyReturnedTrue() {
         // given
         int[][] chessBoard = {
             {0, 0, 0, 0, 0, 0, 0, 0},

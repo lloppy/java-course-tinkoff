@@ -2,16 +2,23 @@ package edu.hw1;
 
 import java.util.Arrays;
 
-public class Task6 {
+public final class Task6 {
+    private static final int CONSTANT_KAPREKAR = 6174;
+    private static final int START_FOUR_DIGIT_NUMBER = 1000;
+    private static final int END_FOUR_DIGIT_NUMBER = 9999;
+
+    private Task6() {
+    }
 
     public static int realization(final int n) {
         return isValid(n) ? countSteps(n) : -1;
     }
 
-    private static int countSteps(int n) {
+    private static int countSteps(final int n) {
+        int currNumber = n;
         int steps = 0;
-        while (n != 6174) {
-            n = kaprekar(n);
+        while (currNumber != CONSTANT_KAPREKAR) {
+            currNumber = kaprekar(currNumber);
             steps++;
         }
         return steps;
@@ -26,13 +33,11 @@ public class Task6 {
         String ascending = new String(sortedArray);
         String descending = new StringBuilder(ascending).reverse().toString();
 
-        int difference = Integer.parseInt(descending) - Integer.parseInt(ascending);
-
-        return difference;
+        return Integer.parseInt(descending) - Integer.parseInt(ascending);
     }
 
     private static boolean isValid(final int n) {
-        if (n >= 1000 && n <= 9999) {
+        if (n >= START_FOUR_DIGIT_NUMBER && n <= END_FOUR_DIGIT_NUMBER) {
             String stringNumber = Integer.toString(n);
             return !isSameCharacters(stringNumber); // Изменено на отрицание
         } else {

@@ -1,6 +1,9 @@
 package edu.hw1;
 
-public class Task3 {
+public final class Task3 {
+
+    private Task3() {
+    }
 
     public static Boolean isNestable(final int[] a1, final int[] a2) {
 
@@ -11,7 +14,7 @@ public class Task3 {
         }
     }
 
-    public static int findMin(int[] a) {
+    public static int findMin(final int[] a) {
         int min = Integer.MAX_VALUE;
 
         for (var number : a) {

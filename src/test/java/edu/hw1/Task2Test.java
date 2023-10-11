@@ -7,59 +7,34 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 class Task2Test {
 
     @Test
-    @DisplayName("Correct input")
+    @DisplayName("Верный ввод")
     void countDigits_correct1() {
-        // given
         int number = 4666;
-
-        //when
         int total_char = Task2.countDigits(number);
-
-        // then
-        assertThat(total_char)
-            .isEqualTo(4);
+        assertThat(total_char).isEqualTo(4);
     }
 
     @Test
-    @DisplayName("Gives zero -> return 1")
+    @DisplayName("Дает ноль -> возвращает 1")
     void countDigits_givesZero() {
-        // given
         int number = 0;
-
-        //when
         int total_char = Task2.countDigits(number);
-
-        // then
-        assertThat(total_char)
-            .isEqualTo(1);
+        assertThat(total_char).isEqualTo(1);
     }
 
     @Test
-    @DisplayName("Gives zero -> return 1")
+    @DisplayName("Верный ввод 2")
     void countDigits_correct2() {
-        // given
         int number = 544;
-
-        //when
         int total_char = Task2.countDigits(number);
-
-        // then
-        assertThat(total_char)
-            .isEqualTo(3);
+        assertThat(total_char).isEqualTo(3);
     }
 
     @Test
-    @DisplayName("Gives negative number")
+    @DisplayName("Дает отрицательное число")
     void countDigits_() {
-        // given
         int number = -544;
-
-        //when
         int total_char = Task2.countDigits(number);
-
-        // then
-        assertThat(total_char)
-            .isEqualTo(3);
+        assertThat(total_char).isEqualTo(3);
     }
-
 }
