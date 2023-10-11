@@ -9,7 +9,7 @@ public final class Task0 {
 
     private static final Logger LOGGER = LogManager.getLogger();
 
-    // Метод выводит в лог - Привет, мир!
+    @SuppressWarnings("UncommentedMain")
     public static void main(final String[] args) {
         LOGGER.info("Привет, мир!");
     }
