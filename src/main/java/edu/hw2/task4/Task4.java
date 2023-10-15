@@ -5,9 +5,6 @@ public final class Task4 {
     private Task4() {
     }
 
-    public record CallingInfo(String className, String methodName) {
-    }
-
     public static CallingInfo getCallingInfo(final int orderOfElement) {
         StackTraceElement[] stack = Thread.currentThread().getStackTrace();
 
@@ -21,6 +18,9 @@ public final class Task4 {
             stack[orderOfElement].getClassName(),
             stack[orderOfElement].getMethodName()
         );
+    }
+
+    public record CallingInfo(String className, String methodName) {
     }
 }
 
