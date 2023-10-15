@@ -8,8 +8,9 @@ public final class FaultyConnection implements Connection {
 
     @Override
     public void execute(final String command) {
-        StaticArray.add("Failed to execute command: " + command);
-        throw new ConnectionException("Failed to execute command: " + command);
+        String errorMessage = "Failed to execute command: " + command;
+        StaticArray.add(errorMessage);
+        throw new ConnectionException(errorMessage);
     }
 
     @Override

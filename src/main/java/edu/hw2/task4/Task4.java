@@ -1,7 +1,7 @@
 package edu.hw2.task4;
 
 public final class Task4 {
-    
+
     private Task4() {
     }
 

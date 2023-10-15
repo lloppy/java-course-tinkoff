@@ -5,6 +5,16 @@ import edu.hw2.task3.connection.manager.ConnectionManager;
 import edu.hw2.task3.exeptions.ConnectionException;
 
 public final class Task3 {
+    private Task3() {
+    }
+
+    private static void closeConnection(final Connection connection) {
+        try {
+            connection.close();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public static final class PopularCommandExecutor {
 
@@ -42,14 +52,6 @@ public final class Task3 {
                     }
                 }
             }
-        }
-    }
-
-    private static void closeConnection(final Connection connection) {
-        try {
-            connection.close();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
         }
     }
 }
