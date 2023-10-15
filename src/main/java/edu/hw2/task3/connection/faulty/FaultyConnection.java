@@ -1,8 +1,8 @@
 package edu.hw2.task3.connection.faulty;
 
-import edu.hw2.task3.logger.StaticArray;
 import edu.hw2.task3.connection.Connection;
 import edu.hw2.task3.exeptions.ConnectionException;
+import edu.hw2.task3.logger.StaticArray;
 
 public final class FaultyConnection implements Connection {
 

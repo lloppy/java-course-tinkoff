@@ -1,8 +1,8 @@
 package edu.hw2.task3.connection.manager;
 
 import edu.hw2.task3.connection.Connection;
-import edu.hw2.task3.connection.faulty.FaultyConnection;
 import edu.hw2.task3.connection.StableConnection;
+import edu.hw2.task3.connection.faulty.FaultyConnectionManager;
 
 public final class DefaultConnectionManager implements ConnectionManager {
     private final double controllerOfFaultyProbability;
@@ -14,7 +14,9 @@ public final class DefaultConnectionManager implements ConnectionManager {
     @Override
     public Connection getConnection() {
         if (Math.random() < controllerOfFaultyProbability) {
-            return new FaultyConnection();
+            FaultyConnectionManager
+                faultyConnectionManager = new FaultyConnectionManager();
+            return faultyConnectionManager.getConnection();
         } else {
             return new StableConnection();
         }
