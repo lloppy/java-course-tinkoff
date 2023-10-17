@@ -1,13 +1,12 @@
-package edu.hangman.repository.data;
+package edu.hangman.words;
 
-import edu.hangman.words.WordsUtil;
 import org.junit.jupiter.api.Test;
+
 import java.util.Set;
 import static org.junit.jupiter.api.Assertions.*;
 
 class WordsUtilTest {
-
-
+    
     @Test
     void testThatGetRandomWordReturnedNotEmptyWord() {
         String[] words = {"Java", "Class", "Android"};

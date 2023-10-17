@@ -1,8 +1,7 @@
-package edu.hangman.model;
+package edu.hangman.words;
 
-import edu.hangman.words.Word;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class WordTest {
 
@@ -36,16 +35,6 @@ class WordTest {
         assertEquals(false, isInWord);
     }
 
-    /*
-    @Test
-    void addGuessedLetter() {
-        String[] words = {"Java", "Class", "Android"};
-        Word word = new Word(words);
 
-        char letter = 'a';
-        word.addGuessedLetter(letter);
-
-        assertEquals(true, word.guessedLetters.get(0) == letter);
-    } */
 
 }

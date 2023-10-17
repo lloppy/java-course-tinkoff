@@ -15,14 +15,18 @@ public final class Game {
         LetterGuess letterGuess;
 
         while (GameState.isGameRunning()) {
-            char inputLetter = inputLetter();
+            try {
+                char inputLetter = inputLetter();
 
-            if (word.isCharInWord(inputLetter)) {
-                letterGuess = new CorrectLetterGuess();
-                letterGuess.handleGuessedLetter(word, inputLetter);
-            } else {
-                letterGuess = new IncorrectLetterGuess();
-                letterGuess.handleNotGuessedLetter(inputLetter);
+                if (word.isCharInWord(inputLetter)) {
+                    letterGuess = new CorrectLetterGuess();
+                    letterGuess.handleGuessedLetter(word, inputLetter);
+                } else {
+                    letterGuess = new IncorrectLetterGuess();
+                    letterGuess.handleNotGuessedLetter(inputLetter);
+                }
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
             }
 
         }
@@ -38,10 +42,7 @@ public final class Game {
         if (input.length() == 1) {
             return input.charAt(0);
         } else {
-            System.out.println(
-                "Вы ввели больше одного символа. Введите снова."
-            );
-            return inputLetter();
+            throw new IllegalArgumentException("Вы ввели больше одного символа.");
         }
     }
 }
