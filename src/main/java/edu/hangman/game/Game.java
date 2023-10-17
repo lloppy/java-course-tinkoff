@@ -6,23 +6,15 @@ import edu.hangman.guess.LetterGuess;
 import edu.hangman.words.Word;
 import java.util.Scanner;
 
-public class Game {
-    GameState gameState;
-    private String[] words = {"Java", "Class", "Android"};
-
-    private Word word;
-    private LetterGuess letterGuess;
-
-    public Game() {
-        this.gameState = new GameState();
-        this.word = new Word(words);
-
-        playGame();
+public final class Game {
+    private Game() {
     }
 
-    public void playGame() {
-        while (gameState.isGameRunning()) {
-            gameState.isGameRunning();
+    public static void playGame(final String[] words) {
+        Word word = new Word(words);
+        LetterGuess letterGuess;
+
+        while (GameState.isGameRunning()) {
             char inputLetter = inputLetter();
 
             if (word.isCharInWord(inputLetter)) {
@@ -38,7 +30,7 @@ public class Game {
     }
 
     private static char inputLetter() {
-        System.out.println("Введите одну букву");
+        System.out.println("Введите букву");
 
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
@@ -46,7 +38,9 @@ public class Game {
         if (input.length() == 1) {
             return input.charAt(0);
         } else {
-            System.out.println("Вы ввели более одного символа. Пожалуйста, попробуйте снова.");
+            System.out.println(
+                "Вы ввели больше одного символа. Введите снова."
+            );
             return inputLetter();
         }
     }

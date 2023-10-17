@@ -1,9 +1,8 @@
 package edu.hangman.game;
 
-public class GameState {
+public final class GameState {
     private static boolean isGameRunning;
     private static boolean isGameWon;
-    private static String[] words = {"Java", "Class", "Android"};
 
     public GameState() {
         isGameRunning = true;
@@ -14,9 +13,9 @@ public class GameState {
         return isGameRunning;
     }
 
-    public static void endGame(boolean isGameWon) {
+    public static void endGame(final boolean gameWon) {
         isGameRunning = false;
-        GameState.isGameWon = isGameWon;
+        GameState.isGameWon = gameWon;
         System.out.println(isGameWon ? "Вы выиграли!" : "Вы проиграли!");
     }
 }

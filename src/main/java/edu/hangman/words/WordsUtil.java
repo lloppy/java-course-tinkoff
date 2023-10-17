@@ -4,15 +4,17 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
-public class WordsUtil {
+public final class WordsUtil {
+    public WordsUtil() {
+    }
 
-    public final String getRandomWord(String[] words) {
+    public static String getRandomWord(final String[] words) {
         Random random = new Random();
         int randomIndex = random.nextInt(words.length);
         return words[randomIndex];
     }
 
-    public final Set<Character> getUniqueCharacters(String word) {
+    public static Set<Character> getUniqueCharacters(final String word) {
         Set<Character> uniqueCharactersSet = new HashSet<>();
 
         for (char c : word.toCharArray()) {

@@ -5,33 +5,26 @@ import edu.hangman.words.Word;
 import edu.hangman.ui.ManDrawer;
 
 public class IncorrectLetterGuess implements LetterGuess {
-    ManDrawer manDrawer = new ManDrawer();
-    public int attempts = 5;
-
-    private GameState gameState;
-
+    private static int attempts = ManDrawer.STAGES;
     public IncorrectLetterGuess() {
-        this.gameState = new GameState();
-    }
-
-    ;
-
-    @Override
-    public void handleGuessedLetter(Word word, char letter) {
     }
 
     @Override
-    public void handleNotGuessedLetter(char letter) {
-        manDrawer.drawHangman(attempts);
+    public final void handleGuessedLetter(final Word word, final char letter) {
+    }
+
+    @Override
+    public final void handleNotGuessedLetter(final char letter) {
+        ManDrawer.drawHangman(attempts);
         decreaseAttempts();
         System.out.println("Вы не угадали букву " + letter + ".");
 
         if (attempts == 0) {
-            gameState.endGame(false);
+            GameState.endGame(false);
         }
     }
 
-    public void decreaseAttempts() {
+    public static final void decreaseAttempts() {
         --attempts;
     }
 

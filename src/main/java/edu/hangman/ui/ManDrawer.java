@@ -1,7 +1,12 @@
 package edu.hangman.ui;
 
-public class ManDrawer {
-    private String[] hangmanAttempts = {
+public final class ManDrawer {
+    private ManDrawer() {
+    }
+
+    public static final int STAGES = 5;
+
+    private static final String[] HANGMAN_ATTEMPTS = {
         "  +---+\n      |\n      |\n      |\n      |\n      |\n=========",
         "  +---+\n  |   |\n      |\n      |\n      |\n      |\n=========",
         "  +---+\n  |   |\n  O   |\n      |\n      |\n      |\n=========",
@@ -9,8 +14,8 @@ public class ManDrawer {
         "  +---+\n  |   |\n  O   |\n /|\\  |\n      |\n      |\n========="
     };
 
-    public void drawHangman(int attempts) {
-        System.out.println(hangmanAttempts[5 - attempts]);
+    public static void drawHangman(final int attempts) {
+        System.out.println(HANGMAN_ATTEMPTS[STAGES - attempts]);
     }
 
 }
