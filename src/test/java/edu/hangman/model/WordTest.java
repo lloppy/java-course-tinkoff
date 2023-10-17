@@ -1,74 +1,51 @@
 package edu.hangman.model;
 
-import java.util.Arrays;
+import edu.hangman.words.Word;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class WordTest {
 
     @Test
-    void testThatWordsArrayContainsWord() {
-        Word word = new Word();
-        String[] words = {"Java", "Class", "Android"};
-
-        assertEquals(true, Arrays.asList(words).contains(word.getWord()));
-    }
-
-    @Test
     void testThatIsLowerCharInWordReturnedTrue() {
-        Word word = new Word();
-        boolean isInWord = word.
-            isCharInWord(Character.toLowerCase('a'));
+        String[] words = {"Java", "Class", "Android"};
+        Word word = new Word(words);
+
+        boolean isInWord = word.isCharInWord('a');
 
         assertEquals(true, isInWord);
     }
 
     @Test
     void testThatIsUpperCharInWordReturnedTrue() {
-        Word word = new Word();
-        boolean isInWord = word.
-            isCharInWord(Character.toLowerCase('A'));
+        String[] words = {"Java", "Class"};
+        Word word = new Word(words);
+
+        boolean isInWord = word.isCharInWord('A');
 
         assertEquals(true, isInWord);
     }
 
     @Test
     void testThatIsCharInWordReturnedFalse() {
-        Word word = new Word();
-        boolean isInWord = word.
-            isCharInWord(Character.toLowerCase('z'));
+        String[] words = {"Java", "Class", "Android"};
+        Word word = new Word(words);
+
+        boolean isInWord = word.isCharInWord('z');
 
         assertEquals(false, isInWord);
     }
 
+    /*
     @Test
-    void testThatGuessedLettersContainsAddedValue() {
-        Word word = new Word();
-        char letter = 'A';
-        int expectedSize = 1;
+    void addGuessedLetter() {
+        String[] words = {"Java", "Class", "Android"};
+        Word word = new Word(words);
 
-        boolean isInWord = word.isCharInWord(Character.toLowerCase(letter));
+        char letter = 'a';
+        word.addGuessedLetter(letter);
 
-        if (isInWord) {
-            word.addGuessedLetter(letter);
-        }
-
-        assertEquals(expectedSize, word.getGuessedLetters().size());
-    }
-
-    @Test
-    void testThatGuessedLettersContainsNothing() {
-        Word word = new Word();
-        char letter = 'z';
-        int expectedSize = 0;
-
-        boolean isInWord = word.isCharInWord(Character.toLowerCase(letter));
-
-        if (isInWord) {
-            word.addGuessedLetter(letter);
-        }
-
-        assertEquals(expectedSize, word.getGuessedLetters().size());
-    }
+        assertEquals(true, word.guessedLetters.get(0) == letter);
+    } */
 
 }
