@@ -4,6 +4,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class GameTest {
 
@@ -55,13 +56,30 @@ class GameTest {
     void testThatShortInputDontThrowError() {
         boolean isException = false;
         try {
-            String longString = "a";
-            inputLetterCopy(longString);
+            String shortInput = "a";
+            inputLetterCopy(shortInput);
         } catch (IllegalArgumentException e) {
             isException = true;
         }
         assertEquals(false, isException);
+    }
 
+    @Test
+    void testThatUserGaveUpReturnTrue() {
+        String giveUpMessage = "white flag";
+        char emptyChar = inputLetterCopy(giveUpMessage);
+        char expected = '\u0000';
+
+        assertEquals(expected, emptyChar);
+    }
+
+    @Test
+    void testThatUserDontGaveUpReturnFalse() {
+        String shortInput = "a";
+        Character emptyChar = inputLetterCopy(shortInput);
+        char expected = '\u0000';
+
+        assertFalse(emptyChar.equals(expected));
     }
 
 
@@ -70,8 +88,13 @@ class GameTest {
 
         if (input.length() == 1) {
             return input.charAt(0);
+        } else if (input.equalsIgnoreCase("white flag")) {
+            GameState.endGame(false);
+            return 0;
         } else {
-            throw new IllegalArgumentException("Вы ввели больше одного символа.");
+            throw new IllegalArgumentException(
+                "Вы ввели больше одного символа."
+            );
         }
     }
 

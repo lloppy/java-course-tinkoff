@@ -1,5 +1,7 @@
 package edu.hangman.game;
 
+import edu.hangman.ui.Messages;
+
 public final class GameState {
     private static boolean isGameRunning;
     private static boolean isGameWon;
@@ -16,6 +18,11 @@ public final class GameState {
     public static void endGame(final boolean gameWon) {
         isGameRunning = false;
         GameState.isGameWon = gameWon;
-        System.out.println(isGameWon ? "Вы выиграли!" : "Вы проиграли!");
+
+        if (isGameWon) {
+            Messages.printGameWon();
+        } else {
+            Messages.printGameLost();
+        }
     }
 }

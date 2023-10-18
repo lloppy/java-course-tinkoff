@@ -1,47 +1,39 @@
 package edu.hangman.words;
 
 import org.junit.jupiter.api.Test;
-
 import java.util.Set;
 import static org.junit.jupiter.api.Assertions.*;
 
 class WordsUtilTest {
-    
+    private WordsUtil wordsUtil = new WordsUtil();
+
     @Test
     void testThatGetRandomWordReturnedNotEmptyWord() {
         String[] words = {"Java", "Class", "Android"};
-        WordsUtil wordsUtil = new WordsUtil();
-
         String randomWord = wordsUtil.getRandomWord(words);
 
-        assertEquals(false, randomWord.isEmpty());
+        assertFalse(randomWord.isEmpty());
     }
 
     @Test
     void testThatGetRandomWordReturnedOneElement() {
         String[] words = {"Java"};
-        WordsUtil wordsUtil = new WordsUtil();
-
         String randomWord = wordsUtil.getRandomWord(words);
 
         assertEquals("Java", randomWord);
     }
 
     @Test
-    void getUniqueCharacters() {
+    void testThatGetUniqueCharactersReturnNumberOfUnique() {
         String word = "Java";
-        WordsUtil wordsUtil = new WordsUtil();
-
         Set<Character> lettersInWord = wordsUtil.getUniqueCharacters(word);
 
         assertEquals(3, lettersInWord.size());
     }
 
     @Test
-    void getEmptyUniqueCharacters() {
+    void testThatGetEmptyUniqueCharactersReturn0() {
         String[] words = {"", "", ""};
-        WordsUtil wordsUtil = new WordsUtil();
-
         String randomWord = wordsUtil.getRandomWord(words);
         Set<Character> lettersInWord = wordsUtil.getUniqueCharacters(randomWord);
 

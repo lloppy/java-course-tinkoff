@@ -7,11 +7,11 @@ public final class ManDrawer {
     public static final int STAGES = 5;
 
     private static final String[] HANGMAN_ATTEMPTS = {
-        "  +---+\n      |\n      |\n      |\n      |\n      |\n=========",
-        "  +---+\n  |   |\n      |\n      |\n      |\n      |\n=========",
-        "  +---+\n  |   |\n  O   |\n      |\n      |\n      |\n=========",
-        "  +---+\n  |   |\n  O   |\n /|   |\n      |\n      |\n=========",
-        "  +---+\n  |   |\n  O   |\n /|\\  |\n      |\n      |\n========="
+        "\t\t\t  +---+\n\t\t\t      |\n\t\t\t      |\n\t\t\t      |\n\t\t\t      |\n\t\t\t      |\n\t\t\t=========",
+        "\t\t\t  +---+\n\t\t\t  |   |\n\t\t\t      |\n\t\t\t      |\n\t\t\t      |\n\t\t\t      |\n\t\t\t=========",
+        "\t\t\t  +---+\n\t\t\t  |   |\n\t\t\t  O   |\n\t\t\t      |\n\t\t\t      |\n\t\t\t      |\n\t\t\t=========",
+        "\t\t\t  +---+\n\t\t\t  |   |\n\t\t\t  O   |\n\t\t\t /|   |\n\t\t\t      |\n\t\t\t      |\n\t\t\t=========",
+        "\t\t\t  +---+\n\t\t\t  |   |\n\t\t\t  O   |\n\t\t\t /|\\  |\n\t\t\t      |\n\t\t\t      |\n\t\t\t========="
     };
 
     public static void drawHangman(final int attempts) {

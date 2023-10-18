@@ -1,6 +1,7 @@
 package edu.hangman.guess;
 
 import edu.hangman.game.GameState;
+import edu.hangman.ui.Messages;
 import edu.hangman.words.Word;
 import edu.hangman.ui.ManDrawer;
 
@@ -10,18 +11,20 @@ public class IncorrectLetterGuess implements LetterGuess {
     }
 
     @Override
-    public final void handleGuessedLetter(final Word word, final char letter) {
+    public final LetterGuess handleGuessedLetter(final Word word, final char letter) {
+        return null;
     }
 
     @Override
-    public final void handleNotGuessedLetter(final char letter) {
+    public final LetterGuess handleNotGuessedLetter(final char letter) {
         ManDrawer.drawHangman(attempts);
         decreaseAttempts();
-        System.out.println("Вы не угадали букву " + letter + ".");
+        Messages.printYouDidNotGuess(letter);
 
         if (attempts == 0) {
             GameState.endGame(false);
         }
+        return null;
     }
 
     public static final void decreaseAttempts() {

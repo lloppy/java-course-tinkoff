@@ -10,9 +10,7 @@ class WordTest {
         String[] words = {"Java", "Class", "Android"};
         Word word = new Word(words);
 
-        boolean isInWord = word.isCharInWord('a');
-
-        assertEquals(true, isInWord);
+        assertTrue(word.isCharInWord('a'));
     }
 
     @Test
@@ -20,9 +18,7 @@ class WordTest {
         String[] words = {"Java", "Class"};
         Word word = new Word(words);
 
-        boolean isInWord = word.isCharInWord('A');
-
-        assertEquals(true, isInWord);
+        assertTrue(word.isCharInWord('A'));
     }
 
     @Test
@@ -30,11 +26,6 @@ class WordTest {
         String[] words = {"Java", "Class", "Android"};
         Word word = new Word(words);
 
-        boolean isInWord = word.isCharInWord('z');
-
-        assertEquals(false, isInWord);
+        assertFalse(word.isCharInWord('z'));
     }
-
-
-
 }

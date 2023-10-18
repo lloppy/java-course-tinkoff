@@ -4,7 +4,7 @@ import edu.hangman.words.Word;
 
 public interface LetterGuess {
 
-    void handleGuessedLetter(Word word, char letter);
+    LetterGuess handleGuessedLetter(Word word, char letter);
 
-    void handleNotGuessedLetter(char letter);
+    LetterGuess handleNotGuessedLetter(char letter);
 }
