@@ -1,7 +1,5 @@
 package edu.hangman.game;
 
-import edu.hangman.ui.Messages;
-
 public final class HangmanGame {
     private HangmanGame() {
     }
@@ -14,8 +12,7 @@ public final class HangmanGame {
      * @param args no use
      */
     public static void main(final String[] args) {
-        Messages messages = new Messages();
-        GameState gameState = new GameState();
+        // Start game.
         Game.playGame(words);
     }
 }

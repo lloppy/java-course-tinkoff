@@ -1,13 +1,9 @@
 package edu.hangman.ui;
 
 import edu.hangman.words.Word;
-import java.util.logging.Logger;
 
 public final class Messages {
-    private static Logger LOGGER;
-
-    public Messages() {
-        LOGGER = Logger.getLogger(Messages.class.getName());
+    private Messages() {
     }
 
     public static void startGame(final String guessedWord) {

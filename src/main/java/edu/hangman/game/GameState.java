@@ -3,14 +3,11 @@ package edu.hangman.game;
 import edu.hangman.ui.Messages;
 
 public final class GameState {
-    private static boolean isGameRunning;
-    private static boolean isGameWon;
-
-    @SuppressWarnings("HideUtilityClassConstructor")
-    public GameState() {
-        isGameRunning = true;
-        isGameWon = false;
+    private GameState() {
     }
+
+    private static boolean isGameRunning = true;
+    private static boolean isGameWon = false;
 
     public static boolean isGameRunning() {
         return isGameRunning;
