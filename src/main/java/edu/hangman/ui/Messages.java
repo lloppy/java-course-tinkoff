@@ -31,7 +31,7 @@ public final class Messages {
 
     public static void printYouDidNotGuess(final char letter) {
         print("*" + "-".repeat(Dimensions.WHITE_SPACE) + "*");
-        print("*\t Вы не угадали букву " + letter + ". \t *");
+        print("* Не угадали. Буквы " + letter + " здесь нет! *");
         print("*" + "-".repeat(Dimensions.WHITE_SPACE) + "*");
     }
 

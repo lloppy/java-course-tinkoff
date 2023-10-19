@@ -1,6 +1,6 @@
 package edu.hangman.ui;
 
-public final class Dimensions {
+    public final class Dimensions {
     private Dimensions() {
     }
 
