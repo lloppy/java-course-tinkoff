@@ -22,7 +22,7 @@ public final class Game {
                 }
 
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                Messages.printInputWarning(e.getMessage());
             }
         }
     }
@@ -40,7 +40,7 @@ public final class Game {
             return 0;
         } else {
             throw new IllegalArgumentException(
-                Messages.printLongInputWarning()
+                Messages.returnInputWarning()
             );
         }
     }

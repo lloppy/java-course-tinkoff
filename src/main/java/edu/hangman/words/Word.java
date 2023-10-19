@@ -11,10 +11,8 @@ public class Word {
     private StringBuilder guessedString;
 
     public Word(final String[] words) {
-        WordsUtil wordsUtil = new WordsUtil();
-
-        this.hiddenWord = wordsUtil.getRandomWord(words);
-        this.letterInWord = wordsUtil.getUniqueCharacters(hiddenWord);
+        this.hiddenWord = WordsUtil.getRandomWord(words);
+        this.letterInWord = WordsUtil.getUniqueCharacters(hiddenWord);
         this.guessedString = new StringBuilder("_".repeat(hiddenWord.length()));
 
         Messages.startGame(String.valueOf(guessedString));

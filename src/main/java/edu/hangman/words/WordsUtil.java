@@ -7,7 +7,7 @@ import java.util.Random;
 import java.util.Set;
 
 public final class WordsUtil {
-    public WordsUtil() {
+    private WordsUtil() {
     }
 
     public static String getRandomWord(final String[] words) {

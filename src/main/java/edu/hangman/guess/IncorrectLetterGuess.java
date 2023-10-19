@@ -1,12 +1,13 @@
 package edu.hangman.guess;
 
 import edu.hangman.game.GameState;
+import edu.hangman.ui.HangmanDrawer;
 import edu.hangman.ui.Messages;
 import edu.hangman.words.Word;
-import edu.hangman.ui.HangmanDrawer;
 
 public class IncorrectLetterGuess implements LetterGuess {
     private static int attempts = HangmanDrawer.STAGES;
+
     public IncorrectLetterGuess() {
     }
 

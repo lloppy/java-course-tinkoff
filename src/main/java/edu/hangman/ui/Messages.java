@@ -1,9 +1,13 @@
 package edu.hangman.ui;
 
 import edu.hangman.words.Word;
+import java.util.logging.Logger;
 
 public final class Messages {
-    private Messages() {
+    private static Logger LOGGER;
+
+    public Messages() {
+        LOGGER = Logger.getLogger(Messages.class.getName());
     }
 
     public static void startGame(final String guessedWord) {
@@ -23,7 +27,7 @@ public final class Messages {
         final Word word,
         final char letter
     ) {
-        print("\n" + word.getHiddenString());
+        print(word.getHiddenString());
         print("*" + "-".repeat(Dimensions.WHITE_SPACE) + "*");
         print("*\t\tВы угадали букву " + letter + "! \t *");
         print("*" + "-".repeat(Dimensions.WHITE_SPACE) + "*");
@@ -43,9 +47,14 @@ public final class Messages {
         printGameResult(" " + "Вы проиграли!" + "  ");
     }
 
-    public static String printLongInputWarning() {
+    public static String returnInputWarning() {
         return "Вы ввели больше одного символа!";
     }
+
+    public static void printInputWarning(String message) {
+        print(message);
+    }
+
     public static void enterWord() {
         System.out.print(
             "\n" + " ".repeat(Dimensions.SIDE) + "Введите букву: "
@@ -57,8 +66,7 @@ public final class Messages {
         print("\n*" + header + Dimensions.GAME_NAME + header + "*");
     }
 
-
-
+    @SuppressWarnings("RegexpSinglelineJava")
     private static void print(final String message) {
         System.out.println(message);
     }

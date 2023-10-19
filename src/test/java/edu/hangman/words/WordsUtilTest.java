@@ -5,12 +5,11 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.*;
 
 class WordsUtilTest {
-    private WordsUtil wordsUtil = new WordsUtil();
 
     @Test
     void testThatGetRandomWordReturnedNotEmptyWord() {
         String[] words = {"Java", "Class", "Android"};
-        String randomWord = wordsUtil.getRandomWord(words);
+        String randomWord = WordsUtil.getRandomWord(words);
 
         assertFalse(randomWord.isEmpty());
     }
@@ -18,7 +17,7 @@ class WordsUtilTest {
     @Test
     void testThatGetRandomWordReturnedOneElement() {
         String[] words = {"Java"};
-        String randomWord = wordsUtil.getRandomWord(words);
+        String randomWord = WordsUtil.getRandomWord(words);
 
         assertEquals("Java", randomWord);
     }
@@ -26,7 +25,7 @@ class WordsUtilTest {
     @Test
     void testThatGetUniqueCharactersReturnNumberOfUnique() {
         String word = "Java";
-        Set<Character> lettersInWord = wordsUtil.getUniqueCharacters(word);
+        Set<Character> lettersInWord = WordsUtil.getUniqueCharacters(word);
 
         assertEquals(3, lettersInWord.size());
     }
@@ -34,8 +33,8 @@ class WordsUtilTest {
     @Test
     void testThatGetEmptyUniqueCharactersReturn0() {
         String[] words = {"", "", ""};
-        String randomWord = wordsUtil.getRandomWord(words);
-        Set<Character> lettersInWord = wordsUtil.getUniqueCharacters(randomWord);
+        String randomWord = WordsUtil.getRandomWord(words);
+        Set<Character> lettersInWord = WordsUtil.getUniqueCharacters(randomWord);
 
         assertEquals(0, lettersInWord.size());
     }

@@ -6,6 +6,7 @@ public final class GameState {
     private static boolean isGameRunning;
     private static boolean isGameWon;
 
+    @SuppressWarnings("HideUtilityClassConstructor")
     public GameState() {
         isGameRunning = true;
         isGameWon = false;
