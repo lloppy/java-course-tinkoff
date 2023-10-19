@@ -7,16 +7,16 @@ public final class Messages {
     }
 
     public static void startGame(final String guessedWord) {
-        int difference = Dimensions.half - guessedWord.length();
+        int difference = Dimensions.SCREEN_HALF - guessedWord.length();
 
         printHeader();
-        print("*" + " ".repeat(Dimensions.lengthWhiteSpace) + "*");
+        print("*" + " ".repeat(Dimensions.WHITE_SPACE) + "*");
         print("*\t \t Слово загадано! \t \t *");
-        print("*" + " ".repeat(Dimensions.lengthWhiteSpace) + "*");
+        print("*" + " ".repeat(Dimensions.WHITE_SPACE) + "*");
         print("*" + " ".repeat(difference)
             + "_ ".repeat(guessedWord.length()) + " ".repeat(difference) + "*");
-        print("*" + " ".repeat(Dimensions.lengthWhiteSpace) + "*");
-        print("*" + "-".repeat(Dimensions.lengthWhiteSpace) + "*");
+        print("*" + " ".repeat(Dimensions.WHITE_SPACE) + "*");
+        print("*" + "-".repeat(Dimensions.WHITE_SPACE) + "*");
     }
 
     public static void printYouGuessedCorrectly(
@@ -24,15 +24,15 @@ public final class Messages {
         final char letter
     ) {
         print("\n" + word.getHiddenString());
-        print("*" + "-".repeat(Dimensions.lengthWhiteSpace) + "*");
+        print("*" + "-".repeat(Dimensions.WHITE_SPACE) + "*");
         print("*\t\tВы угадали букву " + letter + "! \t *");
-        print("*" + "-".repeat(Dimensions.lengthWhiteSpace) + "*");
+        print("*" + "-".repeat(Dimensions.WHITE_SPACE) + "*");
     }
 
     public static void printYouDidNotGuess(final char letter) {
-        print("*" + "-".repeat(Dimensions.lengthWhiteSpace) + "*");
+        print("*" + "-".repeat(Dimensions.WHITE_SPACE) + "*");
         print("*\t Вы не угадали букву " + letter + ". \t *");
-        print("*" + "-".repeat(Dimensions.lengthWhiteSpace) + "*");
+        print("*" + "-".repeat(Dimensions.WHITE_SPACE) + "*");
     }
 
     public static void printGameWon() {
@@ -54,7 +54,7 @@ public final class Messages {
 
     private static void printHeader() {
         String header = "~".repeat(Dimensions.SIDE);
-        print("\n*" + header + Dimensions.gameName + header + "*");
+        print("\n*" + header + Dimensions.GAME_NAME + header + "*");
     }
 
 
@@ -65,9 +65,9 @@ public final class Messages {
 
     private static void printGameResult(final String result) {
         printHeader();
-        print("*" + " ".repeat(Dimensions.lengthWhiteSpace) + "*");
+        print("*" + " ".repeat(Dimensions.WHITE_SPACE) + "*");
         print("*\t \t " + result + " \t\t *");
-        print("*" + " ".repeat(Dimensions.lengthWhiteSpace) + "*");
-        print("*" + "~".repeat(Dimensions.lengthWhiteSpace) + "*");
+        print("*" + " ".repeat(Dimensions.WHITE_SPACE) + "*");
+        print("*" + "~".repeat(Dimensions.WHITE_SPACE) + "*");
     }
 }
