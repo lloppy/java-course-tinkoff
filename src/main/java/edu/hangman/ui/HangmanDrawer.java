@@ -1,6 +1,5 @@
 package edu.hangman.ui;
 
-
 public final class HangmanDrawer {
     private HangmanDrawer() {
     }
@@ -28,6 +27,7 @@ public final class HangmanDrawer {
 
     }
 
+    @SuppressWarnings("RegexpSinglelineJava")
     public static void drawHangman(final int attempts) {
         System.out.println(HANGMAN_SCENES[STAGES - attempts]);
     }

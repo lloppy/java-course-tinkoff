@@ -11,8 +11,8 @@ public final class HangmanGame {
      *
      * @param args no use
      */
+    @SuppressWarnings("uncommentedmain")
     public static void main(final String[] args) {
-        // Start game.
         Game.playGame(words);
     }
 }

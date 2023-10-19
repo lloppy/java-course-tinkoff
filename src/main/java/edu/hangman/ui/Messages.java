@@ -51,6 +51,7 @@ public final class Messages {
         print(message);
     }
 
+    @SuppressWarnings("RegexpSinglelineJava")
     public static void enterWord() {
         System.out.print(
             "\n" + " ".repeat(Dimensions.SIDE) + "Введите букву: "
