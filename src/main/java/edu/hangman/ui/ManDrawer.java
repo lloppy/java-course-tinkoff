@@ -5,13 +5,14 @@ public final class ManDrawer {
     }
 
     public static final int STAGES = 5;
+    private static String TAB = "\n\t\t\t ";
 
     private static final String[] HANGMAN_ATTEMPTS = {
-        "\t\t\t  +---+\n\t\t\t      |\n\t\t\t      |\n\t\t\t      |\n\t\t\t      |\n\t\t\t      |\n\t\t\t=========",
-        "\t\t\t  +---+\n\t\t\t  |   |\n\t\t\t      |\n\t\t\t      |\n\t\t\t      |\n\t\t\t      |\n\t\t\t=========",
-        "\t\t\t  +---+\n\t\t\t  |   |\n\t\t\t  O   |\n\t\t\t      |\n\t\t\t      |\n\t\t\t      |\n\t\t\t=========",
-        "\t\t\t  +---+\n\t\t\t  |   |\n\t\t\t  O   |\n\t\t\t /|   |\n\t\t\t      |\n\t\t\t      |\n\t\t\t=========",
-        "\t\t\t  +---+\n\t\t\t  |   |\n\t\t\t  O   |\n\t\t\t /|\\  |\n\t\t\t      |\n\t\t\t      |\n\t\t\t========="
+        TAB + " +---+" + TAB + "     |" + TAB + "     |" + TAB + "     |" + TAB + "     |" + TAB + "     |" + TAB +  "     |" + TAB + "=".repeat(10),
+        TAB + " +---+" + TAB + " |   |" + TAB + "     |" + TAB + "     |" + TAB + "     |" + TAB + "     |" + TAB +  "     |" + TAB + "=".repeat(10),
+        TAB + " +---+" + TAB + " |   |" + TAB + " O   |" + TAB + "     |" + TAB + "     |" + TAB + "     |" + TAB +  "     |" + TAB + "=".repeat(10),
+        TAB + " +---+" + TAB + " |   |" + TAB + " O   |" + TAB + "/|\\  |" + TAB + "     |" + TAB + "     |" + TAB +  "     |" + TAB + "=".repeat(10),
+        TAB + " +---+" + TAB + " |   |" + TAB + " O   |" + TAB + "/|\\  |" + TAB + " |   |" + TAB + "/ \\  |" + TAB +  "     |" + TAB + "=".repeat(10)
     };
 
     public static void drawHangman(final int attempts) {

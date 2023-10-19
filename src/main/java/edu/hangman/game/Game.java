@@ -40,7 +40,7 @@ public final class Game {
             return 0;
         } else {
             throw new IllegalArgumentException(
-                "Вы ввели больше одного символа."
+                Messages.printLongInputWarning()
             );
         }
     }
