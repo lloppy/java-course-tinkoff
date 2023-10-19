@@ -3,7 +3,7 @@ package edu.hangman.ui;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-class ManDrawerTest {
+class HangmanDrawerTest {
     private static final String[] FAKE_HANGMAN_ATTEMPTS = {
         "  +---+\n      |\n      |\n      |\n      |\n      |\n=========",
         "  +---+\n  |   |\n      |\n      |\n      |\n      |\n=========",
@@ -23,7 +23,7 @@ class ManDrawerTest {
             "      |\n" +
             "=========";
 
-        String actualPicture = FAKE_HANGMAN_ATTEMPTS[ManDrawer.STAGES - attempts];
+        String actualPicture = FAKE_HANGMAN_ATTEMPTS[HangmanDrawer.STAGES - attempts];
 
         assertEquals(expectedPicture, actualPicture);
     }
@@ -39,7 +39,7 @@ class ManDrawerTest {
             "      |\n" +
             "=========";
 
-        String actualPicture = FAKE_HANGMAN_ATTEMPTS[ManDrawer.STAGES - attempts];
+        String actualPicture = FAKE_HANGMAN_ATTEMPTS[HangmanDrawer.STAGES - attempts];
 
         assertFalse(expectedPicture == actualPicture);
     }

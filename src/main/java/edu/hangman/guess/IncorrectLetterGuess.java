@@ -3,10 +3,10 @@ package edu.hangman.guess;
 import edu.hangman.game.GameState;
 import edu.hangman.ui.Messages;
 import edu.hangman.words.Word;
-import edu.hangman.ui.ManDrawer;
+import edu.hangman.ui.HangmanDrawer;
 
 public class IncorrectLetterGuess implements LetterGuess {
-    private static int attempts = ManDrawer.STAGES;
+    private static int attempts = HangmanDrawer.STAGES;
     public IncorrectLetterGuess() {
     }
 
@@ -17,7 +17,7 @@ public class IncorrectLetterGuess implements LetterGuess {
 
     @Override
     public final LetterGuess handleNotGuessedLetter(final char letter) {
-        ManDrawer.drawHangman(attempts);
+        HangmanDrawer.drawHangman(attempts);
         decreaseAttempts();
         Messages.printYouDidNotGuess(letter);
 
