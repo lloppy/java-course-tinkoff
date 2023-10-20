@@ -1,10 +1,10 @@
 package edu.hangman.ui;
 
 public final class HangmanDrawer {
+    public static final int STAGES = 5;
+
     private HangmanDrawer() {
     }
-
-    public static final int STAGES = 5;
 
     private static final String TAB = "\n\t\t\t";
     private static final String DEFAULT = TAB + "     |";
@@ -24,7 +24,6 @@ public final class HangmanDrawer {
 
     private static String endOfString(final int repeater) {
         return DEFAULT.repeat(repeater) + TAB + "=".repeat(Dimensions.SIDE);
-
     }
 
     @SuppressWarnings("RegexpSinglelineJava")

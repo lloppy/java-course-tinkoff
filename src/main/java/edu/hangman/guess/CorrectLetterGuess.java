@@ -4,13 +4,12 @@ import edu.hangman.game.GameState;
 import edu.hangman.ui.Messages;
 import edu.hangman.words.Word;
 
-public class CorrectLetterGuess implements LetterGuess {
-
+public final class CorrectLetterGuess implements LetterGuess {
     public CorrectLetterGuess() {
     }
 
     @Override
-    public final LetterGuess handleGuessedLetter(final Word word, final char letter) {
+    public LetterGuess handleGuessedLetter(final Word word, final char letter) {
         Messages.printYouGuessedCorrectly(word, letter);
 
         if (word.isSolved()) {

@@ -1,8 +1,11 @@
 package edu.hangman.words;
 
-import org.junit.jupiter.api.Test;
+import java.util.List;
 import java.util.Set;
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class WordsUtilTest {
 
@@ -37,5 +40,35 @@ class WordsUtilTest {
         Set<Character> lettersInWord = WordsUtil.getUniqueCharacters(randomWord);
 
         assertEquals(0, lettersInWord.size());
+    }
+
+    @Test
+    void testGetIndexesArrayWithRepeatingCharacters() {
+        String hiddenWord = "banana";
+        char character = 'a';
+        List<Integer> indexes = WordsUtil.getIndexesArray(hiddenWord, character);
+
+        assertEquals(3, indexes.size());
+        assertEquals(1, indexes.get(0).intValue());
+        assertEquals(3, indexes.get(1).intValue());
+        assertEquals(5, indexes.get(2).intValue());
+    }
+
+    @Test
+    void testGetIndexesArrayWithEmptyString() {
+        String hiddenWord = "";
+        char character = 'a';
+        List<Integer> indexes = WordsUtil.getIndexesArray(hiddenWord, character);
+
+        assertTrue(indexes.isEmpty());
+    }
+
+    @Test
+    void testGetIndexesArrayWithCharacterNotInString() {
+        String hiddenWord = "sting with no з";
+        char character = 'z';
+        List<Integer> indexes = WordsUtil.getIndexesArray(hiddenWord, character);
+
+        assertTrue(indexes.isEmpty());
     }
 }

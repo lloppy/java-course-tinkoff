@@ -2,12 +2,12 @@ package edu.hw2;
 
 import edu.hw2.Task1.Expr.Constant;
 import edu.hw2.Task1.Expr.Negate;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static edu.hw2.Task1.Expr.Addition;
 import static edu.hw2.Task1.Expr.Exponent;
 import static edu.hw2.Task1.Expr.Multiplication;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import org.junit.jupiter.api.DisplayName;
 
 class Task1Test {
 

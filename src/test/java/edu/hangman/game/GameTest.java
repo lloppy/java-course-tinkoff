@@ -18,7 +18,6 @@ class GameTest {
         System.setIn(new java.io.ByteArrayInputStream(simulatedInput.getBytes()));
 
         char inputLetter = (char) inputLetterMethod.invoke(null);
-
         System.setIn(System.in);
 
         assertEquals('a', inputLetter);
@@ -34,7 +33,6 @@ class GameTest {
         System.setIn(new java.io.ByteArrayInputStream(simulatedInput.getBytes()));
 
         char inputLetter = (char) inputLetterMethod.invoke(null);
-
         System.setIn(System.in);
 
         assertEquals(false, 'a' == inputLetter);
@@ -44,7 +42,7 @@ class GameTest {
     void testThatLongInputThrowError() {
         boolean isException = false;
         try {
-            String longString = "long string";
+            String longString = "some long string";
             inputLetterCopy(longString);
         } catch (IllegalArgumentException e) {
             isException = true;
@@ -53,7 +51,7 @@ class GameTest {
     }
 
     @Test
-    void testThatShortInputDontThrowError() {
+    void testThatShortInputDoNotThrowError() {
         boolean isException = false;
         try {
             String shortInput = "a";
@@ -74,7 +72,7 @@ class GameTest {
     }
 
     @Test
-    void testThatUserDontGaveUpReturnFalse() {
+    void testThatUserDoNotGaveUpReturnFalse() {
         String shortInput = "a";
         Character emptyChar = inputLetterCopy(shortInput);
         char expected = '\u0000';

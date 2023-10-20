@@ -1,10 +1,10 @@
 package edu.hangman.game;
 
 public final class HangmanGame {
+    private static String[] words = {"Java", "Class", "Android"};
+
     private HangmanGame() {
     }
-
-    private static String[] words = {"Java", "Class", "Android"};
 
     /**
      * Start point of the Hangman game.

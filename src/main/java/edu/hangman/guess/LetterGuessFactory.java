@@ -2,8 +2,8 @@ package edu.hangman.guess;
 
 import edu.hangman.words.Word;
 
-public class LetterGuessFactory {
-    public final LetterGuess createLetterGuess(
+public final class LetterGuessFactory {
+    public LetterGuess createLetterGuess(
         final Word word,
         final char inputLetter
     ) {

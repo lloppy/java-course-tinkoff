@@ -22,7 +22,6 @@ public final class WordsUtil {
         for (char c : word.toCharArray()) {
             uniqueCharactersSet.add(c);
         }
-
         return uniqueCharactersSet;
     }
 
@@ -37,7 +36,6 @@ public final class WordsUtil {
                 charArray.add(i);
             }
         }
-
         return charArray;
     }
 }
