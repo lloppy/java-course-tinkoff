@@ -23,12 +23,12 @@ class Task4Test {
 
         CallingInfo callingInfo = getCallingInfo(stackDepth);
 
-        String classDir = "JUnitStarter";
+        String classDirectory = "JUnitStarter";
         String actualClassName = callingInfo.className();
         int pointPosition = actualClassName.lastIndexOf(".");
 
         assertEquals(
-            classDir,
+            classDirectory,
             actualClassName.substring(pointPosition + 1)
         );
     }
@@ -37,12 +37,12 @@ class Task4Test {
     void testThatGetCallingInfoForPreLastElementReturnedThisTestClassName() {
         CallingInfo callingInfo = getCallingInfo(1);
 
-        String classDir = "Task4";
+        String classDirectory = "Task4";
         String actualClassName = callingInfo.className();
         int pointPosition = actualClassName.lastIndexOf(".");
 
         assertEquals(
-            classDir,
+            classDirectory,
             actualClassName.substring(pointPosition + 1)
         );
     }
@@ -59,12 +59,12 @@ class Task4Test {
     void testThatGetCallingInfoForLastExecutedMethodReturnedLastClassNameInСallStackTrace() {
         CallingInfo callingInfo = getCallingInfo(0);
 
-        String classDir = "Thread";
+        String classDirectory = "Thread";
         String actualClassName = callingInfo.className();
         int pointPosition = actualClassName.lastIndexOf(".");
 
         assertEquals(
-            classDir,
+            classDirectory,
             actualClassName.substring(pointPosition + 1)
         );
     }
@@ -95,12 +95,12 @@ class Task4Test {
             int stackDepth = Thread.currentThread().getStackTrace().length;
             CallingInfo callingInfo = getCallingInfo(stackDepth + 1);
 
-            String classDir = "outOfBound";
+            String classDirectory = "outOfBound";
             String actualClassName = callingInfo.className();
             int pointPosition = actualClassName.lastIndexOf(".");
 
             assertEquals(
-                classDir,
+                classDirectory,
                 actualClassName.substring(pointPosition + 1)
             );
         } catch (IllegalArgumentException e) {
