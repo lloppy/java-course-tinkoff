@@ -1,4 +1,4 @@
-package edu.hw2;
+package edu.hw2.task1;
 
 public final class Task1 {
     private Task1() {
