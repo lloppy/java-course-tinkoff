@@ -11,7 +11,7 @@ import java.util.Optional;
  */
 public final class Task8 extends AnimalSorter {
     private int edgeOfHeight;
-    private Optional<Animal> theOldestAnimal;
+    private Optional<Animal> theHeaviestAnimal;
 
     public Task8(final List<Animal> animals, final int k) {
         super(animals);
@@ -21,12 +21,12 @@ public final class Task8 extends AnimalSorter {
 
     @Override
     protected void sortAnimals() {
-        theOldestAnimal = Optional.of(animals.stream()
+        theHeaviestAnimal = Optional.of(animals.stream()
             .filter(animal -> animal.height() < edgeOfHeight)
             .max(Comparator.comparingInt(Animal::weight)).get());
     }
 
-    public Optional<Animal> getTheOldestAnimal() {
-        return theOldestAnimal;
+    public Optional<Animal> getTheHeaviestAnimal() {
+        return theHeaviestAnimal;
     }
 }

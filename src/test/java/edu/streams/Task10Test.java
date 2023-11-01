@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class Task10Test {
 
     @Test
-    void testAgeNotMatchPawsAnimals() {
+    void testThatAgeNotMatchPawsAnimals() {
         Animal cat = new Animal("katti", CAT, F, 5, 28, 11, false);
         Animal dog = new Animal("rex", DOG, M, 4, 50, 20, true);
         Animal bird = new Animal("twix", BIRD, F, 2, 5, 1, false);

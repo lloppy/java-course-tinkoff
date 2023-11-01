@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class Task18Test {
 
     @Test
-    public void testGetHeaviestFish() {
+    public void testThatGetHeaviestFishReturnsHeaviestFishFromMultipleLists() {
         List<Animal> fishList1 = List.of(
             new Animal("Fish1", FISH, Animal.Sex.M, 2, 10, 100, false),
             new Animal("Fish2", FISH, Animal.Sex.F, 3, 9, 120, false)
@@ -30,7 +30,7 @@ class Task18Test {
     }
 
     @Test
-    public void testGetHeaviestFishWithEmptyLists() {
+    public void testThatGetHeaviestFishReturnsNullWithEmptyLists() {
         List<List<Animal> > emptyLists = List.of();
         Task18 task18 = new Task18(emptyLists);
         Animal heaviestFish = task18.getHeaviestFish();
@@ -39,7 +39,7 @@ class Task18Test {
         assertEquals(null, heaviestFish);
     }
     @Test
-    public void testGetHeaviestFishThreeArrays() {
+    public void testThatGetHeaviestFishReturnsHeaviestFishWithThreeArrays() {
         List<Animal> fishList1 = List.of(
             new Animal("Fish1", FISH, Animal.Sex.M, 2, 10, 100, false),
             new Animal("Fish2", FISH, Animal.Sex.F, 3, 9, 120, false)

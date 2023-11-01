@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class Task8Test {
 
     @Test
-    void oldestAnimal() {
+    void testThatHeaviestAnimalIsDog() {
         Animal cat = new Animal("katti", CAT, F, 4, 28, 11, false);
         Animal dog = new Animal("rex", DOG, M, 6, 50, 20, true);
         Animal bird = new Animal("twix", BIRD, F, 2, 5, 1, false);
@@ -24,14 +24,13 @@ class Task8Test {
 
         int edgeOfHeight = 51;
         Task8 task8 = new Task8(animals, edgeOfHeight);
-
-        Optional<Animal> heaviestAnimal = task8.getTheOldestAnimal();
+        Optional<Animal> heaviestAnimal = task8.getTheHeaviestAnimal();
 
         assertEquals(dog, heaviestAnimal.get());
     }
 
     @Test
-    void oldestAnimalcat() {
+    void testThatHeaviestAnimalIsCat() {
         Animal cat = new Animal("katti", CAT, F, 4, 28, 11, false);
         Animal dog = new Animal("rex", DOG, M, 6, 50, 20, true);
         Animal bird = new Animal("twix", BIRD, F, 2, 5, 1, false);
@@ -41,14 +40,13 @@ class Task8Test {
 
         int edgeOfHeight = 50;
         Task8 task8 = new Task8(animals, edgeOfHeight);
-
-        Optional<Animal> heaviestAnimal = task8.getTheOldestAnimal();
+        Optional<Animal> heaviestAnimal = task8.getTheHeaviestAnimal();
 
         assertEquals(cat, heaviestAnimal.get());
     }
 
     @Test
-    void oldestAnimalbird() {
+    void testThatOldestAnimalIsBird() {
         Animal cat = new Animal("katti", CAT, F, 4, 28, 11, false);
         Animal dog = new Animal("rex", DOG, M, 6, 50, 20, true);
         Animal bird = new Animal("twix", BIRD, F, 2, 5, 1, false);
@@ -58,8 +56,7 @@ class Task8Test {
 
         int edgeOfHeight = 10;
         Task8 task8 = new Task8(animals, edgeOfHeight);
-
-        Optional<Animal> heaviestAnimal = task8.getTheOldestAnimal();
+        Optional<Animal> heaviestAnimal = task8.getTheHeaviestAnimal();
 
         assertEquals(bird, heaviestAnimal.get());
     }

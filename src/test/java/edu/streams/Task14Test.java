@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class Task14Test {
 
     @Test
-    void testGetDogExistWithTallDog() {
+    void testThatGetDogExistWithTallDog() {
         Animal dog1 = new Animal("Dog1", DOG, M, 5, 60, 25, false);
         Animal dog2 = new Animal("Dog2", DOG, F, 3, 50, 30, false);
         Animal cat1 = new Animal("Cat1", CAT, F, 2, 25, 10, false);
@@ -30,7 +30,7 @@ class Task14Test {
     }
 
     @Test
-    void testGetDogExistWithShortDog() {
+    void testThatGetDogExistWithShortDog() {
         Animal dog1 = new Animal("Dog1", DOG, M, 5, 40, 25, false);
         Animal dog2 = new Animal("Dog2", DOG, F, 3, 50, 30, false);
         Animal cat1 = new Animal("Cat1", CAT, F, 2, 25, 10, false);

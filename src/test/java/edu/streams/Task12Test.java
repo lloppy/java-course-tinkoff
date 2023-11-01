@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class Task12Test {
     @Test
-    void testWeightExceedsHeightAnimalsCount() {
+    void testThatWeightExceedsHeightAnimalsCount() {
         Animal animal1 = new Animal("Lion", Animal.Type.CAT, Animal.Sex.M, 5, 120, 200, true);
         Animal animal2 = new Animal("Dog", Animal.Type.DOG, Animal.Sex.M, 3, 101, 150, true);
         Animal animal3 = new Animal("Parrot", Animal.Type.BIRD, Animal.Sex.F, 2, 20, 30, true);

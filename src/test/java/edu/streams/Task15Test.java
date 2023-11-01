@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class Task15Test {
 
     @Test
-    void testSumWeighInBounds() {
+    void testThatSumWeighInBounds() {
         Animal cat = new Animal("katti", CAT, F, 4, 28, 11, false);
         Animal dog = new Animal("rex", DOG, M, 6, 50, 20, true);
         Animal bird = new Animal("twix", BIRD, F, 2, 5, 1, false);
@@ -32,7 +32,7 @@ class Task15Test {
     }
 
     @Test
-    void testSumWeighInBoundsSum() {
+    void testThatSumWeighInBoundsReturnedExpected() {
         Animal cat = new Animal("katti", CAT, F, 4, 28, 11, false);
         Animal kitti = new Animal("kitti", CAT, F, 4, 28, 6, false);
         Animal oldCat = new Animal("kot", CAT, F, 9, 28, 6, false);

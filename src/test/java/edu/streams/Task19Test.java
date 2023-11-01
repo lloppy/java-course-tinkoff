@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class Task19Test {
     @Test
-    void testFindTheLargestAnimalsOfEachType() {
+    void testThatFindTheLargestAnimalsOfEachTypeReturnedExpectedSize() {
         Animal cat1 = new Animal("kitti", CAT, M, 5, 30, 12, false);
         Animal cat2 = new Animal("katti", CAT, F, 4, 28, 11, false);
         Animal dog = new Animal("r1", DOG, M, 6, 50, 20, true);

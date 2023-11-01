@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class Task7Test {
 
     @Test
-    void oldestAnimal() {
+    void testThatFunctionReturnedTheOldestAnimal() {
         Animal cat = new Animal("katti", CAT, F, 4, 28, 11, false);
         Animal dog = new Animal("rex", DOG, M, 6, 50, 20, true);
         Animal bird = new Animal("twix", BIRD, F, 2, 5, 1, false);

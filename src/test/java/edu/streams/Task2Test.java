@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class Task2Test {
 
     @Test
-    void sorted2() {
+    void testThatSorted2ReturnedExpectedOrder() {
         Animal morales = new Animal("miles", SPIDER, M, 16, 170, 65, false);
         Animal parker = new Animal("peter", SPIDER, M, 25, 180, 75, false);
         Animal osborn = new Animal("harry", SPIDER, M, 24, 175, 70, false);
@@ -30,7 +30,7 @@ class Task2Test {
     }
 
     @Test
-    void sorted() {
+    void testThatSortedReturnedExpectedOrder        () {
         Animal morales = new Animal("miles", SPIDER, M, 16, 170, 65, false);
         Animal parker = new Animal("peter", SPIDER, M, 25, 180, 75, false);
         Animal osborn = new Animal("harry", SPIDER, M, 24, 175, 70, false);

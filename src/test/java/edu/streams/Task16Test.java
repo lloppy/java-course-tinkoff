@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class Task16Test {
 
     @Test
-    public void testSortAnimals() {
+    public void testThatSortAnimalsReturnsAnimalsSortedByType() {
         List<Animal> animals = Arrays.asList(
             new Animal("Cat", CAT, M, 3, 25, 5, false),
             new Animal("Dog", DOG, F, 4, 30, 6, true),
@@ -38,7 +38,7 @@ public class Task16Test {
     }
 
     @Test
-    public void testSortAnimalsSex() {
+    public void testThatSortAnimalsReturnsAnimalsSortedBySex() {
         List<Animal> animals = Arrays.asList(
             new Animal("Cat", CAT, M, 3, 25, 5, false),
             new Animal("Dog", DOG, F, 4, 30, 6, true),
@@ -63,7 +63,7 @@ public class Task16Test {
     }
 
     @Test
-    public void testSortAnimalsName() {
+    public void testThatSortAnimalsReturnsAnimalsSortedByName() {
         List<Animal> animals = Arrays.asList(
             new Animal("Cat", CAT, M, 3, 25, 5, false),
             new Animal("Zog", DOG, F, 4, 30, 6, true),
@@ -86,7 +86,7 @@ public class Task16Test {
             new Animal("Dog2", DOG, M, 1, 5, 0, false),
             new Animal("Dog", DOG, F, 4, 30, 6, true),
             new Animal("Zog", DOG, F, 4, 30, 6, true)
-            );
+        );
 
         assertEquals(expectedSortedAnimals, sortedAnimals);
     }

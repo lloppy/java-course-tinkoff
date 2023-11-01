@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class Task3Test {
 
     @Test
-    void test() {
+    void testThatMapReturnedWithCountsForAnimalTypes() {
         Animal cat = new Animal("mao", CAT, F, 4, 26, 20, true);
         Animal dog = new Animal("gou", DOG, M, 4, 40, 30, true);
         Animal fish = new Animal("nemo", FISH, M, 4, 10, 2, false);
@@ -29,7 +29,7 @@ class Task3Test {
     }
 
     @Test
-    void testM() {
+    void testThatMapReturnedWithCountsForAnimalTypesMale() {
         Animal mao = new Animal("mao", CAT, F, 4, 26, 20, true);
         Animal kitti = new Animal("kitti", CAT, F, 4, 26, 20, true);
         Animal gou = new Animal("gou", DOG, M, 4, 40, 30, true);

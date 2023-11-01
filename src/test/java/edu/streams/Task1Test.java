@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class Task1Test {
 
     @Test
-    void sorted() {
+    void testThatSortedReturnedExpectedOrder() {
         Animal cat = new Animal("mao", CAT, F, 4, 26, 20, true);
         Animal dog = new Animal("gou", DOG, M, 4, 40, 30, true);
         Animal fish = new Animal("nemo", FISH, M, 4, 10, 2, false);
@@ -32,7 +32,7 @@ class Task1Test {
     }
 
     @Test
-    public void sortEmptyList() {
+    public void testThatSortEmptyListReturnedEmptyList() {
         List<Animal> animals = List.of();
 
         Task1 task1 = new Task1(animals);
@@ -42,7 +42,7 @@ class Task1Test {
     }
 
     @Test
-    public void sortListWithOneElement() {
+    public void testThatSortListWithOneElementReturnedSameElement() {
         Animal spider = new Animal("miles", SPIDER, M, 4, 3, 1, false);
         List<Animal> animals = List.of(spider);
 
@@ -56,7 +56,7 @@ class Task1Test {
     }
 
     @Test
-    void sorted2() {
+    void testThatSorted2ReturnedExpectedOrder() {
         Animal morales = new Animal("miles", SPIDER, M, 16, 170, 65, false);
         Animal parker = new Animal("peter", SPIDER, M, 25, 180, 75, false);
         Animal osborn = new Animal("harry", SPIDER, M, 24, 175, 70, false);

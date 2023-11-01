@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class Task13Test {
 
     @Test
-    void testWeightExceedsHeightAnimalsCount() {
+    void testThatAnimalWithLongNameReturnLongNameAnimal() {
         String longName = "Christian Heinrich Clemens Paul Frank Peter Wolf Wilhelm Ernst Friedrich Franz";
         Animal animal1 = new Animal("Lion", Animal.Type.CAT, Animal.Sex.M, 5, 120, 200, true);
         Animal animal2 = new Animal(longName, Animal.Type.DOG, Animal.Sex.M, 3, 101, 150, true);
@@ -24,6 +24,4 @@ class Task13Test {
         assertEquals(longName, animalsWithLongName.get(0).name());
 
     }
-
-
 }

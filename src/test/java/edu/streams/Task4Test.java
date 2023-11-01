@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class Task4Test {
 
     @Test
-    void testL() {
+    void testThatAnimalWithLongestNameReturnedKitti() {
         Animal kitti = new Animal("kitti", CAT, F, 4, 26, 20, true);
         Animal bard = new Animal("bard", DOG, M, 4, 40, 30, true);
         Animal fish = new Animal("nemo", FISH, M, 4, 10, 2, false);
@@ -26,7 +26,7 @@ class Task4Test {
     }
 
     @Test
-    void testLd() {
+    void testThatAnimalWithLongestNameReturnedRobert() {
         Animal kitti = new Animal("kitti", CAT, F, 4, 26, 20, true);
         Animal bard = new Animal("robert", DOG, M, 4, 40, 30, true);
         Animal fish = new Animal("nemo", FISH, M, 4, 10, 2, false);

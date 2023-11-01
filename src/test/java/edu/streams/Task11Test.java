@@ -11,7 +11,7 @@ class Task11Test {
     // почему нет проверок на null?
     // ответ - https://sun9-5.userapi.com/impg/SwNPOBJT4NnZl1K3tG4KZY9oMky6_txOsz2oDA/Y8Y1pL_Hty4.jpg?size=836x391&quality=96&sign=d9958aee12c6e2729f5e3eb4ad223977&type=album
     @Test
-    void testCanBiteAnimalsAndHigher100() {
+    void testThatCanBiteAnimalsAndHigher100ReturnedExpected() {
         Animal animal1 = new Animal("Lion", Animal.Type.CAT, Animal.Sex.M, 5, 120, 200, true);
         Animal animal2 = new Animal("Dog", Animal.Type.DOG, Animal.Sex.M, 3, 101, 150, true);
         Animal animal3 = new Animal("Parrot", Animal.Type.BIRD, Animal.Sex.F, 2, 20, 30, true);
