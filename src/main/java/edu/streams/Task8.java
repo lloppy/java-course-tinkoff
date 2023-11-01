@@ -7,7 +7,7 @@ import java.util.Optional;
 
 /**
  * Задача 8.
- * Самое тяжелое животное среди животных ниже k см -> Optional<Animal>
+ * Самое тяжелое животное среди животных ниже k см
  */
 public final class Task8 extends AnimalSorter {
     private int edgeOfHeight;

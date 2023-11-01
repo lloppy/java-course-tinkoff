@@ -10,7 +10,6 @@ import static java.util.stream.Collectors.summingInt;
  * Задача 15.
  * Найти суммарный вес животных каждого вида,
  * которым от k до l лет
- * -> Map<Animal.Type, Integer>
  */
 public final class Task15 extends AnimalSorter {
     private int lowerBoundOfAge;

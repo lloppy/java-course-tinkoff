@@ -10,8 +10,6 @@ import java.util.stream.Collectors;
 /**
  * Задача 19.
  * Животные, в записях о которых есть ошибки: вернуть имя и список ошибок
- * -> Map<String, Set<ValidationError>>.
- * <p>
  * Класс ValidationError и набор потенциальных проверок нужно придумать самостоятельно.
  */
 public final class Task19 extends AnimalSorter {

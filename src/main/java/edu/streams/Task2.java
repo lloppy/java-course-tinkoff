@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Задача 2.
  * Отсортировать животных по весу от самого тяжелого к самому легкому,
- * выбрать k первых -> List<Animal>
+ * выбрать k первых
  */
 public final class Task2 extends AnimalSorter {
     private List<Animal> sortedAnimals;

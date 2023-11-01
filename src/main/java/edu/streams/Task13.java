@@ -6,7 +6,6 @@ import java.util.List;
 /**
  * Задача 13.
  * Список животных, имена которых состоят из более чем двух слов
- * -> List<Animal>
  */
 public final class Task13 extends AnimalSorter {
     private List<Animal> animalsWithLongName;

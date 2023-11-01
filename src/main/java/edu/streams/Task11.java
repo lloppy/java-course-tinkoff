@@ -7,7 +7,6 @@ import java.util.List;
  * Задача 11.
  * Список животных, которые могут укусить (bites == true)
  * и рост которых превышает 100 см
- * -> List<Animal>
  */
 public final class Task11 extends AnimalSorter {
     public static final int MIN_HEIGHT = 100;

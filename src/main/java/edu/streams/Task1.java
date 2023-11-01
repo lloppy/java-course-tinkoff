@@ -7,7 +7,7 @@ import static java.util.Comparator.comparingInt;
 /**
  * Задача 1.
  * Отсортировать животных по росту
- * от самого маленького к самому большому -> List<Animal>
+ * от самого маленького к самому большому
  */
 public final class Task1 extends AnimalSorter {
     private List<Animal> sortedAnimals;

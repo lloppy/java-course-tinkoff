@@ -11,7 +11,6 @@ import java.util.stream.Collectors;
  * Задача 20.
  * Сделать результат предыдущего задания более читабельным:
  * вернуть имя и названия полей с ошибками, объединенные в строку
- * -> Map<String, String>
  */
 public final class Task20 extends AnimalSorter {
     private Map<String, String> validationErrorAnimals;

@@ -10,7 +10,7 @@ import static edu.streams.Animal.Type;
 
 /**
  * Задача 6.
- * Самое тяжелое животное каждого вида -> Map<Animal.Type, Animal>
+ * Самое тяжелое животное каждого вида
  */
 public final class Task6 extends AnimalSorter {
     private Map<Type, Animal> theLargestAnimals;

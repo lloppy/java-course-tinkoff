@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 /**
  * Задача 3.
- * Сколько животных каждого вида -> Map<Animal.Type, Integer>
+ * Сколько животных каждого вида
  */
 public final class Task3 extends AnimalSorter {
     private Map<Animal.Type, Integer> sortedAnimals;

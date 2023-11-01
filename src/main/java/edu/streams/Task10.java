@@ -6,7 +6,6 @@ import java.util.List;
 /**
  * Задача 10.
  * Список животных, возраст у которых не совпадает с количеством лап
- * -> List<Animal>
  */
 public final class Task10 extends AnimalSorter {
     private List<Animal> ageNotMatchPawsAnimals;

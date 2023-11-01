@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 /**
  * Задача 16.
  * Список животных, отсортированный по виду, затем по полу, затем по имени
- * -> List<Animal>
  */
 public final class Task16 extends AnimalSorter {
 
