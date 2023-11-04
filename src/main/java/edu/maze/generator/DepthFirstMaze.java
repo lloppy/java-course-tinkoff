@@ -9,9 +9,6 @@ import java.util.Random;
 import java.util.Stack;
 
 public class DepthFirstMaze implements MazeGenerator {
-    private static final int EMPTY = 1;
-    private static final int WALL = 0;
-
     @Override
     public Maze generateMaze(int height, int width) {
         Maze maze = new Maze(height, width);
