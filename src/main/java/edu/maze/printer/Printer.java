@@ -2,16 +2,11 @@ package edu.maze.printer;
 
 import edu.maze.model.Maze;
 import edu.maze.model.Node;
+import edu.maze.utils.Ansi;
 import java.util.List;
+import static edu.maze.utils.Ansi.*;
 
 public final class Printer {
-    private static final String ANSI_RESET = "\u001B[0m";
-    private static final String ANSI_BLACK = "\u001B[40m";
-    private static final String ANSI_WHITE = "\u001B[47m";
-    private static final String ANSI_GREEN = "\u001B[42m";
-    private static final String ANSI_RED = "\u001B[41m";
-    private static final String ANSI_EMPTY = ANSI_WHITE + "  %s  " + ANSI_RESET;
-
     private Printer() {
     }
 
@@ -22,22 +17,22 @@ public final class Printer {
                 Node node = map[row][column];
 
                 if (row == 1 && column == 1) {
-                    print(ANSI_GREEN + "   " + ANSI_RESET);
+                    print(GREEN_BLOCK);
                 } else if (node.getType() == Node.Type.WALL) {
-                    print(ANSI_WHITE + "   " + ANSI_RESET);
+                    print(WHITE_BLOCK);
                 } else {
-                    print(ANSI_BLACK + "   " + ANSI_RESET);
+                    print(BLACK_BLOCK);
                 }
             }
-            println(String.format(ANSI_EMPTY, algorithmName));
+            println(String.format(Ansi.EMPTY_BLOCK, algorithmName));
         }
     }
 
     public static void printEnd(final int width, final String algorithmName) {
         for (int i = 0; i < width; i++) {
-            print(ANSI_WHITE + "   " + ANSI_RESET);
+            print(WHITE_BLOCK);
         }
-        println(String.format(ANSI_EMPTY, algorithmName));
+        println(String.format(Ansi.EMPTY_BLOCK, algorithmName));
     }
 
     public static void printSolveMaze(
@@ -53,21 +48,21 @@ public final class Printer {
 
                 if (node.getRow() == path.get(0).getRow()
                     && node.getColumn() == path.get(0).getColumn()) {
-                    print(ANSI_RED + "   " + ANSI_RESET);
+                    print(RED_BLOCK);
 
                 } else {
                     if (nodeContainsInArray(path, node)) {
-                        print(ANSI_GREEN + "   " + ANSI_RESET);
+                        print(GREEN_BLOCK);
                     } else {
                         if (node.getType() == Node.Type.WALL) {
-                            print(ANSI_WHITE + "   " + ANSI_RESET);
+                            print(WHITE_BLOCK);
                         } else {
-                            print(ANSI_BLACK + "   " + ANSI_RESET);
+                            print(BLACK_BLOCK);
                         }
                     }
                 }
             }
-            println(String.format(ANSI_EMPTY, algorithmName));
+            println(String.format(EMPTY_BLOCK, algorithmName));
         }
     }
 
@@ -86,10 +81,12 @@ public final class Printer {
         return isContains;
     }
 
+    @SuppressWarnings("RegexpSinglelineJava")
     private static void print(final String line) {
         System.out.print(line);
     }
 
+    @SuppressWarnings("RegexpSinglelineJava")
     private static void println(final String line) {
         System.out.println(line);
     }
