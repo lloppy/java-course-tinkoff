@@ -31,6 +31,7 @@ public class Node {
     public Type getType() {
         return type;
     }
+
     public int getRow() {
         return row;
     }
