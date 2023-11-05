@@ -11,12 +11,14 @@ public class Node {
     private final int column;
     public boolean isVisited;
     private Type type;
+    public Node parent;
 
     public Node(int column, int row, Type type) {
         this.row = row;
         this.column = column;
         this.isVisited = false;
         this.type = type;
+        this.parent = null;
     }
 
     public enum Type {

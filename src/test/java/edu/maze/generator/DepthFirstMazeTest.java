@@ -9,7 +9,7 @@ class DepthFirstMazeTest {
     @Test
     void generateMaze() {
         MazeGenerator generator = new DepthFirstMaze();
-        Maze maze = generator.generateMaze(11,13);
+        Maze maze = generator.generateMaze(11,12);
 
         Printer.printMaze(maze, "DFS");
     }
