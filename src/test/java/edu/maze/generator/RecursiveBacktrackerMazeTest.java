@@ -10,10 +10,10 @@ class RecursiveBacktrackerMazeTest {
     @Test
     void generateMap() {
         MazeGenerator generator = new DepthFirstMaze();
-        Maze maze = generator.generateMaze(20,30);
+        Maze maze = generator.generateMaze(21,31);
 
         Printer.printMaze(maze, "RecursiveBacktracker");
-        Printer.printEnd(30, "RecursiveBacktracker");
+        Printer.printEnd(31, "RecursiveBacktracker");
     }
 
 }

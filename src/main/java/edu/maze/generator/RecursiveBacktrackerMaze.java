@@ -83,4 +83,3 @@ public class RecursiveBacktrackerMaze implements MazeGenerator {
         map[wallRow][wallCol].setType(Node.Type.EMPTY);
     }
 }
-
