@@ -7,29 +7,33 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
 
-public class BreadthFirstSearchMazeSolver implements MazeSolver {
+public final class BreadthFirstSearchMazeSolver implements MazeSolver {
     private final Maze maze;
 
-    public BreadthFirstSearchMazeSolver(Maze maze) {
-        this.maze = maze;
+    public BreadthFirstSearchMazeSolver(final Maze generatedMaze) {
+        this.maze = generatedMaze;
     }
 
     @Override
-    public List<Node> solve(Node start, Node end) {
+    public List<Node> solve(final Node start, final Node end) {
         Queue<Node> queue = new ArrayDeque<>();
         queue.add(start);
 
         while (!queue.isEmpty()) {
             Node current = queue.poll();
 
-            if (current.getRow() == end.getRow() && current.getColumn() == end.getColumn()) {
+            if (current.getRow() == end.getRow()
+                && current.getColumn() == end.getColumn()
+            ) {
                 return reconstructPath(current);
             }
-            current.isVisited = true;
+            current.setIsVisited();
 
             for (Node neighbor : getNeighbors(current)) {
-                if (!neighbor.isVisited && neighbor.getType() != Node.Type.WALL) {
-                    neighbor.parent = current;
+                if (!neighbor.isVisited()
+                    && neighbor.getType() != Node.Type.WALL
+                ) {
+                    neighbor.setParent(current);
                     queue.add(neighbor);
                 }
             }
@@ -38,7 +42,7 @@ public class BreadthFirstSearchMazeSolver implements MazeSolver {
         return new ArrayList<>();
     }
 
-    private List<Node> getNeighbors(Node node) {
+    private List<Node> getNeighbors(final Node node) {
         int row = node.getRow();
         int col = node.getColumn();
         List<Node> neighbors = new ArrayList<>();
@@ -59,19 +63,20 @@ public class BreadthFirstSearchMazeSolver implements MazeSolver {
         return neighbors;
     }
 
-    private boolean isValidLocation(int x, int y) {
-        if (x >= 0 && x < maze.getHeight() && y >= 0 && y < maze.getWidth() ) {
+    private boolean isValidLocation(final int x, final int y) {
+        if (x >= 0 && x < maze.getHeight() && y >= 0 && y < maze.getWidth()) {
             Node cell = maze.getCell(x, y);
             return cell.getType() == Node.Type.EMPTY;
         }
         return false;
     }
 
-    private List<Node> reconstructPath(Node current) {
+    private List<Node> reconstructPath(final Node currentNode) {
+        Node current = currentNode;
         List<Node> path = new ArrayList<>();
         while (current != null) {
             path.add(current);
-            current = current.parent;
+            current = current.getParent();
         }
         return path;
     }

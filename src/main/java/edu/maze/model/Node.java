@@ -6,18 +6,18 @@ package edu.maze.model;
  * Требуется найти путь из комнаты A в комнату B.
  * В теории графов «комнаты» называются вершинами (node)
  */
-public class Node {
+public final class Node {
     private final int row;
     private final int column;
-    public boolean isVisited;
+    private boolean isVisited;
     private Type type;
-    public Node parent;
+    private Node parent;
 
-    public Node(int column, int row, Type type) {
-        this.row = row;
-        this.column = column;
+    public Node(final int nodeColumn, final int nodeRow, final Type nodeType) {
+        this.column = nodeColumn;
+        this.row = nodeRow;
         this.isVisited = false;
-        this.type = type;
+        this.type = nodeType;
         this.parent = null;
     }
 
@@ -26,8 +26,8 @@ public class Node {
         EMPTY
     }
 
-    public void setType(Type type) {
-        this.type = type;
+    public void setType(final Type anotherType) {
+        type = anotherType;
     }
 
     public Type getType() {
@@ -40,6 +40,22 @@ public class Node {
 
     public int getColumn() {
         return column;
+    }
+
+    public boolean isVisited() {
+        return isVisited;
+    }
+
+    public void setIsVisited() {
+        this.isVisited = true;
+    }
+
+    public void setParent(final Node newParentNode) {
+        parent = newParentNode;
+    }
+
+    public Node getParent() {
+        return parent;
     }
 
 }

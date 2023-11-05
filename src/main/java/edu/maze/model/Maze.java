@@ -1,22 +1,22 @@
 package edu.maze.model;
 
-public class Maze {
+public final class Maze {
     private final int width;
     private final int height;
     private final Node[][] map;
 
-    public Maze(int height, int width) {
-        this.width = width;
-        this.height = height;
+    public Maze(final int mazeHeight, final int mazeWidth) {
+        this.width = mazeWidth;
+        this.height = mazeHeight;
         this.map = new Node[height][width];
         for (int row = 0; row < height; row++) {
-            for (int col = 0; col < width; col++) {
-                map[row][col] = new Node(col, row, Node.Type.WALL);
+            for (int column = 0; column < width; column++) {
+                map[row][column] = new Node(column, row, Node.Type.WALL);
             }
         }
     }
 
-    public Node getCell(int x, int y) {
+    public Node getCell(final int x, final int y) {
         return map[x][y];
     }
 

@@ -14,12 +14,26 @@ import java.util.Stack;
  * непосещенных соседей для создания пути.
  * Удаляет стены между текущей ячейкой и выбранным соседом.
  */
-public class DepthFirstMaze implements MazeGenerator {
+public final class DepthFirstMaze implements MazeGenerator {
+    private static final int MOVE_UP = -2;
+    private static final int MOVE_DOWN = 2;
+    private static final int MOVE_LEFT = -2;
+    private static final int MOVE_RIGHT = 2;
     private Node[][] map;
     private Random random;
 
+    /**
+     * Generates a maze of the specified height and width
+     * using the depth-first algorithm.
+     * Subclasses may override this method
+     * to customize the maze generation process.
+     *
+     * @param height The height of the maze.
+     * @param width  The width of the maze.
+     * @return The generated maze.
+     */
     @Override
-    public Maze generateMaze(int height, int width) {
+    public Maze generateMaze(final int height, final int width) {
         Maze maze = new Maze(height, width);
         map = maze.getMap();
         random = new Random();
@@ -36,10 +50,14 @@ public class DepthFirstMaze implements MazeGenerator {
 
         while (!stack.isEmpty()) {
             Node currentCell = stack.peek();
-            List<Node> unvisitedNeighbors = getUnvisitedNeighbors(currentCell, width, height);
+            List<Node> unvisitedNeighbors = getUnvisitedNeighbors(
+                currentCell, width, height
+            );
 
             if (!unvisitedNeighbors.isEmpty()) {
-                Node neighbor = unvisitedNeighbors.get(random.nextInt(unvisitedNeighbors.size()));
+                Node neighbor = unvisitedNeighbors.get(
+                    random.nextInt(unvisitedNeighbors.size())
+                );
                 removeWallBetween(currentCell, neighbor);
                 stack.push(neighbor);
             } else {
@@ -52,12 +70,18 @@ public class DepthFirstMaze implements MazeGenerator {
         return maze;
     }
 
-    private List<Node> getUnvisitedNeighbors(Node cell, int width, int height) {
+    private List<Node> getUnvisitedNeighbors(
+        final Node cell,
+        final int width,
+        final int height
+    ) {
         int x = cell.getColumn();
         int y = cell.getRow();
         List<Node> neighbors = new ArrayList<>();
 
-        int[][] directions = {{0, -2}, {0, 2}, {-2, 0}, {2, 0}};
+        int[][] directions = {
+            {0, MOVE_UP}, {0, MOVE_DOWN}, {MOVE_LEFT, 0}, {MOVE_RIGHT, 0}
+        };
 
         for (int[] direction : directions) {
             int dx = direction[0];
@@ -65,27 +89,36 @@ public class DepthFirstMaze implements MazeGenerator {
             int newX = x + dx;
             int newY = y + dy;
 
-            if (isValid(newX, newY, width, height) && map[newY][newX].getType() == Node.Type.WALL) {
+            if (isValid(newX, newY, width, height)
+                && map[newY][newX].getType() == Node.Type.WALL) {
                 neighbors.add(map[newY][newX]);
             }
         }
         return neighbors;
     }
 
-    private void removeWallBetween(Node cell1, Node cell2) {
-        int row1 = cell1.getRow();
-        int col1 = cell1.getColumn();
-        int row2 = cell2.getRow();
-        int col2 = cell2.getColumn();
+    private void removeWallBetween(
+        final Node firstCell,
+        final Node secondCell
+    ) {
+        int firstRow = firstCell.getRow();
+        int firstColumn = firstCell.getColumn();
+        int secondRow = secondCell.getRow();
+        int secondColumn = secondCell.getColumn();
 
-        int wallRow = (row1 + row2) / 2;
-        int wallCol = (col1 + col2) / 2;
+        int wallRow = (firstRow + secondRow) / 2;
+        int wallColumn = (firstColumn + secondColumn) / 2;
 
-        map[wallRow][wallCol].setType(Node.Type.EMPTY);
-        cell2.setType(Node.Type.EMPTY);
+        map[wallRow][wallColumn].setType(Node.Type.EMPTY);
+        secondCell.setType(Node.Type.EMPTY);
     }
 
-    private boolean isValid(int x, int y, int width, int height) {
+    private boolean isValid(
+        final int x,
+        final int y,
+        final int width,
+        final int height
+    ) {
         return x >= 0 && x < width && y >= 0 && y < height;
     }
 }
