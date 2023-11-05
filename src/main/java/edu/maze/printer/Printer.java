@@ -4,7 +4,6 @@ import edu.maze.model.Maze;
 import edu.maze.model.Node;
 import edu.maze.utils.Ansi;
 import java.util.List;
-import static edu.maze.utils.Ansi.*;
 
 public final class Printer {
     private Printer() {
@@ -17,11 +16,11 @@ public final class Printer {
                 Node node = map[row][column];
 
                 if (row == 1 && column == 1) {
-                    print(GREEN_BLOCK);
+                    print(Ansi.GREEN_BLOCK);
                 } else if (node.getType() == Node.Type.WALL) {
-                    print(WHITE_BLOCK);
+                    print(Ansi.WHITE_BLOCK);
                 } else {
-                    print(BLACK_BLOCK);
+                    print(Ansi.BLACK_BLOCK);
                 }
             }
             println(String.format(Ansi.EMPTY_BLOCK, algorithmName));
@@ -30,7 +29,7 @@ public final class Printer {
 
     public static void printEnd(final int width, final String algorithmName) {
         for (int i = 0; i < width; i++) {
-            print(WHITE_BLOCK);
+            print(Ansi.WHITE_BLOCK);
         }
         println(String.format(Ansi.EMPTY_BLOCK, algorithmName));
     }
@@ -48,21 +47,21 @@ public final class Printer {
 
                 if (node.getRow() == path.get(0).getRow()
                     && node.getColumn() == path.get(0).getColumn()) {
-                    print(RED_BLOCK);
+                    print(Ansi.RED_BLOCK);
 
                 } else {
                     if (nodeContainsInArray(path, node)) {
-                        print(GREEN_BLOCK);
+                        print(Ansi.GREEN_BLOCK);
                     } else {
                         if (node.getType() == Node.Type.WALL) {
-                            print(WHITE_BLOCK);
+                            print(Ansi.WHITE_BLOCK);
                         } else {
-                            print(BLACK_BLOCK);
+                            print(Ansi.BLACK_BLOCK);
                         }
                     }
                 }
             }
-            println(String.format(EMPTY_BLOCK, algorithmName));
+            println(String.format(Ansi.EMPTY_BLOCK, algorithmName));
         }
     }
 
