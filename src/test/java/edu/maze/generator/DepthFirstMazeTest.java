@@ -12,10 +12,10 @@ class DepthFirstMazeTest {
         MazeGenerator generator = new DepthFirstMaze();
         Maze maze = generator.generateMaze(11, 12);
 
+        Printer.printMaze(maze, "DFS");
+
         assertTrue(maze.getHeight() == 11);
         assertTrue(maze.getWidth() == 12);
         assertTrue(maze.getMap().length != 0);
-
-        Printer.printMaze(maze, "DFS");
     }
 }

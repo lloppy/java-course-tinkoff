@@ -64,10 +64,10 @@ public class BreadthFirstSearchMazeSolverTest {
         MazeSolver solver = new BreadthFirstSearchMazeSolver(maze);
         List<Node> path = solver.solve(start, end);
 
+        Printer.printSolveMaze(maze, path, "BreadthFirstSearch");
+
         assertFalse(path.isEmpty());
         assertTrue(maze.getMap().length != 0);
-
-        Printer.printSolveMaze(maze, path, "BreadthFirstSearch");
     }
 }
 

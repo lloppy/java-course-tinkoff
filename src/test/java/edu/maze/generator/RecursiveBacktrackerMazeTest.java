@@ -12,12 +12,12 @@ class RecursiveBacktrackerMazeTest {
         MazeGenerator generator = new DepthFirstMaze();
         Maze maze = generator.generateMaze(21,31);
 
+        Printer.printMaze(maze, "RecursiveBacktracker");
+        Printer.printEnd(31, "RecursiveBacktracker");
+
         assertTrue(maze.getHeight() == 21);
         assertTrue(maze.getWidth() == 31);
         assertTrue(maze.getMap().length != 0);
-
-        Printer.printMaze(maze, "RecursiveBacktracker");
-        Printer.printEnd(31, "RecursiveBacktracker");
     }
 
 }
