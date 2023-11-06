@@ -9,6 +9,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class BreadthFirstSearchMazeSolverTest {
     @Test
@@ -53,7 +54,6 @@ public class BreadthFirstSearchMazeSolverTest {
         int height = 21;
         int wight = 36;
         MazeGenerator generator = new DepthFirstMaze();
-        //Maze maze = generator.generateMaze(11,12);
         Maze maze = generator.generateMaze(height, wight);
 
         Printer.printMaze(maze, "DFS");
@@ -65,6 +65,7 @@ public class BreadthFirstSearchMazeSolverTest {
         List<Node> path = solver.solve(start, end);
 
         assertFalse(path.isEmpty());
+        assertTrue(maze.getMap().length != 0);
 
         Printer.printSolveMaze(maze, path, "BreadthFirstSearch");
     }
