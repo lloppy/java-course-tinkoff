@@ -5,13 +5,13 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-public class Task1 {
+public final class Task1 {
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd, HH:mm");
 
-    public Task1() {
+    private Task1() {
     }
 
-    public String getDuration(List<String> stringTimeData) {
+    public static String getDuration(final List<String> stringTimeData) {
         List<String> timeData = stringTimeData;
         Duration[] durations = new Duration[stringTimeData.size()];
 
@@ -25,12 +25,11 @@ public class Task1 {
         return String.format("%sч %sм", averageDuration / 60, (int) (averageDuration % 60));
     }
 
-    public static Duration getSessionDuration(String sessionString) {
+    private static Duration getSessionDuration(final String sessionString) {
         LocalDateTime startDateTime = LocalDateTime.parse(sessionString.split(" - ")[0], FORMATTER);
         LocalDateTime endDateTime = LocalDateTime.parse(sessionString.split(" - ")[1], FORMATTER);
 
         return Duration.between(startDateTime, endDateTime);
     }
-
 }
 
