@@ -23,9 +23,9 @@ class Task8Test {
 
     @Test
     void testThatMatchesMultipleOfThreeZerosPatternReturnedTrue() {
-        assertTrue(Task8.matchesMultipleOfThreeZerosPattern("01010"));
-        assertTrue(Task8.matchesMultipleOfThreeZerosPattern("100101000"));
-        assertFalse(Task8.matchesMultipleOfThreeZerosPattern("01011"));
+        assertTrue(Task8.matchesThreeZerosPattern("01010"));
+        assertTrue(Task8.matchesThreeZerosPattern("100101000"));
+        assertFalse(Task8.matchesThreeZerosPattern("01011"));
     }
 
     @Test

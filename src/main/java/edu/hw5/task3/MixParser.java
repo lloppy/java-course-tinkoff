@@ -37,11 +37,10 @@ public final class MixParser extends Parser {
                     case "years":
                         return Optional.of(LocalDate.now().minusYears(amount));
                     default:
-                        return getNextParser().getParseDate(string);
+                        break;
                 }
-            } else {
-                return getNextParser().getParseDate(string);
             }
+            return getNextParser().getParseDate(string);
         } catch (NumberFormatException | DateTimeParseException e) {
             return getNextParser().getParseDate(string);
         }

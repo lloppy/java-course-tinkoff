@@ -7,7 +7,10 @@ public final class Task6 {
     private Task6() {
     }
 
-    public static boolean isSubsequence(final String givenString, final String sequence) {
+    public static boolean isSubsequence(
+        final String givenString,
+        final String sequence
+    ) {
         Pattern pattern = Pattern.compile(".*" + givenString + ".*");
         Matcher matcher = pattern.matcher(sequence);
 
