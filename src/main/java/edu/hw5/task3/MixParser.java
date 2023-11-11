@@ -16,6 +16,8 @@ public final class MixParser extends Parser {
 
     @Override
     public Optional<LocalDate> getParseDate(final String string) {
+        Optional<LocalDate> result = Optional.empty();
+
         try {
             Pattern pattern = Pattern.compile(PATTERN);
             Matcher matcher = pattern.matcher(string);
@@ -23,27 +25,31 @@ public final class MixParser extends Parser {
             if (matcher.matches()) {
                 int amount = Integer.parseInt(matcher.group(1));
                 String unit = matcher.group(2);
+
                 switch (unit) {
                     case "day":
                     case "days":
-                        return Optional.of(LocalDate.now().minusDays(amount));
+                        result = Optional.of(LocalDate.now().minusDays(amount));
+                        break;
                     case "week":
                     case "weeks":
-                        return Optional.of(LocalDate.now().minusWeeks(amount));
+                        result = Optional.of(LocalDate.now().minusWeeks(amount));
+                        break;
                     case "month":
                     case "months":
-                        return Optional.of(LocalDate.now().minusMonths(amount));
+                        result = Optional.of(LocalDate.now().minusMonths(amount));
+                        break;
                     case "year":
                     case "years":
-                        return Optional.of(LocalDate.now().minusYears(amount));
+                        result = Optional.of(LocalDate.now().minusYears(amount));
+                        break;
                     default:
                         break;
                 }
             }
-            return getNextParser().getParseDate(string);
         } catch (NumberFormatException | DateTimeParseException e) {
-            return getNextParser().getParseDate(string);
         }
+        return result.isPresent() ? result : getNextParser().getParseDate(string);
     }
 
     private Parser getNextParser() {
