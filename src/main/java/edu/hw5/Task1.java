@@ -4,9 +4,12 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import static java.time.format.DateTimeFormatter.ofPattern;
 
 public final class Task1 {
-    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd, HH:mm");
+    private static final DateTimeFormatter FORMATTER =
+        ofPattern("yyyy-MM-dd, HH:mm");
+    private static final int TIME_DIVIDER = 60;
 
     private Task1() {
     }
@@ -22,14 +25,19 @@ public final class Task1 {
         }
 
         long averageDuration = sum / durations.length;
-        return String.format("%sч %sм", averageDuration / 60, (int) (averageDuration % 60));
+        return String.format(
+            "%sч %sм", averageDuration / TIME_DIVIDER,
+            (int) (averageDuration % TIME_DIVIDER)
+        );
     }
 
     private static Duration getSessionDuration(final String sessionString) {
-        LocalDateTime startDateTime = LocalDateTime.parse(sessionString.split(" - ")[0], FORMATTER);
-        LocalDateTime endDateTime = LocalDateTime.parse(sessionString.split(" - ")[1], FORMATTER);
+        String[] session = sessionString.split(" - ");
 
-        return Duration.between(startDateTime, endDateTime);
+        LocalDateTime startDate = LocalDateTime.parse(session[0], FORMATTER);
+        LocalDateTime endDate = LocalDateTime.parse(session[1], FORMATTER);
+
+        return Duration.between(startDate, endDate);
     }
 }
 

@@ -2,7 +2,7 @@ package edu.hw5;
 
 import java.util.regex.Pattern;
 
-public class Task8 {
+public final class Task8 {
 
     /** Нечетной длины */
     private static final String ODD_LENGTH_PATTERN = "^([01]{2})*[01]$";
