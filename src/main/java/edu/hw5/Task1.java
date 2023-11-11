@@ -26,7 +26,8 @@ public final class Task1 {
 
         long averageDuration = sum / durations.length;
         return String.format(
-            "%sч %sм", averageDuration / TIME_DIVIDER,
+            "%sч %sм",
+            averageDuration / TIME_DIVIDER,
             (int) (averageDuration % TIME_DIVIDER)
         );
     }
