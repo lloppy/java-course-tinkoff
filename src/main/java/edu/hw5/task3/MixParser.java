@@ -7,14 +7,15 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public final class MixParser extends Parser {
-    private static final String PATTERN = "^(\\d+)\s+(days|day|weeks|week|months|month|years|year) ago$";
+    private static final String PATTERN =
+        "^(\\d+)\s+(days|day|weeks|week|months|month|years|year) ago$";
 
-    public MixParser(Parser nextParser) {
+    public MixParser(final Parser nextParser) {
         super(nextParser);
     }
 
     @Override
-    public Optional<LocalDate> getParseDate(String string) {
+    public Optional<LocalDate> getParseDate(final String string) {
         try {
             Pattern pattern = Pattern.compile(PATTERN);
             Matcher matcher = pattern.matcher(string);
