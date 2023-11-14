@@ -1,4 +1,35 @@
 package edu.hw6.task4;
 
-public class Task4 {
+import java.io.BufferedOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.zip.Adler32;
+import java.util.zip.CheckedOutputStream;
+
+public final class Task4 {
+    private Task4() {
+    }
+
+    public static void composition(String filename, String message) {
+        Path currentDirectory = Paths.get("src/test/java/edu/hw6/task4/").toAbsolutePath();
+        Path filePath = currentDirectory.resolve(filename);
+
+        try (
+            OutputStream fileOutputStream = Files.newOutputStream(filePath);
+            CheckedOutputStream checkedOutputStream = new CheckedOutputStream(fileOutputStream, new Adler32());
+            BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(checkedOutputStream);
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(bufferedOutputStream, "UTF-8");
+            PrintWriter printWriter = new PrintWriter(outputStreamWriter)) {
+
+            printWriter.println(message);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
