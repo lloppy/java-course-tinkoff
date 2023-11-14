@@ -1,5 +1,6 @@
 package edu.hw6.task2;
 
+import edu.hw6.task1.DiskMap;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -8,9 +9,16 @@ import java.util.regex.Pattern;
 
 public final class Task2 {
 
-    public static Path cloneFile(Path originalPath) throws IOException {
+    public static Boolean cloneFile(Path originalPath) throws IOException {
         String newPathName = choosePattern(originalPath.toString());
-        return Paths.get(newPathName);
+
+        Path currentDirectory = Paths.get("").toAbsolutePath();
+        Path filePath = currentDirectory.resolve(newPathName);
+
+        DiskMap diskMap = new DiskMap();
+        diskMap.saveFile(filePath);
+
+        return true;
     }
 
     private static String choosePattern(String string) {
@@ -49,6 +57,6 @@ public final class Task2 {
             }
         }
 
-        return "No matches";
+        return "";
     }
 }
