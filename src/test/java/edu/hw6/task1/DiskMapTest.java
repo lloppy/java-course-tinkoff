@@ -3,11 +3,13 @@ package edu.hw6.task1;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class DiskMapTest {
@@ -100,5 +102,50 @@ class DiskMapTest {
         assertEquals(2, entrySet.size());
         assertTrue(entrySet.contains(Map.entry("key1", "value1")));
         assertTrue(entrySet.contains(Map.entry("key2", "value2")));
+    }
+
+    @Test
+    void testThatRemoveReturnedExpectedValue() {
+        DiskMap diskMap = new DiskMap();
+        diskMap.put("key1", "value1");
+        diskMap.put("key2", "value2");
+
+        assertEquals("value1", diskMap.remove("key1"));
+        assertNull(diskMap.get("key1"));
+        assertEquals(1, diskMap.size());
+    }
+
+    @Test
+    void testThatPutAllAddedValues() {
+        DiskMap diskMap = new DiskMap();
+        diskMap.put("key1", "value1");
+        diskMap.put("key2", "value2");
+
+        Map<String, String> anotherMap = new HashMap<>();
+        anotherMap.put("key3", "value3");
+        anotherMap.put("key4", "value4");
+
+        diskMap.putAll(anotherMap);
+
+        assertEquals("value1", diskMap.get("key1"));
+        assertEquals("value2", diskMap.get("key2"));
+        assertEquals("value3", diskMap.get("key3"));
+        assertEquals("value4", diskMap.get("key4"));
+        assertEquals(4, diskMap.size());
+    }
+
+    @Test
+    void testThatClearEmptiedMap() {
+        DiskMap diskMap = new DiskMap();
+        diskMap.put("key1", "value1");
+        diskMap.put("key2", "value2");
+
+        assertFalse(diskMap.isEmpty());
+
+        diskMap.clear();
+
+        assertTrue(diskMap.isEmpty());
+        assertNull(diskMap.get("key1"));
+        assertNull(diskMap.get("key2"));
     }
 }
