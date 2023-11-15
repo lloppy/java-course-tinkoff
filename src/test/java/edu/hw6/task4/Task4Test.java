@@ -15,7 +15,7 @@ class Task4Test {
         String filename = "Brain.txt";
         String message = "Programming is learned by writing programs. ― Brian Kernighan";
 
-        Task4.composition(filename, message);
+        Task4.createComposition(filename, message);
 
         Path currentDirectory = Paths.get("src/test/java/edu/hw6/task4/").toAbsolutePath();
         Path filePath = currentDirectory.resolve(filename);

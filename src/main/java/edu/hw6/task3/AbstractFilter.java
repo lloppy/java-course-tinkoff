@@ -25,53 +25,29 @@ public interface AbstractFilter extends DirectoryStream.Filter<Path> {
         return entry -> Files.size(entry) < size;
     }
 
-    static AbstractFilter sizeEquals(long size) {
-        return entry -> Files.size(entry) == size;
-    }
-
     static AbstractFilter globMatches(String glob) {
-        return entry -> FileSystems.getDefault().getPathMatcher("glob:" + glob).matches(entry.getFileName());
+        return entry -> FileSystems.getDefault()
+            .getPathMatcher("glob:" + glob)
+            .matches(entry.getFileName());
     }
 
-    static AbstractFilter regexMatches(String regex) {
-        return entry -> entry.getFileName().toString().matches(regex);
-    }
-
-    static AbstractFilter startsWith(String prefix) {
-        return entry -> entry.getFileName().toString().startsWith(prefix);
-    }
-
-    static AbstractFilter endsWith(String suffix) {
-        return entry -> entry.getFileName().toString().endsWith(suffix);
-    }
-
-    static AbstractFilter magicNumber(int... magicBytes) {
-        return entry -> {
-            try {
-                byte[] fileBytes = Files.readAllBytes(entry);
-                if (fileBytes.length >= magicBytes.length) {
-                    for (int i = 0; i < magicBytes.length; i++) {
-                        if ((fileBytes[i] & 0xFF) != magicBytes[i]) {
-                            return false;
-                        }
-                    }
-                    return true;
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
+    static AbstractFilter magicNumber(char... bytes) {
+        return path -> {
+            var fileBytes = Files.readAllBytes(path);
+            if (bytes.length > fileBytes.length) {
+                return false;
             }
-            return false;
-        };
-    }
 
-    static AbstractFilter and(DirectoryStream.Filter<Path>... filters) {
-        return entry -> {
-            for (DirectoryStream.Filter<Path> filter : filters) {
-                if (!filter.accept(entry)) {
+            for (int i = 0; i < bytes.length; i++) {
+                if (bytes[i] != fileBytes[i]) {
                     return false;
                 }
             }
             return true;
         };
+    }
+
+    static AbstractFilter regexContains(String regex) {
+        return (t) -> t.getFileName().toString().matches(regex);
     }
 }

@@ -10,6 +10,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public final class HackerNews {
+    private static final Integer DURATION = 5;
+    private static final String HTTP_TOP_REQUEST_URL =
+        "https://hacker-news.firebaseio.com/v0/topstories.json";
+
+    private static final String HTTP_NEWS_REQUEST_URL =
+        "https://hacker-news.firebaseio.com/v0/item/";
 
     private final HttpClient client;
 
@@ -18,10 +24,11 @@ public final class HackerNews {
     }
 
     public long[] hackerNewsTopStories() {
-        HttpRequest request = createHttpRequest("https://hacker-news.firebaseio.com/v0/topstories.json");
+        HttpRequest request = createHttpRequest(HTTP_TOP_REQUEST_URL);
 
         try {
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            HttpResponse<String> response = client
+                .send(request, HttpResponse.BodyHandlers.ofString());
             String jsonResponse = response.body().replaceAll("\\[|\\]", "");
 
             return Arrays.stream(jsonResponse.split(","))
@@ -29,15 +36,18 @@ public final class HackerNews {
                 .toArray();
 
         } catch (Exception e) {
-            return new long[]{};
+            return new long[] {};
         }
     }
 
     public String news(final long id) {
-        HttpRequest request = createHttpRequest("https://hacker-news.firebaseio.com/v0/item/" + id + ".json");
+        HttpRequest request = createHttpRequest(
+            HTTP_NEWS_REQUEST_URL + id + ".json"
+        );
 
         try {
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            HttpResponse<String> response = client
+                .send(request, HttpResponse.BodyHandlers.ofString());
             String jsonString = response.body();
 
             Pattern pattern = Pattern.compile("\"title\":\"([^\"]+)");
@@ -53,7 +63,7 @@ public final class HackerNews {
     private HttpRequest createHttpRequest(final String url) {
         return HttpRequest.newBuilder(URI.create(url))
             .GET()
-            .timeout(Duration.ofSeconds(5))
+            .timeout(Duration.ofSeconds(DURATION))
             .build();
     }
 }

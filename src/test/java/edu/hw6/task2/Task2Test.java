@@ -27,7 +27,7 @@ class Task2Test {
 
         try {
             assertTrue(
-                Task2.cloneFile(filePath)
+                FileCloner.cloneFile(filePath)
             );
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -45,7 +45,7 @@ class Task2Test {
 
         try {
             assertTrue(
-                Task2.cloneFile(filePath)
+                FileCloner.cloneFile(filePath)
             );
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -62,7 +62,7 @@ class Task2Test {
 
         try {
             assertTrue(
-                Task2.cloneFile(filePath)
+                FileCloner.cloneFile(filePath)
             );
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -79,7 +79,7 @@ class Task2Test {
 
         try {
             assertTrue(
-                Task2.cloneFile(filePath)
+                FileCloner.cloneFile(filePath)
             );
         } catch (IOException e) {
             throw new RuntimeException(e);

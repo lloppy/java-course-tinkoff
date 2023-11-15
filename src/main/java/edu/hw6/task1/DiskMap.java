@@ -12,14 +12,14 @@ import java.util.Set;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class DiskMap implements Map<String, String> {
+public final class DiskMap implements Map<String, String> {
     private Map<String, String> map;
 
     public DiskMap() {
         this.map = new HashMap<>();
     }
 
-    public void saveFile(Path filePath) {
+    public void saveFile(final Path filePath) {
         try (PrintWriter writer = new PrintWriter(filePath.toFile())) {
             for (Map.Entry<String, String> entry : map.entrySet()) {
                 writer.println(entry.getKey() + ":" + entry.getValue());
@@ -29,7 +29,7 @@ public class DiskMap implements Map<String, String> {
         }
     }
 
-    public void readFile(Path filePath) {
+    public void readFile(final Path filePath) {
         try (BufferedReader reader = Files.newBufferedReader(filePath)) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -54,33 +54,35 @@ public class DiskMap implements Map<String, String> {
     }
 
     @Override
-    public boolean containsKey(Object key) {
+    public boolean containsKey(final Object key) {
         return map.containsKey(key);
     }
 
     @Override
-    public boolean containsValue(Object value) {
+    public boolean containsValue(final Object value) {
         return map.containsValue(value);
     }
 
     @Override
-    public String get(Object key) {
+    public String get(final Object key) {
         return map.get(key);
     }
 
     @Nullable
     @Override
-    public String put(String key, String value) {
+    public String put(final String key, final String value) {
         return map.put(key, value);
     }
 
     @Override
-    public String remove(Object key) {
+    public String remove(final Object key) {
         return map.remove(key);
     }
 
     @Override
-    public void putAll(@NotNull Map<? extends String, ? extends String> m) {
+    public void putAll(
+        final @NotNull Map<? extends String, ? extends String> m
+    ) {
         map.putAll(m);
     }
 
