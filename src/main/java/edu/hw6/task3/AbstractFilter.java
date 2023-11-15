@@ -7,9 +7,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 public interface AbstractFilter extends DirectoryStream.Filter<Path> {
-    AbstractFilter regularFile = Files::isRegularFile;
-    AbstractFilter readable = Files::isReadable;
-    AbstractFilter writable = Files::isWritable;
+    AbstractFilter REGULAR_FILE = Files::isRegularFile;
+    AbstractFilter READABLE = Files::isReadable;
+    AbstractFilter WRITABLE = Files::isWritable;
 
     boolean accept(Path entry) throws IOException;
 

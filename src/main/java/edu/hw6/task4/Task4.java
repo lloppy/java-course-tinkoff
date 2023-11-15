@@ -8,6 +8,7 @@ import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.logging.Logger;
 import java.util.zip.Adler32;
 import java.util.zip.CheckedOutputStream;
 
@@ -17,6 +18,7 @@ public final class Task4 {
     private Task4() {
     }
 
+    @SuppressWarnings("RegexpSinglelineJava")
     public static void createComposition(
         final String filename,
         final String message
@@ -37,7 +39,8 @@ public final class Task4 {
             printWriter.println(message);
 
         } catch (IOException e) {
-            e.printStackTrace();
+            Logger logger = Logger.getLogger(Task4.class.getName());
+            logger.severe("Error: " + e.getMessage());
         }
     }
 }

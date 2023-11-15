@@ -9,6 +9,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.logging.Logger;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -25,7 +26,8 @@ public final class DiskMap implements Map<String, String> {
                 writer.println(entry.getKey() + ":" + entry.getValue());
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            Logger logger = Logger.getLogger(DiskMap.class.getName());
+            logger.severe("Error: " + e.getMessage());
         }
     }
 
@@ -39,7 +41,8 @@ public final class DiskMap implements Map<String, String> {
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            Logger logger = Logger.getLogger(DiskMap.class.getName());
+            logger.severe("Error: " + e.getMessage());
         }
     }
 

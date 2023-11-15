@@ -8,12 +8,12 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import org.junit.jupiter.api.Test;
+import static edu.hw6.task3.AbstractFilter.READABLE;
+import static edu.hw6.task3.AbstractFilter.REGULAR_FILE;
+import static edu.hw6.task3.AbstractFilter.WRITABLE;
 import static edu.hw6.task3.AbstractFilter.globMatches;
 import static edu.hw6.task3.AbstractFilter.largerThan;
-import static edu.hw6.task3.AbstractFilter.readable;
 import static edu.hw6.task3.AbstractFilter.regexContains;
-import static edu.hw6.task3.AbstractFilter.regularFile;
-import static edu.hw6.task3.AbstractFilter.writable;
 
 class AbstractFilterTest {
 
@@ -40,9 +40,9 @@ class AbstractFilterTest {
             Path filePath = currentDirectory.resolve(filename);
 
             try {
-                readable.accept(filePath);
-                writable.accept(filePath);
-                regularFile.accept(filePath);
+                READABLE.accept(filePath);
+                WRITABLE.accept(filePath);
+                REGULAR_FILE.accept(filePath);
 
             } catch (IOException e) {
                 throw new RuntimeException(e);
@@ -50,9 +50,9 @@ class AbstractFilterTest {
         }
 
         System.out.println("Filtered Files:");
-        DirectoryStream.Filter<Path> filter = regularFile
-            .and(readable)
-            .and(writable);
+        DirectoryStream.Filter<Path> filter = REGULAR_FILE
+            .and(READABLE)
+            .and(WRITABLE);
 
         try (DirectoryStream<Path> entries = Files.newDirectoryStream(currentDirectory, filter)) {
             entries.forEach(System.out::println);
@@ -66,8 +66,8 @@ class AbstractFilterTest {
         Path currentDirectory = Paths.get("src/test/java/edu/hw6/task3/files/rrw/").toAbsolutePath();
         System.out.println("Filtered Files:");
 
-        DirectoryStream.Filter<Path> filter = regularFile
-            .and(readable)
+        DirectoryStream.Filter<Path> filter = REGULAR_FILE
+            .and(READABLE)
             .and(largerThan(10))
             .and(AbstractFilter.magicNumber('1', '2', '3'))
             .and(globMatches("*.txt"))

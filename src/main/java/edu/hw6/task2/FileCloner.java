@@ -64,7 +64,7 @@ public final class FileCloner {
             String extension = matcher.group(PATTERN_GROUP_DUPLICATE);
 
             if (groupCount == PATTERN_GROUP_DUPLICATE) {
-                int newNumber = originalNumber == ".txt" ? 1
+                int newNumber = originalNumber.equals(".txt") ? 1
                     : Integer.parseInt(originalNumber) + 1;
                 return prefix + copySuffix + "(" + newNumber + ")" + extension;
             } else if (groupCount == PATTERN_GROUP_SECOND_COPY) {
