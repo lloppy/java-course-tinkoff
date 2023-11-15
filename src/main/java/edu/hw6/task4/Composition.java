@@ -12,10 +12,10 @@ import java.util.logging.Logger;
 import java.util.zip.Adler32;
 import java.util.zip.CheckedOutputStream;
 
-public final class Task4 {
+public final class Composition {
     private static String path = "src/test/java/edu/hw6/task4/";
 
-    private Task4() {
+    private Composition() {
     }
 
     public static void createComposition(
@@ -38,7 +38,7 @@ public final class Task4 {
             printWriter.println(message);
 
         } catch (IOException e) {
-            Logger logger = Logger.getLogger(Task4.class.getName());
+            Logger logger = Logger.getLogger(Composition.class.getName());
             logger.severe("Error: " + e.getMessage());
         }
     }

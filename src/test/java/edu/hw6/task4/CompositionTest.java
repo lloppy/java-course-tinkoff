@@ -8,14 +8,14 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
-class Task4Test {
+class CompositionTest {
 
     @Test
     void testThatCompositionSaveMessageInFile() {
         String filename = "Brain.txt";
         String message = "Programming is learned by writing programs. ― Brian Kernighan";
 
-        Task4.createComposition(filename, message);
+        Composition.createComposition(filename, message);
 
         Path currentDirectory = Paths.get("src/test/java/edu/hw6/task4/").toAbsolutePath();
         Path filePath = currentDirectory.resolve(filename);
