@@ -1,8 +1,11 @@
 package edu.hw6.task1;
 
-import org.junit.jupiter.api.Test;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Collection;
+import java.util.Map;
+import java.util.Set;
+import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -58,5 +61,44 @@ class DiskMapTest {
 
         assertTrue(newDisk.containsKey("Правильный ключ"));
         assertTrue(newDisk.containsValue("правильное значение"));
+    }
+
+    @Test
+    void testThatKeySetReturnedCorrectSetKeySize() {
+        DiskMap diskMap = new DiskMap();
+        diskMap.put("key1", "value1");
+        diskMap.put("key2", "value2");
+
+        Set<String> keySet = diskMap.keySet();
+
+        assertEquals(2, keySet.size());
+        assertTrue(keySet.contains("key1"));
+        assertTrue(keySet.contains("key2"));
+    }
+
+    @Test
+    void testValuesFunctionContainsExpectedValues() {
+        DiskMap diskMap = new DiskMap();
+        diskMap.put("key1", "value1");
+        diskMap.put("key2", "value2");
+
+        Collection<String> values = diskMap.values();
+
+        assertEquals(2, values.size());
+        assertTrue(values.contains("value1"));
+        assertTrue(values.contains("value2"));
+    }
+
+    @Test
+    void testEntrySetReturnedExpectedEntries() {
+        DiskMap diskMap = new DiskMap();
+        diskMap.put("key1", "value1");
+        diskMap.put("key2", "value2");
+
+        Set<Map.Entry<String, String>> entrySet = diskMap.entrySet();
+
+        assertEquals(2, entrySet.size());
+        assertTrue(entrySet.contains(Map.entry("key1", "value1")));
+        assertTrue(entrySet.contains(Map.entry("key2", "value2")));
     }
 }
