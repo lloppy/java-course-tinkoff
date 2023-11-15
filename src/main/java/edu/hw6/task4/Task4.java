@@ -18,7 +18,6 @@ public final class Task4 {
     private Task4() {
     }
 
-    @SuppressWarnings("RegexpSinglelineJava")
     public static void createComposition(
         final String filename,
         final String message
