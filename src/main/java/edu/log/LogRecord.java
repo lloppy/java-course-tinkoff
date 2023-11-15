@@ -40,9 +40,7 @@ public class LogRecord {
             throw new IllegalArgumentException("Invalid log format: " + logLine);
         }
     }
-
-    // Геттеры для получения значений полей
-
+    
     public String getRemoteAddress() {
         return remoteAddress;
     }

@@ -4,12 +4,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class LogAnalyzer {
+public final class LogAnalyzer {
     private List<LogRecord> logRecords;
 
     public LogAnalyzer() {
         LogRepository logRepository = new LogRepository();
         this.logRecords = logRepository.getLogList();
+
         analyzeLogs();
     }
 

@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class LogRepository {
+public final class LogRepository {
     private List<LogRecord> logList;
 
     public LogRepository() {
@@ -28,9 +28,8 @@ public class LogRepository {
         }
     }
 
-    private LogRecord parseLogRecord(String logLine) {
-        LogRecord logRecord = new LogRecord(logLine);
-       return new LogRecord(logLine);
+    private LogRecord parseLogRecord(final String logLine) {
+        return new LogRecord(logLine);
     }
 
     public List<LogRecord> getLogList() {
