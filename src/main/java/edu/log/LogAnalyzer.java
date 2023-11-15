@@ -5,12 +5,20 @@ import java.util.List;
 import java.util.Map;
 
 public class LogAnalyzer {
+    private List<LogRecord> logRecords;
+
+    public LogAnalyzer() {
+        LogRepository logRepository = new LogRepository();
+        this.logRecords = logRepository.getLogList();
+        analyzeLogs();
+    }
+
     private Map<String, Integer> resourceCount = new HashMap<>();
     private Map<Integer, Integer> responseCodeCount = new HashMap<>();
     private long totalRequests = 0;
     private long totalResponseSize = 0;
 
-    public void analyzeLogs(List<LogRecord> logRecords) {
+    private void analyzeLogs() {
         for (LogRecord logRecord : logRecords) {
             totalRequests++;
 
