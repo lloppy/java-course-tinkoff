@@ -1,17 +1,15 @@
 package edu.log;
 
-import java.time.OffsetDateTime;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class LogRecord {
     private static final Pattern LOG_PATTERN = Pattern.compile(
-        "^(([0-9]{1,3}\\.){3}[0-9]{1,3}) - (.*) \\[(.*) (.*)\\] \"(.*)\" (\\d{3}) (\\d+) \"(.+)\" \"(.*)\" \"(.*)\"$"
-    );
+        "^(.*) - (.*) \\[(.*) (.*)\\] \"(.*)\" (\\d{3}) (\\d+) \"(.+)\" \"(.*)\"");
 
     private String remoteAddress;
     private String remoteUser;
-    private OffsetDateTime timeLocal;
+    private String timeLocal;
     private String request;
     private int status;
     private int bodyBytesSent;
@@ -22,13 +20,18 @@ public class LogRecord {
         Matcher matcher = LOG_PATTERN.matcher(logLine);
         if (matcher.matches()) {
             remoteAddress = matcher.group(1);
-            remoteUser = matcher.group(3);
-            timeLocal = OffsetDateTime.parse(matcher.group(4));
-            request = matcher.group(6);
-            status = Integer.parseInt(matcher.group(7));
-            bodyBytesSent = Integer.parseInt(matcher.group(8));
-            httpReferer = matcher.group(9);
-            httpUserAgent = matcher.group(10);
+            remoteUser = matcher.group(2);
+            timeLocal = matcher.group(3);
+            request = matcher.group(5);
+            status = Integer.parseInt(matcher.group(6));
+            httpReferer = matcher.group(8);
+            httpUserAgent = matcher.group(9);
+
+            try {
+                bodyBytesSent = Integer.parseInt(matcher.group(7));
+            } catch (NumberFormatException e) {
+                bodyBytesSent = 0;
+            }
         } else {
             throw new IllegalArgumentException("Invalid log format: " + logLine);
         }
@@ -44,7 +47,7 @@ public class LogRecord {
         return remoteUser;
     }
 
-    public OffsetDateTime getTimeLocal() {
+    public String getTimeLocal() {
         return timeLocal;
     }
 
