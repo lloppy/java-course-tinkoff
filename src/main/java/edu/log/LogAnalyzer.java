@@ -35,5 +35,5 @@ public class LogAnalyzer {
     public double getAverageResponseSize() {
         return totalResponseSize / (double) totalRequests;
     }
-    
+
 }

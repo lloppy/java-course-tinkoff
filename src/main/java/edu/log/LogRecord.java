@@ -1,15 +1,19 @@
 package edu.log;
 
+import java.time.OffsetDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class LogRecord {
     private static final Pattern LOG_PATTERN = Pattern.compile(
-        "^(.*) - (.*) \\[(.*) (.*)\\] \"(.*)\" (\\d{3}) (\\d+) \"(.+)\" \"(.*)\"");
+        "^(.*) - (.*) \\[(.*)] \"(.*)\" (\\d{3}) (\\d+) \"(.+)\" \"(.*)\"");
+    private static final DateTimeFormatter DATA_FORMATTER =
+        DateTimeFormatter.ofPattern("dd/MMM/yyyy:HH:mm:ss Z");
 
     private String remoteAddress;
     private String remoteUser;
-    private String timeLocal;
+    private OffsetDateTime timeLocal;
     private String request;
     private int status;
     private int bodyBytesSent;
@@ -21,14 +25,14 @@ public class LogRecord {
         if (matcher.matches()) {
             remoteAddress = matcher.group(1);
             remoteUser = matcher.group(2);
-            timeLocal = matcher.group(3);
-            request = matcher.group(5);
-            status = Integer.parseInt(matcher.group(6));
-            httpReferer = matcher.group(8);
-            httpUserAgent = matcher.group(9);
+            timeLocal = OffsetDateTime.parse(matcher.group(3), DATA_FORMATTER);
+            request = matcher.group(4);
+            status = Integer.parseInt(matcher.group(5));
+            httpReferer = matcher.group(7);
+            httpUserAgent = matcher.group(8);
 
             try {
-                bodyBytesSent = Integer.parseInt(matcher.group(7));
+                bodyBytesSent = Integer.parseInt(matcher.group(6));
             } catch (NumberFormatException e) {
                 bodyBytesSent = 0;
             }
@@ -47,7 +51,7 @@ public class LogRecord {
         return remoteUser;
     }
 
-    public String getTimeLocal() {
+    public OffsetDateTime getTimeLocal() {
         return timeLocal;
     }
 
