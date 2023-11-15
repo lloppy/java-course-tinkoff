@@ -27,7 +27,7 @@ public final class DiskMap implements Map<String, String> {
             }
         } catch (IOException e) {
             Logger logger = Logger.getLogger(DiskMap.class.getName());
-            logger.severe("Error: " + e.getMessage());
+            logger.severe(e.getMessage());
         }
     }
 
@@ -42,7 +42,7 @@ public final class DiskMap implements Map<String, String> {
             }
         } catch (IOException e) {
             Logger logger = Logger.getLogger(DiskMap.class.getName());
-            logger.severe("Error: " + e.getMessage());
+            logger.severe(e.getMessage());
         }
     }
 
