@@ -1,5 +1,6 @@
 package edu.log;
 
+import edu.log.generators.entity.LogRecord;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,7 +24,7 @@ public final class LogAnalyzer {
         for (LogRecord logRecord : logRecords) {
             totalRequests++;
 
-            String resource = logRecord.getRequest();
+            String resource = logRecord.getSource();
             resourceCount.put(resource, resourceCount.getOrDefault(resource, 0) + 1);
 
             int responseCode = logRecord.getStatus();
@@ -45,4 +46,7 @@ public final class LogAnalyzer {
         return totalResponseSize / (double) totalRequests;
     }
 
+    public Map<Integer, Integer> getResponseCodeCount() {
+        return responseCodeCount;
+    }
 }

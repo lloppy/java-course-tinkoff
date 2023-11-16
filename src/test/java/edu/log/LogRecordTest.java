@@ -1,5 +1,6 @@
 package edu.log;
 
+import edu.log.generators.entity.LogRecord;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -14,8 +15,8 @@ class LogRecordTest {
 
         assertEquals("144.76.117.56", logRecord.getRemoteAddress());
         assertEquals("-", logRecord.getRemoteUser());
-        //   assertEquals("17/May/2015:13:05:03", logRecord.getTimeLocal());
-        assertEquals("GET /downloads/product_1 HTTP/1.1", logRecord.getRequest());
+        assertEquals("GET", logRecord.getRequest());
+        assertEquals("/downloads/product_1 HTTP/1.1", logRecord.getSource());
         assertEquals(404, logRecord.getStatus());
         assertEquals(341, logRecord.getBodyBytesSent());
         assertEquals("-", logRecord.getHttpReferer());

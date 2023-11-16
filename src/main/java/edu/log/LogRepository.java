@@ -1,5 +1,6 @@
 package edu.log;
 
+import edu.log.generators.entity.LogRecord;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
