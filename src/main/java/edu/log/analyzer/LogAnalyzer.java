@@ -53,8 +53,8 @@ public final class LogAnalyzer {
         return resourceCount;
     }
 
-    public double getAverageResponseSize() {
-        return totalResponseSize / (double) totalRequests;
+    public int getAverageResponseSize() {
+        return (int) (totalResponseSize / (double) totalRequests);
     }
 
     public Map<Integer, Integer> getResponseCodeCount() {

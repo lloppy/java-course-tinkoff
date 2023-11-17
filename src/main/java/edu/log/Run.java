@@ -12,6 +12,7 @@ public final class Run {
         String command = new Scanner(System.in).nextLine();
 
         // java -jar nginx-log-stats.jar --path src/main/java/edu/log/repository/logs.txt --from 18/May/2015 --format adoc
+        // java -jar nginx-log-stats.jar --path src/main/java/edu/log/repository/logs.txt --from 18/May/2015 --to 19/May/2015 --format markdown
 
         ReportGenerator generator;
         if (command.contains("--format adoc")) {
@@ -45,7 +46,7 @@ public final class Run {
 
             generator.setTo(command.substring(startIndex, startIndex + endIndex));
         }
-        generator.generateReport("reportAdoc");
+        generator.generateReport("reportForOneDay");
     }
 }
 
