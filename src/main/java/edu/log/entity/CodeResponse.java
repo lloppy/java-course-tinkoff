@@ -1,4 +1,4 @@
-package edu.log.generators.entity;
+package edu.log.entity;
 
 import java.util.HashMap;
 import java.util.Map;

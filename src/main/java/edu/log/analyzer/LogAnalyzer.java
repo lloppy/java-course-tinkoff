@@ -1,17 +1,25 @@
-package edu.log;
+package edu.log.analyzer;
 
-import edu.log.generators.entity.LogRecord;
+import edu.log.entity.LogRecord;
+import edu.log.repository.LogRepository;
+
+import java.nio.file.Path;
+import java.time.OffsetDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public final class LogAnalyzer {
+    OffsetDateTime from;
+    OffsetDateTime to;
+
     private List<LogRecord> logRecords;
 
-    public LogAnalyzer() {
-        LogRepository logRepository = new LogRepository();
+    public LogAnalyzer(Path path, OffsetDateTime from, OffsetDateTime to) {
+        LogRepository logRepository = new LogRepository(path);
         this.logRecords = logRepository.getLogList();
-
+        this.from = from;
+        this.to = to;
         analyzeLogs();
     }
 
@@ -22,17 +30,20 @@ public final class LogAnalyzer {
 
     private void analyzeLogs() {
         for (LogRecord logRecord : logRecords) {
-            totalRequests++;
+            if (logRecord.getTimeLocal().isAfter(from) && logRecord.getTimeLocal().isBefore(to)) {
+                totalRequests++;
 
-            String resource = logRecord.getSource();
-            resourceCount.put(resource, resourceCount.getOrDefault(resource, 0) + 1);
+                String resource = logRecord.getSource();
+                resourceCount.put(resource, resourceCount.getOrDefault(resource, 0) + 1);
 
-            int responseCode = logRecord.getStatus();
-            responseCodeCount.put(responseCode, responseCodeCount.getOrDefault(responseCode, 0) + 1);
+                int responseCode = logRecord.getStatus();
+                responseCodeCount.put(responseCode, responseCodeCount.getOrDefault(responseCode, 0) + 1);
 
-            totalResponseSize += logRecord.getBodyBytesSent();
+                totalResponseSize += logRecord.getBodyBytesSent();
+            }
         }
     }
+
 
     public long getTotalRequests() {
         return totalRequests;

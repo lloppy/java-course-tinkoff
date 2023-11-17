@@ -1,6 +1,6 @@
 package edu.log;
 
-import edu.log.generators.entity.LogRecord;
+import edu.log.entity.LogRecord;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

@@ -1,4 +1,4 @@
-package edu.log.generators.entity;
+package edu.log.entity;
 
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;

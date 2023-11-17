@@ -10,19 +10,18 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Map;
 
-public class MarkdownReportGenerator extends ReportGenerator {
+public class AsciiDocReportGenerator extends ReportGenerator {
     private LogAnalyzer logAnalyzer;
 
-    public MarkdownReportGenerator() {
+    public AsciiDocReportGenerator() {
         super();
-        logAnalyzer = new LogAnalyzer(path, from, to);
     }
-
 
     @Override
     public void generateReport(String fileName) {
         Path currentDirectory = Paths.get("src/main/java/edu/log/generators/reports").toAbsolutePath();
-        Path filePath = currentDirectory.resolve(fileName + ".md");
+        Path filePath = currentDirectory.resolve(fileName + ".adoc");
+        logAnalyzer = new LogAnalyzer(path, from, to);
 
         try (PrintWriter writer = new PrintWriter(new FileWriter(filePath.toFile()))) {
             writeGeneralInfoSection(logAnalyzer, writer);
@@ -34,7 +33,7 @@ public class MarkdownReportGenerator extends ReportGenerator {
     }
 
     private static void writeGeneralInfoSection(LogAnalyzer logAnalyzer, PrintWriter writer) {
-        writer.println("#### Общая информация\n");
+        writer.println("==== Общая информация\n");
         writer.println("|        Метрика        |     Значение |");
         writer.println("|:---------------------:|-------------:|");
         writer.println("|  Количество запросов  | " + logAnalyzer.getTotalRequests() + " |");
@@ -43,7 +42,7 @@ public class MarkdownReportGenerator extends ReportGenerator {
     }
 
     private static void writeResourceSection(LogAnalyzer logAnalyzer, PrintWriter writer) {
-        writer.println("#### Запрашиваемые ресурсы\n");
+        writer.println("==== Запрашиваемые ресурсы\n");
         writer.println("|     Ресурс      | Количество |");
         writer.println("|:---------------:|-----------:|");
 
@@ -56,7 +55,7 @@ public class MarkdownReportGenerator extends ReportGenerator {
     }
 
     private static void writeResponseCodeSection(LogAnalyzer logAnalyzer, PrintWriter writer) {
-        writer.println("#### Коды ответа\n");
+        writer.println("==== Коды ответа\n");
         writer.println("| Код |          Имя          | Количество |");
         writer.println("|:---:|:---------------------:|-----------:|");
 
@@ -67,5 +66,4 @@ public class MarkdownReportGenerator extends ReportGenerator {
                 entry.getValue() + " |");
         }
     }
-
 }
