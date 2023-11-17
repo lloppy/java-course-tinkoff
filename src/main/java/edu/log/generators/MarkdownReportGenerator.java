@@ -1,24 +1,21 @@
 package edu.log.generators;
 
 import edu.log.analyzer.LogAnalyzer;
-import edu.log.entity.CodeResponse;
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.time.OffsetDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Map;
 
 public final class MarkdownReportGenerator extends ReportGenerator {
+    private final static Logger LOGGER = LogManager.getLogger();
     private LogAnalyzer logAnalyzer;
 
     public MarkdownReportGenerator() {
         super();
     }
-
 
     @Override
     public void generateReport(final String fileName) {
@@ -28,61 +25,11 @@ public final class MarkdownReportGenerator extends ReportGenerator {
         Path filePath = currentDirectory.resolve(fileName + ".md");
 
         try (PrintWriter writer = new PrintWriter(new FileWriter(filePath.toFile()))) {
-            writeGeneralInfoSection(logAnalyzer, writer, fileName, from, to);
-            writeResourceSection(logAnalyzer, writer);
-            writeResponseCodeSection(logAnalyzer, writer);
+            ReportPrinter.writeGeneralInfoSection("####", logAnalyzer, writer, fileName, from, to);
+            ReportPrinter.writeResourceSection("####", logAnalyzer, writer);
+            ReportPrinter.writeResponseCodeSection("####", logAnalyzer, writer);
         } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private static void writeGeneralInfoSection(
-            final LogAnalyzer logAnalyzer,
-            final PrintWriter writer,
-            final String fileName,
-            final OffsetDateTime from,
-            final OffsetDateTime to
-    ) {
-        writer.println("#### Общая информация\n");
-        writer.println("|        Метрика        |     Значение |");
-        writer.println("|:---------------------:|-------------:|");
-        writer.println("|         Файл          | " + fileName + " |");
-        writer.println("|    Начальная дата     | " + from.format(DateTimeFormatter.ofPattern("dd.MMM.yyyy")) + " |");
-        writer.println("|     Конечная дата     | " + (to.isEqual(OffsetDateTime.now()) ? "-" : to.format(DateTimeFormatter.ofPattern("dd.MMM.yyyy"))) + " |");
-        writer.println("|  Количество запросов  | " + logAnalyzer.getTotalRequests() + " |");
-        writer.println("| Средний размер ответа | " + logAnalyzer.getAverageResponseSize() + "b |");
-        writer.println();
-    }
-
-    private static void writeResourceSection(
-            final LogAnalyzer logAnalyzer,
-            final PrintWriter writer
-    ) {
-        writer.println("#### Запрашиваемые ресурсы\n");
-        writer.println("|     Ресурс      | Количество |");
-        writer.println("|:---------------:|-----------:|");
-
-        Map<String, Integer> resourceCount = logAnalyzer.getResourceCount();
-        for (Map.Entry<String, Integer> entry : resourceCount.entrySet()) {
-            writer.println("|  `" + entry.getKey() + "`  |      " + entry.getValue() + " |");
-        }
-
-        writer.println();
-    }
-
-    private static void writeResponseCodeSection(
-            final LogAnalyzer logAnalyzer,
-            final PrintWriter writer
-    ) {
-        writer.println("#### Коды ответа\n");
-        writer.println("| Код |          Имя          | Количество |");
-        writer.println("|:---:|:---------------------:|-----------:|");
-
-        Map<Integer, Integer> responseCodeCount = logAnalyzer.getResponseCodeCount();
-        for (Map.Entry<Integer, Integer> entry : responseCodeCount.entrySet()) {
-            int codeResponse = entry.getKey();
-            writer.println("| " + codeResponse + " | " + CodeResponse.getDescriptionByCode(codeResponse) + " |       " +
-                    entry.getValue() + " |");
+            LOGGER.error("Error writing the report to file");
         }
     }
 }

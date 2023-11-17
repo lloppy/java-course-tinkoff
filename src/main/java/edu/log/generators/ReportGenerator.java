@@ -1,7 +1,6 @@
 package edu.log.generators;
 
 import edu.log.entity.FileFormat;
-
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
@@ -15,15 +14,14 @@ public abstract class ReportGenerator {
     protected OffsetDateTime to;
     protected FileFormat format;
 
+    private static final String DEFAULT_DATE_STRING = "17/May/2015";
+    private static final String DEFAULT_FILE_PATH = "src/main/java/edu/log/repository/logs.txt";
+
     public ReportGenerator() {
         // Set default values
-        LocalDate localDate = LocalDate.parse(
-                "17/May/2015",
-                DateTimeFormatter.ofPattern("dd/MMM/yyyy")
-        );
+        LocalDate localDate = parseDateString(DEFAULT_DATE_STRING);
 
-        this.path = Paths.get("src/main/java/edu/log/repository/logs.txt")
-                .toAbsolutePath();
+        this.path = getDefaultFilePath().toAbsolutePath();
         this.from = localDate.atStartOfDay(ZoneOffset.UTC).toOffsetDateTime();
         this.to = OffsetDateTime.now();
         this.format = FileFormat.MARKDOWN;
@@ -33,32 +31,31 @@ public abstract class ReportGenerator {
         this.path = Paths.get(path).toAbsolutePath();
     }
 
-    public void setFrom(final String stringFrom) {
-        String fromDate = stringFrom;
-        if (fromDate == null || fromDate.isEmpty()) fromDate = "17/May/2015";
-
-        LocalDate localDate = LocalDate.parse(
-                fromDate,
-                DateTimeFormatter.ofPattern("dd/MMM/yyyy")
-        );
-        this.from = localDate.atStartOfDay(ZoneOffset.UTC).toOffsetDateTime();
+    public void setFrom(String stringFrom) {
+        String fromDate = getDefaultIfNullOrEmpty(stringFrom, DEFAULT_DATE_STRING);
+        this.from = parseDateString(fromDate).atStartOfDay(ZoneOffset.UTC).toOffsetDateTime();
     }
 
-    public void setTo(final String stringTo) {
-        String toDate = stringTo;
-        if (toDate == null || toDate.isEmpty()) toDate = "17/May/2023";
-
-        LocalDate localDate = LocalDate.parse(
-                toDate,
-                DateTimeFormatter.ofPattern("dd/MMM/yyyy")
-        );
-        this.to = localDate.atStartOfDay(ZoneOffset.UTC).toOffsetDateTime();
+    public void setTo(String stringTo) {
+        String toDate = getDefaultIfNullOrEmpty(stringTo, "17/May/2023");
+        this.to = parseDateString(toDate).atStartOfDay(ZoneOffset.UTC).toOffsetDateTime();
     }
 
-    public void setFormat(final FileFormat format) {
+    public void setFormat(FileFormat format) {
         this.format = format;
     }
 
     public abstract void generateReport(String fileName);
-}
 
+    private LocalDate parseDateString(String dateString) {
+        return LocalDate.parse(dateString, DateTimeFormatter.ofPattern("dd/MMM/yyyy"));
+    }
+
+    private String getDefaultIfNullOrEmpty(String value, String defaultValue) {
+        return (value == null || value.isEmpty()) ? defaultValue : value;
+    }
+
+    private Path getDefaultFilePath() {
+        return Paths.get(DEFAULT_FILE_PATH);
+    }
+}
