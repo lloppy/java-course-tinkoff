@@ -6,14 +6,13 @@ import edu.log.generators.MarkdownReportGenerator;
 import edu.log.generators.ReportGenerator;
 import java.util.Scanner;
 
-public final class Run {
+public final class Main {
+    private Main() {
+    }
 
     /**
      * This is the main method that serves as the entry point for the application.
      * It reads user input, processes commands, and generates reports accordingly.
-     * <p>
-     * java -jar nginx-log-stats.jar --path src/main/java/edu/log/repository/logs.txt --from 18/May/2015 --format adoc .
-     * java -jar nginx-log-stats.jar --path src/main/java/edu/log/repository/logs.txt --from 18/May/2015 --to 19/May/2015 --format markdown .
      *
      * @param args The command-line arguments.
      */

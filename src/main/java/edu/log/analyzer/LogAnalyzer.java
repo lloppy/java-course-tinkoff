@@ -2,7 +2,6 @@ package edu.log.analyzer;
 
 import edu.log.entity.LogRecord;
 import edu.log.repository.LogRepository;
-
 import java.nio.file.Path;
 import java.time.OffsetDateTime;
 import java.util.HashMap;

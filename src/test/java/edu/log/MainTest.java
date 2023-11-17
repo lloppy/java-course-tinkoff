@@ -5,7 +5,7 @@ import edu.log.generators.AsciiDocReportGenerator;
 import edu.log.generators.ReportGenerator;
 import org.junit.jupiter.api.Test;
 
-class RunTest {
+class MainTest {
 
     @Test
     void main() {

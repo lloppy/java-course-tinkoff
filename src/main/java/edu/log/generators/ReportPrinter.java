@@ -8,6 +8,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.Map;
 
 public class ReportPrinter {
+    private static final DateTimeFormatter DATE_TIME_FORMATTER =
+            DateTimeFormatter.ofPattern("dd.MMM.yyyy");
+
     private ReportPrinter() {
     }
 
@@ -23,10 +26,9 @@ public class ReportPrinter {
         writer.println("|        Метрика        |     Значение |");
         writer.println("|:---------------------:|-------------:|");
         writer.println("|         Файл          | " + fileName + " |");
-        writer.println("|    Начальная дата     | " + from.format(DateTimeFormatter.ofPattern("dd.MMM.yyyy")) + " |");
+        writer.println("|    Начальная дата     | " + from.format(DATE_TIME_FORMATTER) + " |");
         writer.println("|     Конечная дата     | " + (to.isEqual(OffsetDateTime.now())
-                ? "-"
-                : to.format(DateTimeFormatter.ofPattern("dd.MMM.yyyy"))) + " |");
+                ? "-" : to.format(DATE_TIME_FORMATTER) + " |"));
         writer.println("|  Количество запросов  | " + logAnalyzer.getTotalRequests() + " |");
         writer.println("| Средний размер ответа | " + logAnalyzer.getAverageResponseSize() + "b |");
         writer.println();
