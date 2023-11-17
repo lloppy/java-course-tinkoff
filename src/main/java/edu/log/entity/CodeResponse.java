@@ -3,11 +3,18 @@ package edu.log.entity;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CodeResponse {
+public final class CodeResponse {
+    private CodeResponse() {
+    }
 
-    private static final Map<Integer, String> responseMap = new HashMap<>();
+    private static Map<Integer, String> responseMap = new HashMap<>();
 
     static {
+        initializeResponseMap();
+    }
+
+    @SuppressWarnings("MagicNumber")
+    private static void initializeResponseMap() {
         responseMap.put(100, "Continue");
         responseMap.put(101, "Switching Protocols");
         responseMap.put(102, "Processing");
@@ -68,7 +75,7 @@ public class CodeResponse {
         responseMap.put(511, "Network Authentication Required");
     }
 
-    public static String getDescriptionByCode(int code) {
+    public static String getDescriptionByCode(final int code) {
         return responseMap.getOrDefault(code, "Unknown Code");
     }
 }

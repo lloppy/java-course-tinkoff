@@ -12,7 +12,7 @@ import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Map;
 
-public class AsciiDocReportGenerator extends ReportGenerator {
+public final class AsciiDocReportGenerator extends ReportGenerator {
     private LogAnalyzer logAnalyzer;
 
     public AsciiDocReportGenerator() {
@@ -20,10 +20,11 @@ public class AsciiDocReportGenerator extends ReportGenerator {
     }
 
     @Override
-    public void generateReport(String fileName) {
-        Path currentDirectory = Paths.get("src/main/java/edu/log/generators/reports").toAbsolutePath();
-        Path filePath = currentDirectory.resolve(fileName + ".adoc");
+    public void generateReport(final String fileName) {
         logAnalyzer = new LogAnalyzer(path, from, to);
+
+        Path currentDirectory = Paths.get("src/main/java/edu/log/generators/reports").toAbsolutePath();
+        Path filePath = currentDirectory.resolve(fileName);
 
         try (PrintWriter writer = new PrintWriter(new FileWriter(filePath.toFile()))) {
             writeGeneralInfoSection(logAnalyzer, writer, fileName, from, to);
@@ -35,11 +36,11 @@ public class AsciiDocReportGenerator extends ReportGenerator {
     }
 
     private static void writeGeneralInfoSection(
-            LogAnalyzer logAnalyzer,
-            PrintWriter writer,
-            String fileName,
-            OffsetDateTime from,
-            OffsetDateTime to
+            final LogAnalyzer logAnalyzer,
+            final PrintWriter writer,
+            final String fileName,
+            final OffsetDateTime from,
+            final OffsetDateTime to
     ) {
         writer.println("==== Общая информация\n");
         writer.println("|        Метрика        |     Значение |");
@@ -52,7 +53,10 @@ public class AsciiDocReportGenerator extends ReportGenerator {
         writer.println();
     }
 
-    private static void writeResourceSection(LogAnalyzer logAnalyzer, PrintWriter writer) {
+    private static void writeResourceSection(
+            final LogAnalyzer logAnalyzer,
+            final PrintWriter writer
+    ) {
         writer.println("==== Запрашиваемые ресурсы\n");
         writer.println("|     Ресурс      | Количество |");
         writer.println("|:---------------:|-----------:|");
@@ -65,7 +69,10 @@ public class AsciiDocReportGenerator extends ReportGenerator {
         writer.println();
     }
 
-    private static void writeResponseCodeSection(LogAnalyzer logAnalyzer, PrintWriter writer) {
+    private static void writeResponseCodeSection(
+            final LogAnalyzer logAnalyzer,
+            final PrintWriter writer
+    ) {
         writer.println("==== Коды ответа\n");
         writer.println("| Код |          Имя          | Количество |");
         writer.println("|:---:|:---------------------:|-----------:|");

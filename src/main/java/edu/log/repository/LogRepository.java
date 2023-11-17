@@ -12,7 +12,7 @@ public final class LogRepository {
     private List<LogRecord> logList;
     private Path path;
 
-    public LogRepository(Path path) {
+    public LogRepository(final Path path) {
         this.path = path;
         logList = readLogs();
     }

@@ -24,29 +24,25 @@ public final class Run {
         }
 
         if (command.contains("--path")) {
-            int startIndex = command.indexOf("--path ") + "--path ".length();
-            String substring = command.substring(startIndex);
-            int endIndex = substring.indexOf(' ');
-
-            generator.setPath(command.substring(startIndex, startIndex + endIndex));
+            generator.setPath(findCommand(command, "--path "));
         }
 
         if (command.contains("--from")) {
-            int startIndex = command.indexOf("--from ") + "--from ".length();
-            String substring = command.substring(startIndex);
-            int endIndex = substring.indexOf(' ');
-
-            generator.setFrom(command.substring(startIndex, startIndex + endIndex));
+            generator.setFrom(findCommand(command, "--from "));
         }
 
         if (command.contains("--to")) {
-            int startIndex = command.indexOf("--to ") + "--to ".length();
-            String substring = command.substring(startIndex);
-            int endIndex = substring.indexOf(' ');
-
-            generator.setTo(command.substring(startIndex, startIndex + endIndex));
+            generator.setTo(findCommand(command, "--to "));
         }
+
         generator.generateReport("reportForOneDay");
     }
-}
 
+    private static String findCommand(String line, String command) {
+        int startIndex = line.indexOf(command) + command.length();
+        String substring = line.substring(startIndex);
+        int endIndex = substring.indexOf(' ');
+
+        return line.substring(startIndex, startIndex + endIndex);
+    }
+}

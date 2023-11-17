@@ -5,11 +5,13 @@ import java.time.format.DateTimeFormatter;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class LogRecord {
+public final class LogRecord {
+
+    @SuppressWarnings("LineLength")
     private static final Pattern LOG_PATTERN = Pattern.compile(
-        "^(.*) - (.*) \\[(.*)] \"(\\w+) (.*)\" (\\d{3}) (\\d+) \"(.+)\" \"(.*)\"");
+            "^(.*) - (.*) \\[(.*)] \"(\\w+) (.*)\" (\\d{3}) (\\d+) \"(.+)\" \"(.*)\"");
     private static final DateTimeFormatter DATA_FORMATTER =
-        DateTimeFormatter.ofPattern("dd/MMM/yyyy:HH:mm:ss Z");
+            DateTimeFormatter.ofPattern("dd/MMM/yyyy:HH:mm:ss Z");
 
     private String remoteAddress;
     private String remoteUser;
@@ -22,7 +24,8 @@ public class LogRecord {
     private String codeResponse;
     private String source;
 
-    public LogRecord(String logLine) {
+    @SuppressWarnings("MagicNumber")
+    public LogRecord(final String logLine) {
         Matcher matcher = LOG_PATTERN.matcher(logLine);
         if (matcher.matches()) {
             remoteAddress = matcher.group(1);
@@ -41,7 +44,9 @@ public class LogRecord {
                 bodyBytesSent = 0;
             }
         } else {
-            throw new IllegalArgumentException("Invalid log format: " + logLine);
+            throw new IllegalArgumentException(
+                    "Invalid log format: " + logLine
+            );
         }
     }
 
@@ -83,13 +88,5 @@ public class LogRecord {
 
     public String getSource() {
         return source;
-    }
-
-    @Override
-    public String toString() {
-        return String.format(
-            "%s - %s [%s] \"%s\" %d %d \"%s\" \"%s\"",
-            remoteAddress, remoteUser, timeLocal, request, status, bodyBytesSent, httpReferer, httpUserAgent
-        );
     }
 }

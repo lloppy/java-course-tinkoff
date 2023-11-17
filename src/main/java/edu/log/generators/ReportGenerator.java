@@ -8,7 +8,6 @@ import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
-import java.util.Locale;
 
 public abstract class ReportGenerator {
     protected Path path;
@@ -17,9 +16,14 @@ public abstract class ReportGenerator {
     protected FileFormat format;
 
     public ReportGenerator() {
-        LocalDate localDate = LocalDate.parse("17/May/2015", DateTimeFormatter.ofPattern("dd/MMM/yyyy").withLocale(Locale.ENGLISH));
+        // Set default values
+        LocalDate localDate = LocalDate.parse(
+                "17/May/2015",
+                DateTimeFormatter.ofPattern("dd/MMM/yyyy")
+        );
 
-        this.path = Paths.get("src/main/java/edu/log/repository/logs.txt").toAbsolutePath();
+        this.path = Paths.get("src/main/java/edu/log/repository/logs.txt")
+                .toAbsolutePath();
         this.from = localDate.atStartOfDay(ZoneOffset.UTC).toOffsetDateTime();
         this.to = OffsetDateTime.now();
         this.format = FileFormat.MARKDOWN;
@@ -29,21 +33,29 @@ public abstract class ReportGenerator {
         this.path = Paths.get(path).toAbsolutePath();
     }
 
-    public void setFrom(String from) {
-        if (from == null || from.isEmpty()) from = "17/May/2015";
+    public void setFrom(final String stringFrom) {
+        String fromDate = stringFrom;
+        if (fromDate == null || fromDate.isEmpty()) fromDate = "17/May/2015";
 
-        LocalDate localDate = LocalDate.parse(from, DateTimeFormatter.ofPattern("dd/MMM/yyyy").withLocale(Locale.ENGLISH));
+        LocalDate localDate = LocalDate.parse(
+                fromDate,
+                DateTimeFormatter.ofPattern("dd/MMM/yyyy")
+        );
         this.from = localDate.atStartOfDay(ZoneOffset.UTC).toOffsetDateTime();
     }
 
-    public void setTo(String to) {
-        if (to == null || to.isEmpty()) to = "17/May/2023";
+    public void setTo(final String stringTo) {
+        String toDate = stringTo;
+        if (toDate == null || toDate.isEmpty()) toDate = "17/May/2023";
 
-        LocalDate localDate = LocalDate.parse(to, DateTimeFormatter.ofPattern("dd/MMM/yyyy").withLocale(Locale.ENGLISH));
+        LocalDate localDate = LocalDate.parse(
+                toDate,
+                DateTimeFormatter.ofPattern("dd/MMM/yyyy")
+        );
         this.to = localDate.atStartOfDay(ZoneOffset.UTC).toOffsetDateTime();
     }
 
-    public void setFormat(FileFormat format) {
+    public void setFormat(final FileFormat format) {
         this.format = format;
     }
 

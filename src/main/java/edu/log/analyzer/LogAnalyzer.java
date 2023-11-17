@@ -10,12 +10,16 @@ import java.util.List;
 import java.util.Map;
 
 public final class LogAnalyzer {
-    OffsetDateTime from;
-    OffsetDateTime to;
+    private OffsetDateTime from;
+    private OffsetDateTime to;
 
     private List<LogRecord> logRecords;
 
-    public LogAnalyzer(Path path, OffsetDateTime from, OffsetDateTime to) {
+    public LogAnalyzer(
+            final Path path,
+            final OffsetDateTime from,
+            final OffsetDateTime to
+    ) {
         LogRepository logRepository = new LogRepository(path);
         this.logRecords = logRepository.getLogList();
         this.from = from;
@@ -30,14 +34,20 @@ public final class LogAnalyzer {
 
     private void analyzeLogs() {
         for (LogRecord logRecord : logRecords) {
-            if (logRecord.getTimeLocal().isAfter(from) && logRecord.getTimeLocal().isBefore(to)) {
+            if (checkBounds(logRecord)) {
                 totalRequests++;
 
                 String resource = logRecord.getSource();
-                resourceCount.put(resource, resourceCount.getOrDefault(resource, 0) + 1);
+                resourceCount.put(
+                        resource,
+                        resourceCount.getOrDefault(resource, 0) + 1
+                );
 
                 int responseCode = logRecord.getStatus();
-                responseCodeCount.put(responseCode, responseCodeCount.getOrDefault(responseCode, 0) + 1);
+                responseCodeCount.put(
+                        responseCode,
+                        responseCodeCount.getOrDefault(responseCode, 0) + 1
+                );
 
                 totalResponseSize += logRecord.getBodyBytesSent();
             }
@@ -59,5 +69,10 @@ public final class LogAnalyzer {
 
     public Map<Integer, Integer> getResponseCodeCount() {
         return responseCodeCount;
+    }
+
+    private boolean checkBounds(final LogRecord logRecord) {
+        return logRecord.getTimeLocal().isAfter(from)
+                && logRecord.getTimeLocal().isBefore(to);
     }
 }
