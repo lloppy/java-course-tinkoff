@@ -23,7 +23,7 @@ public final class AsciiDocReportGenerator extends ReportGenerator {
         String fileFormat = "====";
 
         Path currentDirectory = Paths.get("src/main/java/edu/log/generators/reports").toAbsolutePath();
-        Path filePath = currentDirectory.resolve(fileName);
+        Path filePath = currentDirectory.resolve(fileName + ".adoc");
 
         try (PrintWriter writer = new PrintWriter(new FileWriter(filePath.toFile()))) {
             ReportPrinter.writeGeneralInfoSection(fileFormat, logAnalyzer, writer, fileName, from, to);
