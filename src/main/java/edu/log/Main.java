@@ -55,6 +55,10 @@ public final class Main {
         String substring = line.substring(startIndex);
         int endIndex = substring.indexOf(' ');
 
+        if (endIndex < 0) {
+            endIndex = substring.length();
+        }
+
         return line.substring(startIndex, startIndex + endIndex);
     }
 }

@@ -22,14 +22,16 @@ public final class LogRepository {
 
     private List<LogRecord> readLogs() {
         try {
-            return Files.lines(path)
-                    .map(this::parseLogRecord)
-                    .collect(Collectors.toList());
+            List<String> lines = Files.readAllLines(path);
+            return lines.stream()
+                .map(this::parseLogRecord)
+                .collect(Collectors.toList());
         } catch (IOException e) {
-            LOGGER.error("Error read file logs");
+            LOGGER.error("Error reading file logs", e);
             return List.of();
         }
     }
+
 
     private LogRecord parseLogRecord(final String logLine) {
         return new LogRecord(logLine);
