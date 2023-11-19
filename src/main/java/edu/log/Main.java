@@ -20,7 +20,7 @@ public final class Main {
         String command = new Scanner(System.in).nextLine();
 
         ReportGenerator generator = createReportGenerator(command);
-        generator.generateReport("reportForOneDay");
+        generator.generateReport("new_report");
     }
 
     private static ReportGenerator createReportGenerator(String command) {
