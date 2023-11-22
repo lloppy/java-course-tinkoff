@@ -1,10 +1,12 @@
 package edu.log;
 
 import edu.log.generators.ReportGenerator;
-import java.util.Scanner;
 
 public final class Main {
-    private Main() {
+    private static String command;
+
+    public Main(final String userCommand) {
+        this.command = userCommand;
     }
 
     /**
@@ -14,7 +16,7 @@ public final class Main {
      * @param args The command-line arguments.
      */
     public static void main(final String[] args) {
-        String command = new Scanner(System.in).nextLine();
+        // String command = new Scanner(System.in).nextLine();
 
         ReportGenerator generator = CommandProcessor.processCommand(command);
         generator.generateReport("new_report");
