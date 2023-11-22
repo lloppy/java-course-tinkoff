@@ -5,9 +5,11 @@ import edu.log.generators.AsciiDocReportGenerator;
 import edu.log.generators.MarkdownReportGenerator;
 import edu.log.generators.ReportGenerator;
 
-public class CommandProcessor {
+public final class CommandProcessor {
+    private CommandProcessor() {
+    }
 
-    public static ReportGenerator processCommand(String command) {
+    public static ReportGenerator processCommand(final String command) {
         ReportGenerator generator;
 
         if (!command.contains("java -jar nginx-log-stats.jar")) {
@@ -25,7 +27,10 @@ public class CommandProcessor {
         return setGeneratorProperties(generator, command);
     }
 
-    private static ReportGenerator setGeneratorProperties(ReportGenerator generator, String command) {
+    private static ReportGenerator setGeneratorProperties(
+        final ReportGenerator generator,
+        final String command
+    ) {
         if (command.contains("--path")) {
             generator.setPath(findCommand(command, "--path "));
         }
@@ -40,7 +45,10 @@ public class CommandProcessor {
         return generator;
     }
 
-    private static String findCommand(String line, String command) {
+    private static String findCommand(
+        final String line,
+        final String command
+    ) {
         int startIndex = line.indexOf(command) + command.length();
         String substring = line.substring(startIndex);
         int endIndex = substring.indexOf(' ');

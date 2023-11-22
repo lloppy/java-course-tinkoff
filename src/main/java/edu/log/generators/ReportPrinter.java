@@ -7,20 +7,20 @@ import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Map;
 
-public class ReportPrinter {
+public final class ReportPrinter {
     private static final DateTimeFormatter DATE_TIME_FORMATTER =
-            DateTimeFormatter.ofPattern("dd.MMM.yyyy");
+        DateTimeFormatter.ofPattern("dd.MMM.yyyy");
 
     private ReportPrinter() {
     }
 
     public static void writeGeneralInfoSection(
-            String fileFormat,
-            LogAnalyzer logAnalyzer,
-            PrintWriter writer,
-            String fileName,
-            OffsetDateTime from,
-            OffsetDateTime to
+        final String fileFormat,
+        final LogAnalyzer logAnalyzer,
+        final PrintWriter writer,
+        final String fileName,
+        final OffsetDateTime from,
+        final OffsetDateTime to
     ) {
         writer.println(fileFormat + " Общая информация\n");
         writer.println("|        Метрика        |     Значение |");
@@ -28,16 +28,16 @@ public class ReportPrinter {
         writer.println("|         Файл          | " + fileName + " |");
         writer.println("|    Начальная дата     | " + from.format(DATE_TIME_FORMATTER) + " |");
         writer.println("|     Конечная дата     | " + (to.isEqual(OffsetDateTime.now())
-                ? "-" : to.format(DATE_TIME_FORMATTER) + " |"));
+            ? "-" : to.format(DATE_TIME_FORMATTER) + " |"));
         writer.println("|  Количество запросов  | " + logAnalyzer.getTotalRequests() + " |");
         writer.println("| Средний размер ответа | " + logAnalyzer.getAverageResponseSize() + "b |");
         writer.println();
     }
 
     public static void writeResourceSection(
-            String fileFormat,
-            LogAnalyzer logAnalyzer,
-            PrintWriter writer
+        final String fileFormat,
+        final LogAnalyzer logAnalyzer,
+        final PrintWriter writer
     ) {
         writer.println(fileFormat + " Запрашиваемые ресурсы\n");
         writer.println("|     Ресурс      | Количество |");
@@ -51,9 +51,9 @@ public class ReportPrinter {
     }
 
     public static void writeResponseCodeSection(
-            String fileFormat,
-            LogAnalyzer logAnalyzer,
-            PrintWriter writer
+        final String fileFormat,
+        final LogAnalyzer logAnalyzer,
+        final PrintWriter writer
     ) {
         writer.println(fileFormat + " Коды ответа\n");
         writer.println("| Код |          Имя          | Количество |");
@@ -63,7 +63,7 @@ public class ReportPrinter {
         for (Map.Entry<Integer, Integer> entry : responseCodeCount.entrySet()) {
             int codeResponse = entry.getKey();
             writer.println("| " + codeResponse + " | " + CodeResponse.getDescriptionByCode(codeResponse)
-                    + " |       " + entry.getValue() + " |");
+                + " |       " + entry.getValue() + " |");
         }
     }
 }

@@ -1,8 +1,5 @@
 package edu.log;
 
-import edu.log.entity.FileFormat;
-import edu.log.generators.AsciiDocReportGenerator;
-import edu.log.generators.MarkdownReportGenerator;
 import edu.log.generators.ReportGenerator;
 import java.util.Scanner;
 
@@ -16,7 +13,7 @@ public final class Main {
      *
      * @param args The command-line arguments.
      */
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         String command = new Scanner(System.in).nextLine();
 
         ReportGenerator generator = CommandProcessor.processCommand(command);
