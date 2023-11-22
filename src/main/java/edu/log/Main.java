@@ -3,10 +3,7 @@ package edu.log;
 import edu.log.generators.ReportGenerator;
 
 public final class Main {
-    private static String command;
-
-    public Main(final String userCommand) {
-        this.command = userCommand;
+    private Main() {
     }
 
     /**
@@ -18,7 +15,7 @@ public final class Main {
     public static void main(final String[] args) {
         // String command = new Scanner(System.in).nextLine();
 
-        ReportGenerator generator = CommandProcessor.processCommand(command);
+        ReportGenerator generator = CommandProcessor.processCommand(args[0].toString());
         generator.generateReport("new_report");
     }
 }

@@ -12,7 +12,7 @@ class MainTest {
     void testThatMainGenerateAdocFormat() {
         // given
         String command = "java -jar nginx-log-stats.jar --format adoc --path ";
-        Main main = new Main(command);
+        Main.main(new String[] {command});
 
         //when
         ReportGenerator generator = CommandProcessor.processCommand(command);
@@ -28,7 +28,7 @@ class MainTest {
     void testThatMainGenerateMarkdownFormat() {
         // given
         String command = "java -jar nginx-log-stats.jar --format md --path ";
-        Main main = new Main(command);
+        Main.main(new String[] {command});
 
         //when
         ReportGenerator generator = CommandProcessor.processCommand(command);
