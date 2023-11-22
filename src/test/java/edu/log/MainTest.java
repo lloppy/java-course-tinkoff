@@ -16,6 +16,5 @@ class MainTest {
         generator.setFormat(FileFormat.MARKDOWN);
         generator.generateReport("reportAdoc");
 
-        // записей стало меньше 10_000
     }
 }
