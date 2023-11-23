@@ -1,4 +1,4 @@
-package edu.hw7;
+package edu.hw7.task2;
 
 import java.math.BigInteger;
 import java.util.stream.LongStream;

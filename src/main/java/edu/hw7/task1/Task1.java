@@ -1,4 +1,4 @@
-package edu.hw7;
+package edu.hw7.task1;
 
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.logging.Level;

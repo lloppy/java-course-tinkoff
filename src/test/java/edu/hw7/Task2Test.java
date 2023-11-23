@@ -1,6 +1,8 @@
 package edu.hw7;
 
 import java.math.BigInteger;
+
+import edu.hw7.task2.Task2;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;

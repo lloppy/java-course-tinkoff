@@ -1,5 +1,6 @@
 package edu.hw7;
 
+import edu.hw7.task1.Task1;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
