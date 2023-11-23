@@ -38,7 +38,8 @@ public final class SynchronizedDatabase implements PersonDatabase {
         lock.readLock().lock();
         try {
             return database.values().stream()
-                .filter(person -> notNullAttributes(person) && person.name().equals(name))
+                .filter(person -> notNullAttributes(person)
+                    && person.name().equals(name))
                 .toList();
         } finally {
             lock.readLock().unlock();
@@ -50,7 +51,8 @@ public final class SynchronizedDatabase implements PersonDatabase {
         lock.readLock().lock();
         try {
             return database.values().stream()
-                .filter(person -> notNullAttributes(person) && person.address().equals(address))
+                .filter(person -> notNullAttributes(person)
+                    && person.address().equals(address))
                 .toList();
         } finally {
             lock.readLock().unlock();
@@ -62,7 +64,8 @@ public final class SynchronizedDatabase implements PersonDatabase {
         lock.readLock().lock();
         try {
             return database.values().stream()
-                .filter(person -> notNullAttributes(person) && person.phoneNumber().equals(phone))
+                .filter(person -> notNullAttributes(person)
+                    && person.phoneNumber().equals(phone))
                 .toList();
         } finally {
             lock.readLock().unlock();
