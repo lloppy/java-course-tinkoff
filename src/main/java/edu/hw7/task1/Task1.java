@@ -25,7 +25,6 @@ public final class Task1 {
             incrementer2.join();
             incrementer3.join();
         } catch (InterruptedException e) {
-            e.printStackTrace();
             LOGGER.severe("Thread interrupted: " + e.getMessage());
             LOGGER.log(Level.SEVERE, e.getMessage(), e);
         }
