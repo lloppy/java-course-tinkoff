@@ -3,42 +3,70 @@ package edu.hw7.task3;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.locks.ReadWriteLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public final class SynchronizedDatabase implements PersonDatabase {
-    Map<Integer, Person> database = new HashMap<>();
+    private final ReadWriteLock lock = new ReentrantReadWriteLock();
+    private final Map<Integer, Person> database = new HashMap<>();
 
     SynchronizedDatabase() {
     }
 
     @Override
     public synchronized void add(final Person person) {
-        database.put(person.id(), person);
+        lock.writeLock().lock();
+        try {
+            database.put(person.id(), person);
+        } finally {
+            lock.writeLock().unlock();
+        }
     }
 
     @Override
     public synchronized void delete(final int id) {
-        database.remove(id);
+        lock.writeLock().lock();
+        try {
+            database.remove(id);
+        } finally {
+            lock.writeLock().unlock();
+        }
     }
 
     @Override
     public synchronized List<Person> findByName(final String name) {
-        return database.values().stream()
-            .filter(person -> notNullAttributes(person) && person.name().equals(name))
-            .toList();
+        lock.readLock().lock();
+        try {
+            return database.values().stream()
+                .filter(person -> notNullAttributes(person) && person.name().equals(name))
+                .toList();
+        } finally {
+            lock.readLock().unlock();
+        }
     }
 
     @Override
     public synchronized List<Person> findByAddress(final String address) {
-        return database.values().stream()
-            .filter(person -> notNullAttributes(person) && person.address().equals(address))
-            .toList();
+        lock.readLock().lock();
+        try {
+            return database.values().stream()
+                .filter(person -> notNullAttributes(person) && person.address().equals(address))
+                .toList();
+        } finally {
+            lock.readLock().unlock();
+        }
     }
 
     @Override
     public synchronized List<Person> findByPhone(final String phone) {
-        return database.values().stream()
-            .filter(person -> notNullAttributes(person) && person.phoneNumber().equals(phone))
-            .toList();
+        lock.readLock().lock();
+        try {
+            return database.values().stream()
+                .filter(person -> notNullAttributes(person) && person.phoneNumber().equals(phone))
+                .toList();
+        } finally {
+            lock.readLock().unlock();
+        }
     }
 
     private boolean notNullAttributes(final Person person) {
@@ -48,6 +76,11 @@ public final class SynchronizedDatabase implements PersonDatabase {
     }
 
     public int getSize() {
-        return database.size();
+        lock.readLock().lock();
+        try {
+            return database.size();
+        } finally {
+            lock.readLock().unlock();
+        }
     }
 }
