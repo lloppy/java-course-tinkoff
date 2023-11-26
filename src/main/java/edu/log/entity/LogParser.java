@@ -8,6 +8,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public final class LogParser {
+    private LogParser() {
+    }
+
     private static final Logger LOGGER = Logger.getLogger(LogParser.class.getName());
     private static final String ERROR_MESSAGE = "Error %s has occurred in %s. Error value is %s";
     private static final String DEFAULT_DATE_STRING = "17/May/2015";
@@ -71,14 +74,21 @@ public final class LogParser {
         }
     }
 
-    private static void printLog(String stringValue, String methodName, Exception e) {
+    private static void printLog(
+        final String stringValue,
+        final String methodName,
+        final Exception e
+    ) {
         LOGGER.log(
             Level.WARNING,
             String.format(ERROR_MESSAGE, e, methodName, stringValue)
         );
     }
 
-    private static String parseString(String stringValue, String methodName) {
+    private static String parseString(
+        final String stringValue,
+        final String methodName
+    ) {
         try {
             if (stringValue != null) {
                 return stringValue;

@@ -51,7 +51,7 @@ public abstract class ReportGenerator {
         this.format = format;
     }
 
-    public abstract void generateReport(final String fileName);
+    public abstract void generateReport(String fileName);
 
     private LocalDate parseDateString(final String dateString) {
         return LocalDate.parse(dateString, DateTimeFormatter.ofPattern("dd/MMM/yyyy"));

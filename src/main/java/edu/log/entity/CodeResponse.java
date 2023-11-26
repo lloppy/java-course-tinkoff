@@ -3,7 +3,7 @@ package edu.log.entity;
 import java.util.HashMap;
 import java.util.Map;
 
-@SuppressWarnings("MagicNumber")
+@SuppressWarnings({"MagicNumber", "AnonInnerLength"})
 public final class CodeResponse {
     private static final Map<Integer, String> RESPONSE_MAP;
 
