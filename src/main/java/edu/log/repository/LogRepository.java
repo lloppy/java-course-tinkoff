@@ -12,8 +12,8 @@ import edu.log.entity.LogRecord;
 public final class LogRepository {
     private final static Logger LOGGER = LogManager.getLogger();
 
-    private List<LogRecord> logList;
-    private Path path;
+    private final List<LogRecord> logList;
+    private final Path path;
 
     public LogRepository(final Path path) {
         this.path = path;

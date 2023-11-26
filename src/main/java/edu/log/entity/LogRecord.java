@@ -1,51 +1,50 @@
 package edu.log.entity;
 
 import java.time.OffsetDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import static edu.log.entity.LogParser.parseBodyBytesSent;
+import static edu.log.entity.LogParser.parseHttpReferer;
+import static edu.log.entity.LogParser.parseHttpUserAgent;
+import static edu.log.entity.LogParser.parseRemoteAddress;
+import static edu.log.entity.LogParser.parseRemoteUser;
+import static edu.log.entity.LogParser.parseRequest;
+import static edu.log.entity.LogParser.parseSource;
+import static edu.log.entity.LogParser.parseStatus;
+import static edu.log.entity.LogParser.parseTimeLocal;
 
 public final class LogRecord {
 
     @SuppressWarnings("LineLength")
     private static final Pattern LOG_PATTERN = Pattern.compile(
-            "^(.*) - (.*) \\[(.*)] \"(\\w+) (.*)\" (\\d{3}) (\\d+) \"(.+)\" \"(.*)\"");
-    private static final DateTimeFormatter DATA_FORMATTER =
-            DateTimeFormatter.ofPattern("dd/MMM/yyyy:HH:mm:ss Z");
+        "^(.*) - (.*) \\[(.*)] \"(\\w+) (.*)\" (\\d{3}) (\\d+) \"(.+)\" \"(.*)\"");
 
-    private String remoteAddress;
-    private String remoteUser;
-    private OffsetDateTime timeLocal;
-    private String request;
-    private int status;
+    private final String remoteAddress;
+    private final String remoteUser;
+    private final OffsetDateTime timeLocal;
+    private final String request;
+    private final int status;
+    private final String httpReferer;
+    private final String httpUserAgent;
+    private final String source;
     private int bodyBytesSent;
-    private String httpReferer;
-    private String httpUserAgent;
-    private String codeResponse;
-    private String source;
 
     @SuppressWarnings("MagicNumber")
     public LogRecord(final String logLine) {
         Matcher matcher = LOG_PATTERN.matcher(logLine);
         if (matcher.matches()) {
-            remoteAddress = matcher.group(1);
-            remoteUser = matcher.group(2);
-            timeLocal = OffsetDateTime.parse(matcher.group(3), DATA_FORMATTER);
-            request = matcher.group(4);
-            source = matcher.group(5);
-            status = Integer.parseInt(matcher.group(6));
-            codeResponse = CodeResponse.getDescriptionByCode(status);
-            httpReferer = matcher.group(8);
-            httpUserAgent = matcher.group(9);
-
-            try {
-                bodyBytesSent = Integer.parseInt(matcher.group(7));
-            } catch (NumberFormatException e) {
-                bodyBytesSent = 0;
-            }
+            remoteAddress = parseRemoteAddress(matcher.group(1));
+            remoteUser = parseRemoteUser(matcher.group(2));
+            timeLocal = parseTimeLocal(matcher.group(3));
+            request = parseRequest(matcher.group(4));
+            source = parseSource(matcher.group(5));
+            status = parseStatus(matcher.group(6));
+            bodyBytesSent = parseBodyBytesSent(matcher.group(7));
+            httpReferer = parseHttpReferer(matcher.group(8));
+            httpUserAgent = parseHttpUserAgent(matcher.group(9));
         } else {
             throw new IllegalArgumentException(
-                    "Invalid log format: " + logLine
+                String.format("Invalid log format: %s", logLine)
             );
         }
     }
@@ -80,10 +79,6 @@ public final class LogRecord {
 
     public String getHttpUserAgent() {
         return httpUserAgent;
-    }
-
-    public String getCodeResponse() {
-        return codeResponse;
     }
 
     public String getSource() {
