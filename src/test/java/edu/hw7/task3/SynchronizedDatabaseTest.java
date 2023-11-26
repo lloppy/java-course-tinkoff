@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class SynchronizedDatabaseTest {
-    private static final Logger logger = Logger.getLogger(SynchronizedDatabaseTest.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(SynchronizedDatabaseTest.class.getName());
 
     @Test
     void testMultithreading() throws InterruptedException {
@@ -18,16 +18,16 @@ class SynchronizedDatabaseTest {
 
         Runnable addTask = () -> {
             for (int i = 0; i < 100; i++) {
-                Person person = new Person(i, "Name" + i, "Address" + i, "Phone" + i);
+                Person person = new Person(i, String.format("Name%s", i), String.format("Address%s", i), String.format("Phone%s", i));
                 synchronizedDatabase.add(person);
-                logger.info("Added: " + person);
+                LOGGER.info(String.format("Added: %s", person));
             }
         };
 
         Runnable deleteTask = () -> {
             for (int i = 0; i < 50; i++) {
                 synchronizedDatabase.delete(i);
-                logger.info("Deleted: " + i);
+                LOGGER.info(String.format("Deleted: %s", i));
             }
         };
 
@@ -38,7 +38,7 @@ class SynchronizedDatabaseTest {
         while (!executorService.isTerminated()) {
         }
 
-        logger.info("Final size: " + synchronizedDatabase.getSize());
+        LOGGER.info(String.format("Final size: %s", synchronizedDatabase.getSize()));
         assertTrue(50 <= synchronizedDatabase.getSize());
     }
 

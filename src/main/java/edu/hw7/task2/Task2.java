@@ -9,7 +9,9 @@ public final class Task2 {
 
     public static BigInteger getFactorial(final long n) {
         if (n < 0) {
-            throw new IllegalArgumentException("Your number is negative!");
+            throw new IllegalArgumentException(
+                String.format("Your number %s is negative!", n)
+            );
         }
         return LongStream
             .rangeClosed(1, n)

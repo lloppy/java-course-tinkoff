@@ -4,11 +4,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
-class Task4Test {
+class MonteCarloPiTest {
     private boolean isMultiFasterThanSingle;
     private static final double NANO_T0_SECONDS = 0.000000001;
-    private static final String SINGLE_TEMPLATE = "Время в секундах на выполнения в одном потоке - ";
-    private static final String MULTI_TEMPLATE = "Время в секундах на выполнения многопоточного варианта - ";
+    private static final String SINGLE_TEMPLATE = "Время в секундах на выполнения в одном потоке - %s\n";
+    private static final String MULTI_TEMPLATE = "Время в секундах на выполнения многопоточного варианта - %s\n";
 
 
     @Test
@@ -39,28 +39,28 @@ class Task4Test {
         double end;
 
         try {
-            System.out.println("Число итераций: " + totalSimulations + "\n");
+            System.out.printf("Число итераций: %s\n\n", totalSimulations);
 
             start = System.nanoTime();
             double singleThreadResult = MonteCarloPi.calculatePiSingleThread(totalSimulations);
             end = System.nanoTime();
-            System.out.println(SINGLE_TEMPLATE + (end - start) * NANO_T0_SECONDS);
-            System.out.println("Результат вычисления: " + singleThreadResult);
-            System.out.println("Погрешность: " + Math.abs(Math.PI - singleThreadResult) + "\n");
+            System.out.printf(SINGLE_TEMPLATE, (end - start) * NANO_T0_SECONDS);
+            System.out.printf("Результат вычисления: %s\n", singleThreadResult);
+            System.out.printf("Погрешность: %s\n\n", Math.abs(Math.PI - singleThreadResult));
 
             totalSingleThreadTime += end - start;
 
             start = System.nanoTime();
             double multiThreadResult = MonteCarloPi.approximationPiMultiThreading(totalSimulations);
             end = System.nanoTime();
-            System.out.println(MULTI_TEMPLATE + (end - start) * NANO_T0_SECONDS);
-            System.out.println("Результат вычисления: " + multiThreadResult);
-            System.out.println("Погрешность: " + Math.abs(Math.PI - multiThreadResult) + "\n");
+            System.out.printf(MULTI_TEMPLATE, (end - start) * NANO_T0_SECONDS);
+            System.out.printf("Результат вычисления: %s\n", multiThreadResult);
+            System.out.printf("Погрешность: %s\n\n", Math.abs(Math.PI - multiThreadResult));
 
             totalMultiThreadTime += end - start;
 
-            System.out.println("Среднее время на выполнения в одном потоке: " + totalSingleThreadTime);
-            System.out.println("Среднее время многопоточного выполнения: " + totalMultiThreadTime);
+            System.out.printf("Среднее время на выполнения в одном потоке: %s\n", totalSingleThreadTime);
+            System.out.printf("Среднее время многопоточного выполнения: %s\n", totalMultiThreadTime);
 
             isMultiFasterThanSingle =  totalMultiThreadTime > totalSingleThreadTime;
         } catch (Exception e) {

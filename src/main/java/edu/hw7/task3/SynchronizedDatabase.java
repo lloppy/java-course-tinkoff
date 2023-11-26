@@ -10,7 +10,7 @@ public final class SynchronizedDatabase implements PersonDatabase {
     private final ReadWriteLock lock = new ReentrantReadWriteLock();
     private final Map<Integer, Person> database = new HashMap<>();
 
-    SynchronizedDatabase() {
+    public SynchronizedDatabase() {
     }
 
     @Override
