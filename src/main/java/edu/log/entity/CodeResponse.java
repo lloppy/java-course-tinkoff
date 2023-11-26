@@ -5,13 +5,13 @@ import java.util.Map;
 
 @SuppressWarnings("MagicNumber")
 public final class CodeResponse {
-    private static final Map<Integer, String> responseMap;
+    private static final Map<Integer, String> RESPONSE_MAP;
 
     private CodeResponse() {
     }
 
     static {
-        responseMap = new HashMap<>() {{
+        RESPONSE_MAP = new HashMap<>() {{
             put(100, "Continue");
             put(101, "Switching Protocols");
             put(102, "Processing");
@@ -74,6 +74,6 @@ public final class CodeResponse {
     }
 
     public static String getDescriptionByCode(final int code) {
-        return responseMap.getOrDefault(code, "Unknown Code");
+        return RESPONSE_MAP.getOrDefault(code, "Unknown Code");
     }
 }
