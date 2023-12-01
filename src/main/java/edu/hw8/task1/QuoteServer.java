@@ -1,36 +1,33 @@
 package edu.hw8.task1;
 
-import java.io.*;
-import java.net.*;
-import java.util.concurrent.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import static java.lang.System.out;
 
-public class QuoteServer {
-    private static final int PORT = 9876;
-    private static final int MAX_CONNECTIONS = 5;
+public final class QuoteServer {
+    private QuoteServer() {
+    }
+
+    private static final int PORT = 1704;
+    private static final int MAX_CONNECTIONS = 4;
+    private static final String CLIENT_IS_CONNECTED = "Подключен клиент: %s\n";
+    private static final String START_SERVER = "Сервер запущен. Ожидание подключений...\n";
 
     private static ExecutorService threadPool = Executors.newFixedThreadPool(MAX_CONNECTIONS);
 
-    private static final String[] KEYWORDS = {
-        "личности",
-        "оскорбления",
-        "глупый",
-        "интеллект"
-    };
-
-    private static final String[] RESPONSES = {
-        "Не переходи на личности там, где их нет",
-        "Если твои противники перешли на личные оскорбления, будь уверен(а) — твоя победа не за горами",
-        "А я тебе говорил, что ты глупый? Так вот, я забираю свои слова обратно... Ты просто бог идиотизма.",
-        "Чем ниже интеллект, тем громче оскорбления"
-    };
-
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         try (ServerSocket serverSocket = new ServerSocket(PORT)) {
-            System.out.println("Сервер запущен. Ожидание подключений...");
+            out.printf(START_SERVER);
 
             while (true) {
                 Socket clientSocket = serverSocket.accept();
-                System.out.println("Подключен клиент: " + clientSocket.getInetAddress());
+                out.printf(CLIENT_IS_CONNECTED, clientSocket.getInetAddress());
 
                 threadPool.execute(() -> handleClient(clientSocket));
             }
@@ -39,13 +36,13 @@ public class QuoteServer {
         }
     }
 
-    private static void handleClient(Socket clientSocket) {
+    private static void handleClient(final Socket clientSocket) {
         try (
             BufferedReader reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
             PrintWriter writer = new PrintWriter(clientSocket.getOutputStream(), true)
         ) {
             String keyword = reader.readLine();
-            String response = findResponse(keyword);
+            String response = QuoteDictionary.findResponse(keyword);
             writer.println(response);
         } catch (IOException e) {
             e.printStackTrace();
@@ -56,14 +53,5 @@ public class QuoteServer {
                 e.printStackTrace();
             }
         }
-    }
-
-    private static String findResponse(String keyword) {
-        for (int i = 0; i < KEYWORDS.length; i++) {
-            if (KEYWORDS[i].equalsIgnoreCase(keyword)) {
-                return RESPONSES[i];
-            }
-        }
-        return "Ключевое слово не распознано";
     }
 }

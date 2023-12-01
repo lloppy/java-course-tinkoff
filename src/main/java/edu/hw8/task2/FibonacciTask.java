@@ -1,8 +1,10 @@
 package edu.hw8.task2;
 
-public class FibonacciTask {
+public final class FibonacciTask {
+    private FibonacciTask() {
+    }
 
-    public static int getFibonacci(int elementNumber) {
+    public static int getFibonacci(final int elementNumber) {
         if (elementNumber == 1 || elementNumber == 0) {
             return elementNumber;
         }
