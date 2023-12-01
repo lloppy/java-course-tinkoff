@@ -32,11 +32,12 @@ class MainTest {
 
         //when
         ReportGenerator generator = CommandProcessor.processCommand(command);
-        generator.generateReport("report_md_in_path_resources");
+        generator.generateReport("new_report");
 
         //then
         Path path = Path.of("src/main/resources/reports").toAbsolutePath();
-        Path generatedFile = path.resolve("report_md_in_path_resources.md");
+        Path generatedFile = path.resolve("new_report.md");
+
         assertTrue(Files.exists(generatedFile));
     }
 }
