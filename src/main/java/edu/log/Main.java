@@ -13,9 +13,7 @@ public final class Main {
      * @param args The command-line arguments.
      */
     public static void main(final String[] args) {
-        // String command = new Scanner(System.in).nextLine();
-
-        ReportGenerator generator = CommandProcessor.processCommand(args[0].toString());
+        ReportGenerator generator = CommandProcessor.processCommand(args[0]);
         generator.generateReport("new_report");
     }
 }

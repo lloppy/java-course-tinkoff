@@ -22,16 +22,15 @@ public final class ReportPrinter {
         final OffsetDateTime from,
         final OffsetDateTime to
     ) {
-        writer.println(fileFormat + " Общая информация\n");
+        writer.println(String.format("%s Общая информация\n", fileFormat));
         writer.println("|        Метрика        |     Значение |");
         writer.println("|:---------------------:|-------------:|");
-        writer.println("|         Файл          | " + fileName + " |");
-        writer.println("|    Начальная дата     | " + from.format(DATE_TIME_FORMATTER) + " |");
-        writer.println("|     Конечная дата     | " + (to.isEqual(OffsetDateTime.now())
-            ? "-" : to.format(DATE_TIME_FORMATTER) + " |"));
-        writer.println("|  Количество запросов  | " + logAnalyzer.getTotalRequests() + " |");
-        writer.println("| Средний размер ответа | " + logAnalyzer.getAverageResponseSize() + "b |");
-        writer.println();
+        writer.println(String.format("|         Файл          | %s |", fileName));
+        writer.println(String.format("|    Начальная дата     | %s |", from.format(DATE_TIME_FORMATTER)));
+        writer.println(String.format("|     Конечная дата     | %s |",
+            to.isEqual(OffsetDateTime.now()) ? "-" : to.format(DATE_TIME_FORMATTER)));
+        writer.println(String.format("|  Количество запросов  | %d |", logAnalyzer.getTotalRequests()));
+        writer.println(String.format("| Средний размер ответа | %db |\n", logAnalyzer.getAverageResponseSize()));
     }
 
     public static void writeResourceSection(
@@ -39,13 +38,13 @@ public final class ReportPrinter {
         final LogAnalyzer logAnalyzer,
         final PrintWriter writer
     ) {
-        writer.println(fileFormat + " Запрашиваемые ресурсы\n");
+        writer.println(String.format("%s Запрашиваемые ресурсы\n", fileFormat));
         writer.println("|     Ресурс      | Количество |");
         writer.println("|:---------------:|-----------:|");
 
         Map<String, Integer> resourceCount = logAnalyzer.getResourceCount();
         for (Map.Entry<String, Integer> entry : resourceCount.entrySet()) {
-            writer.println("|  `" + entry.getKey() + "`  |      " + entry.getValue() + " |");
+            writer.println(String.format("|  `%s`  |      %d |", entry.getKey(), entry.getValue()));
         }
         writer.println();
     }
@@ -55,15 +54,15 @@ public final class ReportPrinter {
         final LogAnalyzer logAnalyzer,
         final PrintWriter writer
     ) {
-        writer.println(fileFormat + " Коды ответа\n");
+        writer.println(String.format("%s Коды ответа\n", fileFormat));
         writer.println("| Код |          Имя          | Количество |");
         writer.println("|:---:|:---------------------:|-----------:|");
 
         Map<Integer, Integer> responseCodeCount = logAnalyzer.getResponseCodeCount();
         for (Map.Entry<Integer, Integer> entry : responseCodeCount.entrySet()) {
             int codeResponse = entry.getKey();
-            writer.println("| " + codeResponse + " | " + CodeResponse.getDescriptionByCode(codeResponse)
-                + " |       " + entry.getValue() + " |");
+            writer.println(String.format("| %d | %s | %d |",
+                codeResponse, CodeResponse.getDescriptionByCode(codeResponse), entry.getValue()));
         }
     }
 }

@@ -3,79 +3,77 @@ package edu.log.entity;
 import java.util.HashMap;
 import java.util.Map;
 
+@SuppressWarnings({"MagicNumber", "AnonInnerLength"})
 public final class CodeResponse {
+    private static final Map<Integer, String> RESPONSE_MAP;
+
     private CodeResponse() {
     }
 
-    private static Map<Integer, String> responseMap = new HashMap<>();
-
     static {
-        initializeResponseMap();
-    }
-
-    @SuppressWarnings("MagicNumber")
-    private static void initializeResponseMap() {
-        responseMap.put(100, "Continue");
-        responseMap.put(101, "Switching Protocols");
-        responseMap.put(102, "Processing");
-        responseMap.put(200, "OK");
-        responseMap.put(201, "Created");
-        responseMap.put(202, "Accepted");
-        responseMap.put(203, "Non-Authoritative Information");
-        responseMap.put(204, "No Content");
-        responseMap.put(205, "Reset Content");
-        responseMap.put(206, "Partial Content");
-        responseMap.put(207, "Multi-Status");
-        responseMap.put(300, "Multiple Choices");
-        responseMap.put(301, "Moved Permanently");
-        responseMap.put(302, "Found");
-        responseMap.put(303, "See Other");
-        responseMap.put(304, "Not Modified");
-        responseMap.put(305, "Use Proxy");
-        responseMap.put(307, "Temporary Redirect");
-        responseMap.put(400, "Bad Request");
-        responseMap.put(401, "Unauthorized");
-        responseMap.put(402, "Payment Required");
-        responseMap.put(403, "Forbidden");
-        responseMap.put(404, "Not Found");
-        responseMap.put(405, "Method Not Allowed");
-        responseMap.put(406, "Not Acceptable");
-        responseMap.put(407, "Proxy Authentication Required");
-        responseMap.put(408, "Request Timeout");
-        responseMap.put(409, "Conflict");
-        responseMap.put(410, "Gone");
-        responseMap.put(411, "Length Required");
-        responseMap.put(412, "Precondition Failed");
-        responseMap.put(413, "Payload Too Large");
-        responseMap.put(414, "URI Too Long");
-        responseMap.put(415, "Unsupported Media Type");
-        responseMap.put(416, "Range Not Satisfiable");
-        responseMap.put(417, "Expectation Failed");
-        responseMap.put(418, "I'm a teapot");
-        responseMap.put(421, "Misdirected Request");
-        responseMap.put(422, "Unprocessable Entity");
-        responseMap.put(423, "Locked");
-        responseMap.put(424, "Failed Dependency");
-        responseMap.put(425, "Too Early");
-        responseMap.put(426, "Upgrade Required");
-        responseMap.put(428, "Precondition Required");
-        responseMap.put(429, "Too Many Requests");
-        responseMap.put(431, "Request Header Fields Too Large");
-        responseMap.put(451, "Unavailable For Legal Reasons");
-        responseMap.put(500, "Internal Server Error");
-        responseMap.put(501, "Not Implemented");
-        responseMap.put(502, "Bad Gateway");
-        responseMap.put(503, "Service Unavailable");
-        responseMap.put(504, "Gateway Timeout");
-        responseMap.put(505, "HTTP Version Not Supported");
-        responseMap.put(506, "Variant Also Negotiates");
-        responseMap.put(507, "Insufficient Storage");
-        responseMap.put(508, "Loop Detected");
-        responseMap.put(510, "Not Extended");
-        responseMap.put(511, "Network Authentication Required");
+        RESPONSE_MAP = new HashMap<>() {{
+            put(100, "Continue");
+            put(101, "Switching Protocols");
+            put(102, "Processing");
+            put(200, "OK");
+            put(201, "Created");
+            put(202, "Accepted");
+            put(203, "Non-Authoritative Information");
+            put(204, "No Content");
+            put(205, "Reset Content");
+            put(206, "Partial Content");
+            put(207, "Multi-Status");
+            put(300, "Multiple Choices");
+            put(301, "Moved Permanently");
+            put(302, "Found");
+            put(303, "See Other");
+            put(304, "Not Modified");
+            put(305, "Use Proxy");
+            put(307, "Temporary Redirect");
+            put(400, "Bad Request");
+            put(401, "Unauthorized");
+            put(402, "Payment Required");
+            put(403, "Forbidden");
+            put(404, "Not Found");
+            put(405, "Method Not Allowed");
+            put(406, "Not Acceptable");
+            put(407, "Proxy Authentication Required");
+            put(408, "Request Timeout");
+            put(409, "Conflict");
+            put(410, "Gone");
+            put(411, "Length Required");
+            put(412, "Precondition Failed");
+            put(413, "Payload Too Large");
+            put(414, "URI Too Long");
+            put(415, "Unsupported Media Type");
+            put(416, "Range Not Satisfiable");
+            put(417, "Expectation Failed");
+            put(418, "I'm a teapot");
+            put(421, "Misdirected Request");
+            put(422, "Unprocessable Entity");
+            put(423, "Locked");
+            put(424, "Failed Dependency");
+            put(425, "Too Early");
+            put(426, "Upgrade Required");
+            put(428, "Precondition Required");
+            put(429, "Too Many Requests");
+            put(431, "Request Header Fields Too Large");
+            put(451, "Unavailable For Legal Reasons");
+            put(500, "Internal Server Error");
+            put(501, "Not Implemented");
+            put(502, "Bad Gateway");
+            put(503, "Service Unavailable");
+            put(504, "Gateway Timeout");
+            put(505, "HTTP Version Not Supported");
+            put(506, "Variant Also Negotiates");
+            put(507, "Insufficient Storage");
+            put(508, "Loop Detected");
+            put(510, "Not Extended");
+            put(511, "Network Authentication Required");
+        }};
     }
 
     public static String getDescriptionByCode(final int code) {
-        return responseMap.getOrDefault(code, "Unknown Code");
+        return RESPONSE_MAP.getOrDefault(code, "Unknown Code");
     }
 }

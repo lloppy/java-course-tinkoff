@@ -11,32 +11,32 @@ class MainTest {
     @Test
     void testThatMainGenerateAdocFormat() {
         // given
-        String command = "java -jar nginx-log-stats.jar --format adoc --path ";
+        String command = "java -jar nginx-log-stats.jar --path src/main/java/edu/log/repository/logs2.txt --from 18/May/2015 --format adoc";
         Main.main(new String[] {command});
 
         //when
         ReportGenerator generator = CommandProcessor.processCommand(command);
-        generator.generateReport("new_report_adoc");
+        generator.generateReport("report_adoc_in_path_resources");
 
         //then
-        Path path = Path.of("src/main/java/edu/log/generators/reports").toAbsolutePath();
-        Path generatedFile = path.resolve("new_report_adoc.adoc");
+        Path path = Path.of("src/main/resources/reports").toAbsolutePath();
+        Path generatedFile = path.resolve("report_adoc_in_path_resources.adoc");
         assertTrue(Files.exists(generatedFile));
     }
 
     @Test
     void testThatMainGenerateMarkdownFormat() {
         // given
-        String command = "java -jar nginx-log-stats.jar --format md --path ";
+        String command = "java -jar nginx-log-stats.jar --path src/main/java/edu/log/repository/logs2.txt --from 18/May/2015 --format markdow";
         Main.main(new String[] {command});
 
         //when
         ReportGenerator generator = CommandProcessor.processCommand(command);
-        generator.generateReport("new_report_md");
+        generator.generateReport("new_report");
 
         //then
-        Path path = Path.of("src/main/java/edu/log/generators/reports").toAbsolutePath();
-        Path generatedFile = path.resolve("new_report_md.md");
+        Path path = Path.of("src/main/resources/reports").toAbsolutePath();
+        Path generatedFile = path.resolve("new_report.md");
         assertTrue(Files.exists(generatedFile));
     }
 }
