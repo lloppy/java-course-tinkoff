@@ -1,11 +1,13 @@
 package edu.hw8.task2;
 
 import java.util.concurrent.CountDownLatch;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class FixedThreadPoolTest {
+    @RepeatedTest(10)
     @Test
     public void testThreadPoolExecution() throws Exception {
         int threadsNumber = 3;
@@ -24,7 +26,6 @@ class FixedThreadPoolTest {
                 }
             });
         }
-        assertTrue(1 <= latch.getCount());
         assertTrue(3 == latch.getCount());
 
         latch.await();
