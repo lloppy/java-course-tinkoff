@@ -13,8 +13,7 @@ public final class Task2 {
                 String.format("Your number %s is negative!", n)
             );
         }
-        return LongStream
-            .rangeClosed(1, n)
+        return LongStream.rangeClosed(1, n)
             .parallel()
             .mapToObj(BigInteger::valueOf)
             .reduce(
