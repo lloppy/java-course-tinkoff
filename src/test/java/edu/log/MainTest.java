@@ -37,6 +37,7 @@ class MainTest {
         //then
         Path path = Path.of("src/main/resources/reports").toAbsolutePath();
         Path generatedFile = path.resolve("new_report.md");
+
         assertTrue(Files.exists(generatedFile));
     }
 }
