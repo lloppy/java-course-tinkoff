@@ -10,6 +10,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import static java.lang.System.out;
 
+@SuppressWarnings("RegexpSinglelineJava")
 public final class QuoteServer {
     private QuoteServer() {
     }
@@ -21,6 +22,7 @@ public final class QuoteServer {
 
     private static ExecutorService threadPool = Executors.newFixedThreadPool(MAX_CONNECTIONS);
 
+    // Main method, the entry point for server execution
     public static void main(final String[] args) {
         try (ServerSocket serverSocket = new ServerSocket(PORT)) {
             out.printf(START_SERVER);

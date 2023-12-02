@@ -8,6 +8,7 @@ import java.net.Socket;
 import static java.lang.System.in;
 import static java.lang.System.out;
 
+@SuppressWarnings("RegexpSinglelineJava")
 public final class QuoteClient {
     private QuoteClient() {
     }
@@ -17,10 +18,12 @@ public final class QuoteClient {
     private static final String SERVER_RESPONSE = "Ответ сервера: %s\n";
     private static final String INPUT_WORD = "Введите ключевое слово: ";
     private static final int MILLIS_TO_SLEEP = 500;
+    private static final int SOCKETS_COUNT = 500;
 
+    // Main method, the entry point for client execution
     public static void main(final String[] args) {
         try {
-            for (int i = 0; i < 10; i++) {
+            for (int i = 0; i < SOCKETS_COUNT; i++) {
                 Socket socket = new Socket(HOST_NAME, PORT);
                 String keyword = getUserInput();
                 sendRequest(socket, keyword);
