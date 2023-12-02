@@ -8,7 +8,8 @@ import java.net.Socket;
 import static java.lang.System.in;
 import static java.lang.System.out;
 
-@SuppressWarnings("RegexpSinglelineJava")
+
+@SuppressWarnings({"RegexpSinglelineJava", "uncommentedmain"})
 public final class QuoteClient {
     private QuoteClient() {
     }

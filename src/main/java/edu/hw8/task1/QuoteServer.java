@@ -10,7 +10,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import static java.lang.System.out;
 
-@SuppressWarnings("RegexpSinglelineJava")
+@SuppressWarnings({"RegexpSinglelineJava", "uncommentedmain"})
 public final class QuoteServer {
     private QuoteServer() {
     }
