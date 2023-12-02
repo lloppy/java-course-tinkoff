@@ -20,7 +20,9 @@ public final class QuoteClient {
     private static final int MILLIS_TO_SLEEP = 500;
     private static final int SOCKETS_COUNT = 500;
 
-    // Main method, the entry point for client execution
+    /**
+     * Main method, the entry point for client execution.
+     */
     public static void main(final String[] args) {
         try {
             for (int i = 0; i < SOCKETS_COUNT; i++) {
