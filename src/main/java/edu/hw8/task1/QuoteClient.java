@@ -21,7 +21,8 @@ public final class QuoteClient {
     private static final int SOCKETS_COUNT = 500;
 
     /**
-     * Main method, the entry point for client execution.
+     * Main : method that simulates a client connecting to a server multiple times,
+     * sending requests, and printing the server's response.
      *
      * @param args Command-line arguments (not used in this application).
      */

@@ -23,7 +23,9 @@ public final class QuoteServer {
     private static ExecutorService threadPool = Executors.newFixedThreadPool(MAX_CONNECTIONS);
 
     /**
-     * Main method, the entry point for server execution.
+     * Main : method that simulates a server connection.
+     * The server waits for clients to connect indefinitely, accepting connections and
+     * assigning each client to a thread in a fixed-size thread pool.
      *
      * @param args Command-line arguments (not used in this application).
      */
