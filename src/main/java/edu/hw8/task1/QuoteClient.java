@@ -22,6 +22,8 @@ public final class QuoteClient {
 
     /**
      * Main method, the entry point for client execution.
+     *
+     * @param args Command-line arguments (not used in this application).
      */
     public static void main(final String[] args) {
         try {

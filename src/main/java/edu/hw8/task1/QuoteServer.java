@@ -24,6 +24,8 @@ public final class QuoteServer {
 
     /**
      * Main method, the entry point for server execution.
+     *
+     * @param args Command-line arguments (not used in this application).
      */
     public static void main(final String[] args) {
         try (ServerSocket serverSocket = new ServerSocket(PORT)) {
