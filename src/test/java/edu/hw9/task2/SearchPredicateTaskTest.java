@@ -11,7 +11,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class SearchPredicateTaskTest {
-
     @Test
     public void testSearchPredicateTask() {
         Path rootPath = Paths.get("testRoot");

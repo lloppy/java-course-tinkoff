@@ -20,10 +20,8 @@ public final class CollectStatisticSystem {
         Map<String, List<Double>> metricsData = new ConcurrentHashMap<>();
 
         metrics.forEach(metric -> {
-            metricsData.compute(metric.metricName(), (key, values) -> {
-                if (values == null) {
-                    values = new ArrayList<>();
-                }
+            metricsData.compute(metric.metricName(), (key, existingValues) -> {
+                List<Double> values = (existingValues == null) ? new ArrayList<>() : existingValues;
                 for (double value : metric.values()) {
                     values.add(value);
                 }

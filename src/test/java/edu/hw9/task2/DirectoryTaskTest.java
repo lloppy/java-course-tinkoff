@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class DirectoryTaskTest {
-
     @Test
     public void testDirectoryTaskWithMin1000Files() {
         Path rootPath = Paths.get("testRoot");

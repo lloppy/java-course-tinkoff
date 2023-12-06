@@ -1,5 +1,7 @@
 package edu.hw9.task2;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -8,6 +10,8 @@ import java.util.List;
 import java.util.concurrent.RecursiveTask;
 
 public final class DirectoryTask extends RecursiveTask<List<Path>> {
+    private static final Logger LOGGER = LogManager.getLogger(DirectoryTask.class);
+
     private final Path directory;
     private static final int MIN_FILES = 1000; // по заданию
 
@@ -39,7 +43,7 @@ public final class DirectoryTask extends RecursiveTask<List<Path>> {
                     result.add(directory);
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                LOGGER.error("Error processing directory stream", e);
             }
 
             for (DirectoryTask subtask : subtasks) {
