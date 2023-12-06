@@ -7,11 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.RecursiveTask;
 
-public class DirectoryTask extends RecursiveTask<List<Path>> {
+public final class DirectoryTask extends RecursiveTask<List<Path>> {
     private final Path directory;
     private static final int MIN_FILES = 1000; // по заданию
 
-    public DirectoryTask(Path directory) {
+    public DirectoryTask(final Path directory) {
         this.directory = directory;
     }
 

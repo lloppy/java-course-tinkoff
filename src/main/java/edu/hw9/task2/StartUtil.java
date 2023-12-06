@@ -6,8 +6,13 @@ import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 
 public final class StartUtil {
+    private StartUtil() {
+    }
 
-    public static void createDirectoryWithFiles(Path rootPath, int fileCount) {
+    public static void createDirectoryWithFiles(
+        final Path rootPath,
+        final int fileCount
+    ) {
         try {
             Files.createDirectories(rootPath);
             for (int i = 0; i < fileCount; i++) {
@@ -20,7 +25,7 @@ public final class StartUtil {
         }
     }
 
-    public static void deleteDirectory(Path directory) {
+    public static void deleteDirectory(final Path directory) {
         try {
             Files.walk(directory)
                 .sorted((a, b) -> -a.compareTo(b))

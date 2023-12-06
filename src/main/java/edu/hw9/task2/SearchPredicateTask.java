@@ -8,11 +8,14 @@ import java.util.List;
 import java.util.concurrent.RecursiveTask;
 import java.util.function.Predicate;
 
-public class SearchPredicateTask extends RecursiveTask<List<String>> {
+public final class SearchPredicateTask extends RecursiveTask<List<String>> {
     private final Path directory;
     private final Predicate<Path> predicate;
 
-    public SearchPredicateTask(Path directory, Predicate<Path> predicate) {
+    public SearchPredicateTask(
+        final Path directory,
+        final Predicate<Path> predicate
+    ) {
         this.directory = directory;
         this.predicate = predicate;
     }
