@@ -1,5 +1,7 @@
 package edu.hw9.task2;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -9,6 +11,8 @@ import java.util.concurrent.RecursiveTask;
 import java.util.function.Predicate;
 
 public final class SearchPredicateTask extends RecursiveTask<List<String>> {
+    private static final Logger LOGGER = LogManager.getLogger(StartUtil.class);
+
     private final Path directory;
     private final Predicate<Path> predicate;
 
@@ -38,7 +42,7 @@ public final class SearchPredicateTask extends RecursiveTask<List<String>> {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.error("Error processing directory stream", e);
         }
 
         for (SearchPredicateTask task : forks) {

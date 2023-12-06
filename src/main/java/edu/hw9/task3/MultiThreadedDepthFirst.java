@@ -9,8 +9,11 @@ import java.util.Stack;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public final class MultiThreadedDepthFirst {
+    private static final Logger LOGGER = LogManager.getLogger(MultiThreadedDepthFirst.class);
     private static final int MOVE_UP = -2;
     private static final int MOVE_DOWN = 2;
     private static final int MOVE_LEFT = -2;
@@ -59,7 +62,8 @@ public final class MultiThreadedDepthFirst {
         try {
             executor.awaitTermination(Long.MAX_VALUE, TimeUnit.NANOSECONDS);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            LOGGER.error(() -> "Thread execution interrupted", e);
+            Thread.currentThread().interrupt();
         }
 
         return maze;

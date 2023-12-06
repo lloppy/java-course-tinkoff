@@ -4,8 +4,12 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public final class StartUtil {
+    private static final Logger LOGGER = LogManager.getLogger(StartUtil.class);
+
     private StartUtil() {
     }
 
@@ -21,7 +25,7 @@ public final class StartUtil {
                 Files.write(filePath, "Test".getBytes(), StandardOpenOption.CREATE);
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error("Error creating directory with files", e);
         }
     }
 
@@ -33,11 +37,11 @@ public final class StartUtil {
                     try {
                         Files.deleteIfExists(path);
                     } catch (IOException e) {
-                        e.printStackTrace();
+                        LOGGER.error("Error deleting directory", e);
                     }
                 });
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error("Error walking through directory", e);
         }
     }
 }
