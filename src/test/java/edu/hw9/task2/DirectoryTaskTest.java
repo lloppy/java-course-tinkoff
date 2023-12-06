@@ -3,6 +3,7 @@ package edu.hw9.task2;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -17,11 +18,9 @@ class DirectoryTaskTest {
         List<Path> result = directoryTask.invoke();
 
         assertEquals(1, result.size());
-        assertEquals(rootPath, result.get(0));
-
-        StartUtil.deleteDirectory(rootPath);
+        assertEquals(rootPath, result.getFirst());
     }
-    
+
     @Test
     public void testDirectoryTaskWithoutMin1000Files() {
         Path rootPath = Paths.get("testRoot");
@@ -31,7 +30,11 @@ class DirectoryTaskTest {
         List<Path> result = directoryTask.invoke();
 
         assertEquals(0, result.size());
+    }
 
+    @AfterEach
+    void deleteFiles(){
+        Path rootPath = Paths.get("testRoot");
         StartUtil.deleteDirectory(rootPath);
     }
 }
