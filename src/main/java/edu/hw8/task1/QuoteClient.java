@@ -8,7 +8,6 @@ import java.net.Socket;
 import static java.lang.System.in;
 import static java.lang.System.out;
 
-
 @SuppressWarnings({"RegexpSinglelineJava", "uncommentedmain"})
 public final class QuoteClient {
     private QuoteClient() {
@@ -30,7 +29,6 @@ public final class QuoteClient {
     public static void main(final String[] args) {
         try (Socket socket = new Socket(HOST_NAME, PORT)) {
             for (int i = 0; i < SOCKETS_COUNT; i++) {
-                ;
                 String keyword = getUserInput();
                 sendRequest(socket, keyword);
                 readResponse(socket);
@@ -39,7 +37,7 @@ public final class QuoteClient {
             }
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
-        } 
+        }
     }
 
     private static void sendRequest(

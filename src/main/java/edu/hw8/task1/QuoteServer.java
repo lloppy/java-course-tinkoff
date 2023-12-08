@@ -32,7 +32,6 @@ public final class QuoteServer {
     public static void main(final String[] args) {
         try (ServerSocket serverSocket = new ServerSocket(PORT)) {
             out.printf(START_SERVER);
-
             while (true) {
                 Socket clientSocket = serverSocket.accept();
                 out.printf(CLIENT_IS_CONNECTED, clientSocket.getInetAddress());
