@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import static java.lang.System.in;
 import static java.lang.System.out;
 
@@ -13,6 +15,7 @@ public final class QuoteClient {
     private QuoteClient() {
     }
 
+    private static final Logger LOGGER = LogManager.getLogger(QuoteClient.class);
     private static final int PORT = 1704;
     private static final String HOST_NAME = "localhost";
     private static final String SERVER_RESPONSE = "Ответ сервера: %s\n";
@@ -32,11 +35,10 @@ public final class QuoteClient {
                 String keyword = getUserInput();
                 sendRequest(socket, keyword);
                 readResponse(socket);
-                socket.close();
                 Thread.sleep(MILLIS_TO_SLEEP);
             }
         } catch (IOException | InterruptedException e) {
-            e.printStackTrace();
+            LOGGER.error("Error creating socket", e);
         }
     }
 

@@ -1,5 +1,7 @@
 package edu.hw8.task1;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -15,6 +17,7 @@ public final class QuoteServer {
     private QuoteServer() {
     }
 
+    private static final Logger LOGGER = LogManager.getLogger(QuoteServer.class);
     private static final int PORT = 1704;
     private static final int MAX_CONNECTIONS = 4;
     private static final String CLIENT_IS_CONNECTED = "Подключен клиент: %s\n";
@@ -30,16 +33,16 @@ public final class QuoteServer {
      * @param args Command-line arguments (not used in this application).
      */
     public static void main(final String[] args) {
-        try (ServerSocket serverSocket = new ServerSocket(PORT)) {
+        try (ServerSocket serverSocket = new ServerSocket(PORT);
+             Socket clientSocket = serverSocket.accept();
+        ) {
             out.printf(START_SERVER);
             while (true) {
-                Socket clientSocket = serverSocket.accept();
                 out.printf(CLIENT_IS_CONNECTED, clientSocket.getInetAddress());
-
                 threadPool.execute(() -> handleClient(clientSocket));
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error("An IOException occurred while running the server", e);
         }
     }
 
@@ -52,7 +55,7 @@ public final class QuoteServer {
             String response = QuoteDictionary.findResponse(keyword);
             writer.println(response);
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error("An IOException occurred while handling a client", e);
         }
     }
 }
