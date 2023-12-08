@@ -8,8 +8,12 @@ import java.util.Random;
 import java.util.Stack;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public final class MultiThreadedDepthFirst {
+    private static final Logger LOGGER = LogManager.getLogger(MultiThreadedDepthFirst.class);
     private static final int MOVE_UP = -2;
     private static final int MOVE_DOWN = 2;
     private static final int MOVE_LEFT = -2;
@@ -17,43 +21,52 @@ public final class MultiThreadedDepthFirst {
 
     private Node[][] map;
     private Random random;
+    private ExecutorService executor;
 
     public Maze generateMaze(final int height, final int width, final int numberOfThreads) {
-        try (ExecutorService executor = Executors.newFixedThreadPool(numberOfThreads)) {
-            Maze maze = new Maze(height, width);
-            map = maze.getMap();
-            random = new Random();
+        Maze maze = new Maze(height, width);
+        map = maze.getMap();
+        random = new Random();
+        executor = Executors.newFixedThreadPool(numberOfThreads);
 
-            int startX = 1;
-            int startY = 1;
-            Node startNode = map[startY][startX];
-            Node exitNode = map[height - 2][width - 2];
+        int startX = 1;
+        int startY = 1;
+        Node startNode = map[startY][startX];
+        Node exitNode = map[height - 2][width - 2];
 
-            startNode.setType(Node.Type.EMPTY);
+        startNode.setType(Node.Type.EMPTY);
 
-            Stack<Node> stack = new Stack<>();
-            stack.push(startNode);
+        Stack<Node> stack = new Stack<>();
+        stack.push(startNode);
 
-            while (!stack.isEmpty()) {
-                Node currentCell = stack.peek();
-                List<Node> unvisitedNeighbors = getUnvisitedNeighbors(
-                    currentCell, width, height
+        while (!stack.isEmpty()) {
+            Node currentCell = stack.peek();
+            List<Node> unvisitedNeighbors = getUnvisitedNeighbors(
+                currentCell, width, height
+            );
+
+            if (!unvisitedNeighbors.isEmpty()) {
+                Node neighbor = unvisitedNeighbors.get(
+                    random.nextInt(unvisitedNeighbors.size())
                 );
-
-                if (!unvisitedNeighbors.isEmpty()) {
-                    Node neighbor = unvisitedNeighbors.get(
-                        random.nextInt(unvisitedNeighbors.size())
-                    );
-                    executor.execute(() -> removeWallBetween(currentCell, neighbor));
-                    stack.push(neighbor);
-                } else {
-                    stack.pop();
-                }
+                executor.execute(() -> removeWallBetween(currentCell, neighbor));
+                stack.push(neighbor);
+            } else {
+                stack.pop();
             }
-            exitNode.setType(Node.Type.EMPTY);
-
-            return maze;
         }
+
+        exitNode.setType(Node.Type.EMPTY);
+
+        executor.shutdown();
+        try {
+            executor.awaitTermination(Long.MAX_VALUE, TimeUnit.NANOSECONDS);
+        } catch (InterruptedException e) {
+            LOGGER.error(() -> "Thread execution interrupted", e);
+            Thread.currentThread().interrupt();
+        }
+
+        return maze;
     }
 
     private List<Node> getUnvisitedNeighbors(
