@@ -47,19 +47,13 @@ public final class QuoteServer {
     private static void handleClient(final Socket clientSocket) {
         try (
             BufferedReader reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-            PrintWriter writer = new PrintWriter(clientSocket.getOutputStream(), true)
+            PrintWriter writer = new PrintWriter(clientSocket.getOutputStream(), true);
         ) {
             String keyword = reader.readLine();
             String response = QuoteDictionary.findResponse(keyword);
             writer.println(response);
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
-            try {
-                clientSocket.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
     }
 }

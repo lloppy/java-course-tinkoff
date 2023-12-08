@@ -28,9 +28,9 @@ public final class QuoteClient {
      * @param args Command-line arguments (not used in this application).
      */
     public static void main(final String[] args) {
-        try {
+        try (Socket socket = new Socket(HOST_NAME, PORT)) {
             for (int i = 0; i < SOCKETS_COUNT; i++) {
-                Socket socket = new Socket(HOST_NAME, PORT);
+                ;
                 String keyword = getUserInput();
                 sendRequest(socket, keyword);
                 readResponse(socket);
@@ -39,7 +39,7 @@ public final class QuoteClient {
             }
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
-        }
+        } 
     }
 
     private static void sendRequest(
