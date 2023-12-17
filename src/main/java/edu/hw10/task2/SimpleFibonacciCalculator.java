@@ -1,7 +1,7 @@
 package edu.hw10.task2;
 
 class SimpleFibonacciCalculator implements FibonacciCalculator {
-    public SimpleFibonacciCalculator() {
+    SimpleFibonacciCalculator() {
     }
 
     @Override
