@@ -5,7 +5,7 @@ class SimpleFibonacciCalculator implements FibonacciCalculator {
     }
 
     @Override
-    public long fibonacci(int number) {
+    public long fibonacci(final int number) {
         if (number <= 1) {
             return number;
         }
