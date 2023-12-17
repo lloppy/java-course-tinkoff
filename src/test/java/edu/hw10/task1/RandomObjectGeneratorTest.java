@@ -1,8 +1,8 @@
 package edu.hw10.task1;
 
+import edu.hw10.classes.MyClass;
+import edu.hw10.classes.MyRecord;
 import edu.hw10.task1.generator.RandomObjectGenerator;
-import edu.hw10.task1.test_class.MyClass;
-import edu.hw10.task1.test_class.MyRecord;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;

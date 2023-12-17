@@ -1,4 +1,4 @@
-package edu.hw10.task1.test_class;
+package edu.hw10.classes;
 
 import edu.hw10.task1.annotations.Max;
 import edu.hw10.task1.annotations.Min;
