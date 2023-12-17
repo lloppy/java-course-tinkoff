@@ -13,7 +13,7 @@ public class RandomValueGenerator {
 
     private final ThreadLocalRandom random = ThreadLocalRandom.current();
 
-    public Object generateRandomValue(Parameter parameter) {
+    public Object generateRandomValue(final Parameter parameter) {
         Class<?> type = parameter.getType();
 
         if (type.isPrimitive() || Number.class.isAssignableFrom(type)) {
@@ -27,7 +27,10 @@ public class RandomValueGenerator {
         throw new RuntimeException("No supported parameter`s types: " + type.getName());
     }
 
-    private Object generateRandomNumberValue(Class<?> type, Annotation[] annotations) {
+    private Object generateRandomNumberValue(
+        final Class<?> type,
+        final Annotation[] annotations
+    ) {
         double max = Double.MAX_VALUE;
         double min = Double.MIN_VALUE;
 
@@ -52,7 +55,7 @@ public class RandomValueGenerator {
         throw new RuntimeException("No primitive value: " + type.getName());
     }
 
-    private Object generateRandomStringValue(Annotation[] annotations) {
+    private Object generateRandomStringValue(final Annotation[] annotations) {
         boolean notNull = Arrays.stream(annotations)
             .anyMatch(annotation -> annotation.annotationType() == NotNull.class);
 

@@ -13,7 +13,7 @@ public class RandomObjectGenerator {
     private final ThreadLocalRandom random = ThreadLocalRandom.current();
     private final Class<?> currentClass;
 
-    public RandomObjectGenerator(Class<?> currentClass) {
+    public RandomObjectGenerator(final Class<?> currentClass) {
         this.currentClass = Objects.requireNonNull(currentClass, "Class cannot be null");
     }
 
@@ -22,23 +22,23 @@ public class RandomObjectGenerator {
         return createObject(constructor);
     }
 
-    public <T> T nextObject(String factoryMethodName) {
+    public <T> T nextObject(final String factoryMethodName) {
         Method factoryMethod = getFactoryMethod(currentClass, factoryMethodName);
         return createObject(factoryMethod);
     }
 
-    private Constructor<?> getRandomConstructor(Constructor<?>[] constructors) {
+    private Constructor<?> getRandomConstructor(final Constructor<?>[] constructors) {
         return constructors[random.nextInt(constructors.length)];
     }
 
-    private Method getFactoryMethod(Class<?> tClass, String factoryMethodName) {
+    private Method getFactoryMethod(final Class<?> tClass, final String factoryMethodName) {
         return Arrays.stream(tClass.getMethods())
             .filter(method -> method.getName().equals(factoryMethodName))
             .findFirst()
             .orElseThrow(() -> new IllegalArgumentException("No existing method: " + factoryMethodName));
     }
 
-    private <T> T createObject(Constructor<?> constructor) {
+    private <T> T createObject(final Constructor<?> constructor) {
         try {
             Parameter[] parameters = constructor.getParameters();
             return (T) constructor.newInstance(getArguments(parameters));
@@ -47,7 +47,7 @@ public class RandomObjectGenerator {
         }
     }
 
-    private <T> T createObject(Method factoryMethod) {
+    private <T> T createObject(final Method factoryMethod) {
         try {
             Parameter[] parameters = factoryMethod.getParameters();
             return (T) factoryMethod.invoke(null, getArguments(parameters));
@@ -56,7 +56,7 @@ public class RandomObjectGenerator {
         }
     }
 
-    private Object[] getArguments(Parameter[] parameters) {
+    private Object[] getArguments(final Parameter[] parameters) {
         return Arrays.stream(parameters)
             .map(randomValueGenerator::generateRandomValue)
             .toArray();
